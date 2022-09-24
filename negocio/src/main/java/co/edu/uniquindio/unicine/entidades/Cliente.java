@@ -14,8 +14,8 @@ public class Cliente  extends Persona implements Serializable{
     @Column(nullable = false)
     private Boolean estado;
 
-    @Column(nullable = false, length = 10)
-    private String telefono;
+    @ElementCollection
+    private List<String> telefonos;
 
     @Column(nullable = false)
     private String imagen_perfil;
@@ -32,9 +32,9 @@ public class Cliente  extends Persona implements Serializable{
     @OneToMany(mappedBy = "cliente")
     private List<Pqrs> pqrs;
 
-    public Cliente(Integer cedula, String nombre, String correo, String contrasena, String telefono, String imagen_perfil) {
+    public Cliente(Integer cedula, String nombre, String correo, String contrasena, List<String> telefonos, String imagen_perfil) {
         super(cedula, nombre, correo, contrasena);
-        this.telefono = telefono;
+        this.telefonos = telefonos;
         this.imagen_perfil = imagen_perfil;
         this.estado = false;
     }

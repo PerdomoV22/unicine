@@ -9,21 +9,14 @@ import javax.persistence.OneToOne;
 import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
-public class AdministradorTeatro implements Serializable {
+@ToString(callSuper = true)
+public class AdministradorTeatro extends Persona implements Serializable {
 
-    @Id
-    @EqualsAndHashCode.Include
-    private String usuario;
-
-    @Column(nullable = false)
-    private String contrasena;
-
-    @OneToOne
+    @OneToOne(mappedBy = "administradorTeatro")
     private Teatro teatro;
+
+    public AdministradorTeatro(Integer cedula, String nombre, String correo, String contrasena) {
+        super(cedula, nombre, correo, contrasena);
+    }
 }

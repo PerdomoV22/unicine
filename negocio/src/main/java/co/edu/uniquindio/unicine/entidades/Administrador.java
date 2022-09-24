@@ -10,21 +10,14 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
-public class Administrador implements Serializable {
-
-    @Id
-    @EqualsAndHashCode.Include
-    private String usuario;
-
-    @Column(nullable = false)
-    private String contrasena;
+@ToString(callSuper = true)
+public class Administrador extends Persona implements Serializable {
 
     @OneToMany(mappedBy = "administrador")
     private List<Teatro> teatros;
+
+    public Administrador(Integer cedula, String nombre, String correo, String contrasena) {
+        super(cedula, nombre, correo, contrasena);
+    }
 }

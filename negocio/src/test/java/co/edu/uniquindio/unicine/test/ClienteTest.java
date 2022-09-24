@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,28 +21,25 @@ public class ClienteTest {
     private ClienteRepo clienteRepo;
 
     @Test
+    @Sql("classpath:dataset.sql")
     public void registrar(){
-        Cliente cliente = new Cliente(1004,"Juan", "perdomo@gmail.com", "2208", "3117556502", "url");
+        String[] telefonos = new String[] {"3117556502", "3148279730"};
+        Cliente cliente = new Cliente(1004,"Juan", "perdomo@gmail.com", "2208", Arrays.asList(telefonos), "url");
         Cliente clienteGuardado = clienteRepo.save(cliente);
         Assertions.assertEquals("Juan", clienteGuardado.getNombre());
     }
 
     @Test
     public void eliminar(){
-        Cliente cliente = new Cliente(1004,"Juan", "perdomo@gmail.com", "2208", "3117556502", "url");
-        Cliente clienteGuardado = clienteRepo.save(cliente);
-        clienteRepo.delete(clienteGuardado);
-
-        Optional<Cliente> clienteBuscado = clienteRepo.findById(1004);
-
-        Assertions.assertNull(clienteBuscado.orElse(null));
+        Cliente clienteBuscado = clienteRepo.findById(1004).orElse(null);
+        clienteRepo.delete(clienteBuscado);
+        Assertions.assertNull(clienteRepo.findById(1001).orElse(null));
     }
 
     @Test
+    @Sql("classpath:dataset.sql")
     public void actualizar(){
-        Cliente cliente = new Cliente(1004,"Juan", "perdomo@gmail.com", "2208", "3117556502", "url");
-        Cliente clienteGuardado = clienteRepo.save(cliente);
-
+        Cliente clienteGuardado = clienteRepo.findById(1004).orElse(null);
         clienteGuardado.setNombre("Jose");
 
         Cliente clienteNuevo = clienteRepo.save(clienteGuardado);
@@ -49,22 +48,15 @@ public class ClienteTest {
     }
 
     @Test
+    @Sql("classpath:dataset.sql")
     public void obtener(){
-        Cliente cliente = new Cliente(1004,"Juan", "perdomo@gmail.com", "2208", "3117556502", "url");
-        clienteRepo.save(cliente);
-
         Optional<Cliente> clienteBuscado = clienteRepo.findById(1004);
-        System.out.println(clienteBuscado.orElse(null));
+        Assertions.assertNotNull(clienteBuscado.orElse(null));
     }
 
     @Test
+    @Sql("classpath:dataset.sql")
     public void listar(){
-        Cliente cliente = new Cliente(1004,"Juan", "perdomo@gmail.com", "2208", "3117556502", "url");
-        clienteRepo.save(cliente);
-
-        Cliente cliente1 = new Cliente(1006,"Jose", "perdomov.j07@gmail.com", "2208", "3117556502", "url");
-        clienteRepo.save(cliente1);
-
         List<Cliente> listaClientes = clienteRepo.findAll();
 
         System.out.println(listaClientes);

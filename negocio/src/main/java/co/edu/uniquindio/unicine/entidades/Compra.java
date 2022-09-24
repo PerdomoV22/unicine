@@ -49,8 +49,5 @@ public class Compra implements Serializable {
     private List<SillaSala> sillaSalas;
 
     @ManyToOne
-    private Teatro teatro;
-
-    @ManyToOne
     private HorarioPelicula horarioPelicula;
 }

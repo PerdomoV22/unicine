@@ -35,10 +35,7 @@ public class Teatro implements Serializable {
     @OneToMany(mappedBy = "teatro")
     private List<Sala> salas;
 
-    @OneToMany(mappedBy = "teatro")
-    private List<Compra> compras;
-
-    @OneToOne(mappedBy = "teatro")
+    @OneToOne
     private AdministradorTeatro administradorTeatro;
 
     public Teatro(String direccion, Ciudad ciudad, Administrador administrador) {
