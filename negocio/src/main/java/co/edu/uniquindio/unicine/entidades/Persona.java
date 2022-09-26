@@ -24,6 +24,7 @@ public class Persona implements Serializable {
     @Column(nullable = false, unique = true, length = 200)
     private String correo;
 
+    @ToString.Exclude
     @Column(nullable = false, length = 100)
     private String contrasena;
 

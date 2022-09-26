@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Arrays;
@@ -60,5 +62,49 @@ public class ClienteTest {
         List<Cliente> listaClientes = clienteRepo.findAll();
 
         System.out.println(listaClientes);
+    }
+
+    /*Consultas tipicas en MySQL*/
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerClienteCorreo(){
+        Cliente cliente = clienteRepo.findByCorreo("perdomov.j07@gmail.com");
+        Assertions.assertNotNull(cliente);
+        System.out.println(cliente);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void compraborAutenticacion(){
+        Cliente cliente = clienteRepo.findByCorreoAndContrasena("perdomov.j07@gmail.com", "0987");
+        Assertions.assertNotNull(cliente);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void paginador(){
+        List<Cliente> listaClientes = clienteRepo.findAll(PageRequest.of(0,2)).toList();
+        listaClientes.forEach (System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPorEstado(){
+        List<Cliente> listaClientes = clienteRepo.obtenerPorEstado(true,PageRequest.of(0,3));
+        listaClientes.forEach (System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void ordenarPorNombre(){
+        List<Cliente> listaClientes = clienteRepo.findAll(Sort.by("nombre"));
+        listaClientes.forEach (System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void ordenarPorNombreDes(){
+        List<Cliente> listaClientes = clienteRepo.findAll(Sort.by("nombre").descending());
+        listaClientes.forEach (System.out::println);
     }
 }
