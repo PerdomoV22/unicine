@@ -2,13 +2,11 @@ package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +19,7 @@ public class Cupon  implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
     @Positive
@@ -36,8 +35,8 @@ public class Cupon  implements Serializable {
     @Column(nullable = false, length = 100)
     private String descripcion;
 
-    @OneToOne(mappedBy = "cupon")
-    private Compra compra;
+    @OneToMany(mappedBy = "cupon")
+    private List<CuponCliente> cuponClientes;
 
     public Cupon(Double valorDescuento, LocalDate fechaVencimiento, String criterio, String descripcion) {
         this.valorDescuento = valorDescuento;

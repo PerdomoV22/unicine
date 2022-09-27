@@ -23,15 +23,14 @@ public class Sala implements Serializable {
     @ManyToOne
     private Teatro teatro;
 
-    @OneToMany(mappedBy = "sala")
-    private List<SillaSala> sillas_sala;
-
     @ManyToOne
-    private Pelicula pelicula;
+    private DistribucionSillas distribucionSillas;
 
-    public Sala(Integer numeroSala, Teatro teatro, Pelicula pelicula) {
-        this.numeroSala = numeroSala;
+    @OneToMany(mappedBy = "sala")
+    private List<Funcion> funciones;
+
+    public Sala(Teatro teatro, DistribucionSillas distribucionSillas) {
         this.teatro = teatro;
-        this.pelicula = pelicula;
+        this.distribucionSillas = distribucionSillas;
     }
 }

@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Calificacion implements Serializable {
+public class Entrada implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
@@ -22,17 +22,22 @@ public class Calificacion implements Serializable {
 
     @Positive
     @Column(nullable = false)
-    private Integer puntucion;
+    private Double precio;
+
+    @Positive
+    @Column(nullable = false)
+    private Integer fila;
+
+    @Positive
+    @Column(nullable = false)
+    private Integer columna;
 
     @ManyToOne
-    private Cliente cliente;
+    private Compra compra;
 
-    @ManyToOne
-    private Pelicula pelicula;
-
-    public Calificacion(Integer puntucion, Cliente cliente, Pelicula pelicula) {
-        this.puntucion = puntucion;
-        this.cliente = cliente;
-        this.pelicula = pelicula;
+    public Entrada(Double precio, Integer fila, Integer columna) {
+        this.precio = precio;
+        this.fila = fila;
+        this.columna = columna;
     }
 }

@@ -45,9 +45,12 @@ public class Compra implements Serializable {
     @ManyToMany
     private List<Confiteria> confiterias;
 
-    @ManyToMany
-    private List<SillaSala> sillaSalas;
-
     @ManyToOne
-    private HorarioPelicula horarioPelicula;
+    private Funcion funcion;
+
+    @OneToMany(mappedBy = "compra")
+    private List<Entrada> entradas;
+
+
+
 }

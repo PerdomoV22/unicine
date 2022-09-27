@@ -1,10 +1,10 @@
 package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
+import org.aspectj.apache.bcel.generic.InstructionConstants;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Getter
@@ -13,24 +13,19 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class HorarioPelicula implements Serializable {
+public class CuponCliente implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
-    @ManyToOne
-    private Pelicula pelicula;
+    @Column(nullable = false)
+    private Boolean estado;
 
     @ManyToOne
-    private Horario horario;
+    private Cupon  cupon;
 
-    @OneToMany(mappedBy = "horarioPelicula")
-    private List<Compra> compras;
-
-    public HorarioPelicula(Pelicula pelicula, Horario horario) {
-        this.pelicula = pelicula;
-        this.horario = horario;
-    }
+    @ManyToOne
+    private Cliente cliente;
 }

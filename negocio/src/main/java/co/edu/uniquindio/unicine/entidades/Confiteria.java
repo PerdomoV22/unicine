@@ -30,12 +30,12 @@ public class Confiteria implements Serializable {
     private Integer unidades;
 
     @Column(nullable = false)
-    private String categoria;
+    private TipoConfiteria categoria;
 
     @ManyToMany(mappedBy = "confiterias")
     private List<Compra> compras;
 
-    public Confiteria(String nombre, Double precio, Integer unidades, String categoria) {
+    public Confiteria(String nombre, Double precio, Integer unidades, TipoConfiteria categoria) {
         this.nombre = nombre;
         this.precio = precio;
         this.unidades = unidades;

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
+import org.hibernate.dialect.identity.HANAIdentityColumnSupport;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
@@ -14,11 +15,12 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class SillaSala implements Serializable {
+public class Funcion implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Positive
     @Column(nullable = false)
@@ -28,14 +30,18 @@ public class SillaSala implements Serializable {
     private Sala sala;
 
     @ManyToOne
-    private Silla silla;
+    private Horario horario;
 
-    @ManyToMany(mappedBy = "sillaSalas")
+    @ManyToOne
+    private Pelicula pelicula;
+
+    @OneToMany(mappedBy = "funcion")
     private List<Compra> compras;
 
-    public SillaSala(Double precio, Sala sala, Silla silla) {
+    public Funcion(Double precio, Sala sala, Horario horario, Pelicula pelicula) {
         this.precio = precio;
         this.sala = sala;
-        this.silla = silla;
+        this.horario = horario;
+        this.pelicula = pelicula;
     }
 }

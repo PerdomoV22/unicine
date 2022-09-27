@@ -2,12 +2,10 @@ package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -15,20 +13,34 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @ToString
 public class Horario implements Serializable {
 
     @Id
-    private Time horaInicio;
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codigo;
 
     @Column(nullable = false)
-    private Time horaFinal;
+    private String dia;
+
+    @Column(nullable = false)
+    private Time hora;
+
+    @Column(nullable = false)
+    private LocalDate fechaInicio;
+
+    @Column(nullable = false)
+    private LocalDate fechaFinal;
 
     @OneToMany(mappedBy = "horario")
-    private List<HorarioPelicula> horarioPeliculas;
+    private List<Funcion> funciones;
 
-    public Horario(Time horaInicio, Time horaFinal) {
-        this.horaInicio = horaInicio;
-        this.horaFinal = horaFinal;
+    public Horario(String dia, Time hora, LocalDate fechaInicio, LocalDate fechaFinal) {
+        this.dia = dia;
+        this.hora = hora;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
     }
 }
