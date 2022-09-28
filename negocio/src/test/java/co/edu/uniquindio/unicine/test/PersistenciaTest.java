@@ -2,6 +2,7 @@ package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.entidades.Cliente;
 import co.edu.uniquindio.unicine.repositorios.ClienteRepo;
+import co.edu.uniquindio.unicine.repositorios.FuncionRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,13 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ClienteTest {
+public class PersistenciaTest {
 
     @Autowired
     private ClienteRepo clienteRepo;
+
+    @Autowired
+    private FuncionRepo funcionRepo;
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -106,5 +110,12 @@ public class ClienteTest {
     public void ordenarPorNombreDes(){
         List<Cliente> listaClientes = clienteRepo.findAll(Sort.by("nombre").descending());
         listaClientes.forEach (System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPeliculaFuncion(){
+        String nombrePelicula = funcionRepo.obtenerNombrePelicula(2);
+        System.out.println(nombrePelicula);
     }
 }

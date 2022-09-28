@@ -29,6 +29,7 @@ public class Confiteria implements Serializable {
     @Column(nullable = false)
     private Integer unidades;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoConfiteria categoria;
 

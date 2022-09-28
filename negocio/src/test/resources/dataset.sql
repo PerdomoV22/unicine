@@ -70,8 +70,52 @@ insert into pqrs values (3, "Informacion confiteria", "Informacion de nuevos pro
 insert into pqrs values (4, "Error de seleccion de asientos", "Seleccione erroneamente los asientos", 5);
 insert into pqrs values (5, "Informacion", "Informacion de mis cupones", 2);
 
-/*------------------------------PQRS----------------------------------------------*/
-insert into sala values ();
+/*------------------------------Sala----------------------------------------------*/
+insert into sala values (1, "sala 1", 1, "0987");
+insert into sala values (2, "sala 2", 2, "7643");
+insert into sala values (3, "sala 3", 3, "1029");
+insert into sala values (4, "sala 4", 4, "0123");
+insert into sala values (5, "sala 5", 5, "123456789");
 
+/*------------------------------Distribucion_Sillas----------------------------------------------*/
+insert into distribucion_sillas values (1, 14, ""; 14; 180);
+insert into distribucion_sillas values (2, 14, ""; 14; 190);
+insert into distribucion_sillas values (3, 14, ""; 14; 170);
+insert into distribucion_sillas values (4, 14, ""; 14; 180);
+insert into distribucion_sillas values (5, 14, ""; 14; 160);
 
+/*------------------------------Entrada----------------------------------------------*/
+insert into entrada values (1, 3, 10, 6.000, 1);
+insert into entrada values (2, 6, 12, 6.000, 2);
+insert into entrada values (3, 9, 19, 6.000, 3);
+insert into entrada values (4, 1, 10, 6.000, 4);
+insert into entrada values (5, 14, 20, 6.000, 5);
+
+/*------------------------------CuponClinete----------------------------------------------*/
+insert into cupon_cliente values (1, 0, 1004, 1);
+insert into cupon_cliente values (2, 1, 1005, 2);
+insert into cupon_cliente values (3, 1, 1006, 3);
+insert into cupon_cliente values (4, 1, 1007, 4);
+insert into cupon_cliente values (5, 0, 1008, 5);
+
+/*------------------------------Confiteria----------------------------------------------*/
+insert into confiteria values (1, 'Bebida', "CocaCola", 10.000, 2);
+insert into confiteria values (2, 'Combos', "Combo Mayor", 45.000, 1);
+insert into confiteria values (3, 'Crispetas', "Crispetas 250gr", 25.000, 1);
+insert into confiteria values (4, 'Dulceria', "Chocolatina", 3.000, 2);
+insert into confiteria values (5, 'Hot_Dogs', "Perro sencillo", 12.000, 2);
+
+/*------------------------------Funcion----------------------------------------------*/
+insert into funcion values (1, 6.500, 1, 1, 1);
+insert into funcion values (2, 8.500, 2, 2, 2);
+insert into funcion values (3, 7.500, 3, 3, 3);
+insert into funcion values (4, 6.500, 4, 4, 4);
+insert into funcion values (5, 7.500, 5, 5, 5);
+
+/*------------------------------Compra----------------------------------------------*/
+insert into compra values (1, "2022-10-14", 'PSE', 2, 45.000, 1004, 1, 1);
+insert into compra values (2, "2022-11-22", 'VISA', 3, 45.000, 1005, nullll, 2);
+insert into compra values (3, "2022-10-30", 'PSE', 4, 50.000, 1006, 3, 3);
+insert into compra values (4, "2022-10-01", 'MASTERCARD', 2, 65.000, 1007, null, 4);
+insert into compra values (5, "2022-10-24", 'VISA', 2, 25.000, 1008, 5, 5);
 

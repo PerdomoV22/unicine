@@ -20,6 +20,9 @@ public class Sala implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer numeroSala;
 
+    @Column(nullable = false, length = 30)
+    private String nombre;
+
     @ManyToOne
     private Teatro teatro;
 
