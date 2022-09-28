@@ -35,19 +35,19 @@ insert into teatro values ("7643", "Cra. 14 #6-02", "UniCine", 1090, 1014, 3);
 insert into teatro values ("1029", "Cra. 6 #3-180", "UniCine", 1090, 1015, 4);
 insert into teatro values ("0123", "Cra. 66B #34A-76", "UniCine", 1090, 1016, 5);
 
-/*------------------------------Calificacion----------------------------------------------*/
-insert into calificacion values (1, 4, 1004, 5);
-insert into calificacion values (2, 2, 1004, 4);
-insert into calificacion values (3, 1, 1004, 3);
-insert into calificacion values (4, 1, 1004, 2);
-insert into calificacion values (5, 5, 1004, 1);
-
 /*------------------------------Pelicula----------------------------------------------*/
 insert into pelicula values (1, "pronto", 'terror', "url-imagen", "La huerfana: EL origen", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
 insert into pelicula values (2, "Cartelera", 'Accion', "url-imagen", "Avatar Relanzamiento", "Sam Worthington, Zoe Saldaña, Stephen Lang, Michelle Rodriguez y Sigourney Weaver.  ", "Vive nuevamente la primera entrega de Avatar (2009) en nuestras salas. AVATAR, ganadora del Premio de la Academia® en 2009", "url-video");
 insert into pelicula values (3, "Cartelera", 'Comedia', "url-imagen", "Pasaje al paraiso", "George Clooney, Julia Roberts.", "George Clooney y Julia Roberts se reúnen en la pantalla grande como ex esposos que comparten la misión de evitar que su enamorada hija cometa el mismo error que ellos mismos cometieron una vez.", "url-video");
 insert into pelicula values (4, "Cartelera", 'Romance', "url-imagen", "No te preocuoes cariño", "Florence Pugh, Harry Styles, Chris Pine.", "Thriller psicológico centrado en una infeliz ama de casa en la década de 1950 que descubre una inquietante verdad. ", "url-video");
 insert into pelicula values (5, "Pronto", 'Terror', "url-imagen", "Fantasma", "Sophie Stevens, Kirstie Steele, Nick Bayly.", "Emma ha sido contratada como cuidadora nocturna del Sr. Cunningham. El que fuera un pilar de la comunidad local tiene demencia y ha sufrido un derrame cerebral, por lo que está solo en su destartalada casa.", "url-video");
+
+/*------------------------------Calificacion----------------------------------------------*/
+insert into calificacion values (1, 4, 1004, 1);
+insert into calificacion values (2, 2, 1005, 2);
+insert into calificacion values (3, 1, 1006, 3);
+insert into calificacion values (4, 1, 1007, 4);
+insert into calificacion values (5, 5, 1004, 5);
 
 /*------------------------------Cupon----------------------------------------------*/
 insert into cupon values (1, "", "", "2022-10-10", 0);
@@ -64,11 +64,18 @@ insert into horario values (4, "LMMJV", "2022-10-21", "2022-11-22", "22:20");
 insert into horario values (5, "LMJVSD", "2022-11-22", "2022-12-23", "17:30");
 
 /*------------------------------PQRS----------------------------------------------*/
-insert into pqrs values (1, "Error eleccion de medio de pago", "Elegi erroneamente el medio de pago en el proceso de la compra", 1);
-insert into pqrs values (2, "Informacion cupon", "Informacion para redimir cupones", 3);
-insert into pqrs values (3, "Informacion confiteria", "Informacion de nuevos productos de la confiteria", 4);
-insert into pqrs values (4, "Error de seleccion de asientos", "Seleccione erroneamente los asientos", 5);
-insert into pqrs values (5, "Informacion", "Informacion de mis cupones", 2);
+insert into pqrs values (1, "Error eleccion de medio de pago", "Elegi erroneamente el medio de pago en el proceso de la compra", 1004);
+insert into pqrs values (2, "Informacion cupon", "Informacion para redimir cupones", 1005);
+insert into pqrs values (3, "Informacion confiteria", "Informacion de nuevos productos de la confiteria", 1006);
+insert into pqrs values (4, "Error de seleccion de asientos", "Seleccione erroneamente los asientos", 1007);
+insert into pqrs values (5, "Informacion", "Informacion de mis cupones", 1007);
+
+/*------------------------------Distribucion_Sillas----------------------------------------------*/
+insert into distribucion_sillas values (1, 14, "", 14, 180);
+insert into distribucion_sillas values (2, 14, "", 14, 190);
+insert into distribucion_sillas values (3, 14, "", 14, 170);
+insert into distribucion_sillas values (4, 14, "", 14, 180);
+insert into distribucion_sillas values (5, 14, "", 14, 160);
 
 /*------------------------------Sala----------------------------------------------*/
 insert into sala values (1, "sala 1", 1, "0987");
@@ -76,20 +83,6 @@ insert into sala values (2, "sala 2", 2, "7643");
 insert into sala values (3, "sala 3", 3, "1029");
 insert into sala values (4, "sala 4", 4, "0123");
 insert into sala values (5, "sala 5", 5, "123456789");
-
-/*------------------------------Distribucion_Sillas----------------------------------------------*/
-insert into distribucion_sillas values (1, 14, ""; 14; 180);
-insert into distribucion_sillas values (2, 14, ""; 14; 190);
-insert into distribucion_sillas values (3, 14, ""; 14; 170);
-insert into distribucion_sillas values (4, 14, ""; 14; 180);
-insert into distribucion_sillas values (5, 14, ""; 14; 160);
-
-/*------------------------------Entrada----------------------------------------------*/
-insert into entrada values (1, 3, 10, 6.000, 1);
-insert into entrada values (2, 6, 12, 6.000, 2);
-insert into entrada values (3, 9, 19, 6.000, 3);
-insert into entrada values (4, 1, 10, 6.000, 4);
-insert into entrada values (5, 14, 20, 6.000, 5);
 
 /*------------------------------CuponClinete----------------------------------------------*/
 insert into cupon_cliente values (1, 0, 1004, 1);
@@ -114,8 +107,14 @@ insert into funcion values (5, 7.500, 5, 5, 5);
 
 /*------------------------------Compra----------------------------------------------*/
 insert into compra values (1, "2022-10-14", 'PSE', 2, 45.000, 1004, 1, 1);
-insert into compra values (2, "2022-11-22", 'VISA', 3, 45.000, 1005, nullll, 2);
+insert into compra values (2, "2022-11-22", 'VISA', 3, 45.000, 1005, null, 2);
 insert into compra values (3, "2022-10-30", 'PSE', 4, 50.000, 1006, 3, 3);
 insert into compra values (4, "2022-10-01", 'MASTERCARD', 2, 65.000, 1007, null, 4);
 insert into compra values (5, "2022-10-24", 'VISA', 2, 25.000, 1008, 5, 5);
 
+/*------------------------------Entrada----------------------------------------------*/
+insert into entrada values (1, 3, 10, 6.000, 1);
+insert into entrada values (2, 6, 12, 6.000, 2);
+insert into entrada values (3, 9, 19, 6.000, 3);
+insert into entrada values (4, 1, 10, 6.000, 4);
+insert into entrada values (5, 14, 20, 6.000, 5);

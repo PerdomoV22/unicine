@@ -19,7 +19,7 @@ public class Pqrs implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigoPqrs;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 300)
     private String asunto;
 
     @Column(nullable = false, length = 300)
