@@ -23,6 +23,7 @@ public class Ciudad implements Serializable {
     @Column(nullable = false)
     private String nombreCiudad;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "ciudad")
     private List<Teatro> teatros;
 

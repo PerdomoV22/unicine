@@ -33,6 +33,7 @@ public class Confiteria implements Serializable {
     @Column(nullable = false)
     private TipoConfiteria categoria;
 
+    @ToString.Exclude
     @ManyToMany(mappedBy = "confiterias")
     private List<Compra> compras;
 

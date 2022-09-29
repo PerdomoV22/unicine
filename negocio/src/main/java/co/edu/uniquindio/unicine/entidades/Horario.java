@@ -34,6 +34,7 @@ public class Horario implements Serializable {
     @Column(nullable = false)
     private LocalDate fechaFinal;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "horario")
     private List<Funcion> funciones;
 

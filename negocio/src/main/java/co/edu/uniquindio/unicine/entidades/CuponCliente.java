@@ -24,7 +24,7 @@ public class CuponCliente implements Serializable {
     private Boolean estado;
 
     @ManyToOne
-    private Cupon  cupon;
+    private Cupon cupon;
 
     @ManyToOne
     private Cliente cliente;

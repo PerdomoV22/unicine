@@ -1,6 +1,9 @@
 package co.edu.uniquindio.unicine.repositorios;
 
 import co.edu.uniquindio.unicine.entidades.Cliente;
+import co.edu.uniquindio.unicine.entidades.Compra;
+import co.edu.uniquindio.unicine.entidades.Cupon;
+import co.edu.uniquindio.unicine.entidades.CuponCliente;
 import org.hibernate.sql.Select;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,6 +27,21 @@ public interface ClienteRepo extends JpaRepository<Cliente, Integer> {
 
     @Query("select c from Cliente c where c.estado = :estado")
     List<Cliente> obtenerPorEstado (Boolean estado, Pageable paginador);
+
+    @Query("select comp from Cliente cliente, in(cliente.compras) comp where cliente.correo = :correo")
+    List<Compra> obtenerCompra (String correo);
+
+    @Query("select c from Compra c where c.cliente.correo = :correo")
+    List<Compra> obtenerCompraOpcion2 (String correo);
+
+    @Query("select comp from Cliente cliente join cliente.compras comp where cliente.correo = :correo")
+    List<Compra> obtenerCompraOpcion3(String correo);
+
+    @Query("select cup from Cliente cliente join cliente.cuponClientes cup where cliente.correo = :correo")
+    List<CuponCliente> obtenerCupones(String correo);
+
+    @Query("select cliente.nombre, cliente.correo, comp from Cliente cliente left join cliente.compras comp")
+    List<Object[]> obtenerCompraTodos();
 
 }
 

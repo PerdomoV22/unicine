@@ -35,6 +35,7 @@ public class Cupon  implements Serializable {
     @Column(nullable = false, length = 100)
     private String descripcion;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "cupon")
     private List<CuponCliente> cuponClientes;
 

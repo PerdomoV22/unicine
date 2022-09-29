@@ -35,9 +35,10 @@ public class Entrada implements Serializable {
     @ManyToOne
     private Compra compra;
 
-    public Entrada(Double precio, Integer fila, Integer columna) {
+    public Entrada(Double precio, Integer fila, Integer columna, Compra compra) {
         this.precio = precio;
         this.fila = fila;
         this.columna = columna;
+        this.compra = compra;
     }
 }

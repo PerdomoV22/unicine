@@ -20,6 +20,7 @@ public class Cliente  extends Persona implements Serializable{
     @Column(nullable = false)
     private String imagen_perfil;
 
+
     @ToString.Exclude
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
@@ -32,6 +33,7 @@ public class Cliente  extends Persona implements Serializable{
     @OneToMany(mappedBy = "cliente")
     private List<Pqrs> pqrs;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "cliente")
     private List<CuponCliente> cuponClientes;
 

@@ -36,25 +36,26 @@ public class Pelicula implements Serializable {
     private String reparto;
 
      @Column(nullable = false)
-    private String estado;
+    private Boolean estado;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 10)
     private Genero genero;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "pelicula")
     private List<Calificacion> calificaciones;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "pelicula")
     private List<Funcion> funciones;
 
-    public Pelicula(String nombrePelicula, String trailer, String imagen, String sinopsis, String reparto, String estado, Genero genero) {
+    public Pelicula(String nombrePelicula, String trailer, String imagen, String sinopsis, String reparto, Genero genero) {
         this.nombrePelicula = nombrePelicula;
         this.trailer = trailer;
         this.imagen = imagen;
         this.sinopsis = sinopsis;
         this.reparto = reparto;
-        this.estado = estado;
+        this.estado = false;
         this.genero = genero;
     }
 }

@@ -13,6 +13,7 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 public class AdministradorTeatro extends Persona implements Serializable {
 
+    @ToString.Exclude
     @OneToOne(mappedBy = "administradorTeatro")
     private Teatro teatro;
 
