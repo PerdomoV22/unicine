@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TeatroRepro extends JpaRepository<Teatro, Integer> {
+public interface TeatroRepo extends JpaRepository<Teatro, Integer> {
 
     @Query("select t from Teatro t where t.ciudad.nombreCiudad = :ciudad")
     List<Teatro> listaTeatros(String ciudad);
