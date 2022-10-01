@@ -22,7 +22,7 @@ public class Calificacion implements Serializable {
 
     @Positive
     @Column(nullable = false)
-    private Integer puntucion;
+    private Integer puntuacion;
 
     @ManyToOne
     private Cliente cliente;
@@ -30,8 +30,8 @@ public class Calificacion implements Serializable {
     @ManyToOne
     private Pelicula pelicula;
 
-    public Calificacion(Integer puntucion, Cliente cliente, Pelicula pelicula) {
-        this.puntucion = puntucion;
+    public Calificacion(Integer puntuacion, Cliente cliente, Pelicula pelicula) {
+        this.puntuacion = puntuacion;
         this.cliente = cliente;
         this.pelicula = pelicula;
     }
