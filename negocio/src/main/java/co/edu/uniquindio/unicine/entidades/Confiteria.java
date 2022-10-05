@@ -27,20 +27,20 @@ public class Confiteria implements Serializable {
     private Double precio;
 
     @Column(nullable = false)
-    private Integer unidades;
+    private String imagen;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoConfiteria categoria;
 
     @ToString.Exclude
-    @ManyToMany(mappedBy = "confiterias")
-    private List<Compra> compras;
+    @OneToMany(mappedBy = "confiteria")
+    private List<CompraConfiteria> compraConfiterias;
 
-    public Confiteria(String nombre, Double precio, Integer unidades, TipoConfiteria categoria) {
+    public Confiteria(String nombre, Double precio, String imagen, TipoConfiteria categoria) {
         this.nombre = nombre;
         this.precio = precio;
-        this.unidades = unidades;
+        this.imagen = imagen;
         this.categoria = categoria;
     }
 }

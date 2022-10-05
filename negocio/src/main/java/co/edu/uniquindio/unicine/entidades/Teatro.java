@@ -17,8 +17,8 @@ public class Teatro implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
-    @Column(length = 12)
-    private String nit;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer nit;
 
     @Column(nullable = false, length = 30)
     private String nombre;

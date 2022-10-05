@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unicine.repositorios;
 
-import co.edu.uniquindio.unicine.entidades.Cliente;
-import co.edu.uniquindio.unicine.entidades.Compra;
-import co.edu.uniquindio.unicine.entidades.Cupon;
-import co.edu.uniquindio.unicine.entidades.CuponCliente;
+import co.edu.uniquindio.unicine.entidades.*;
 import org.hibernate.sql.Select;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -44,7 +41,9 @@ public interface ClienteRepo extends JpaRepository<Cliente, Integer> {
     List<Object[]> obtenerCompraTodos();
 
 
-
+    /*Dada la cedula de un cliente, retornar todas las calificaciones que ha generado*/
+    @Query("select c from Cliente cliente join cliente.calificaciones c where cliente.cedula = :cedula")
+    List<Calificacion> obtenerCalificaciones(Integer cedula);
 
 }
 

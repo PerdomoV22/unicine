@@ -38,8 +38,9 @@ public class Pelicula implements Serializable {
      @Column(nullable = false)
     private Boolean estado;
 
+    @ElementCollection
     @Column(nullable = false, length = 10)
-    private Genero genero;
+    private List<Genero> generos;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "pelicula")
@@ -49,13 +50,13 @@ public class Pelicula implements Serializable {
     @OneToMany(mappedBy = "pelicula")
     private List<Funcion> funciones;
 
-    public Pelicula(String nombrePelicula, String trailer, String imagen, String sinopsis, String reparto, Genero genero) {
+    public Pelicula(String nombrePelicula, String trailer, String imagen, String sinopsis, String reparto, Boolean estado, List<Genero> generos) {
         this.nombrePelicula = nombrePelicula;
         this.trailer = trailer;
         this.imagen = imagen;
         this.sinopsis = sinopsis;
         this.reparto = reparto;
-        this.estado = false;
-        this.genero = genero;
+        this.estado = estado;
+        this.generos = generos;
     }
 }

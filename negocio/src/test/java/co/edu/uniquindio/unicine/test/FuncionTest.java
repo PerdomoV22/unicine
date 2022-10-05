@@ -1,6 +1,9 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.dto.FuncionDTO;
+import co.edu.uniquindio.unicine.dto.HorarioSalaDTO;
+import co.edu.uniquindio.unicine.entidades.Cliente;
+import co.edu.uniquindio.unicine.entidades.Funcion;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.repositorios.FuncionRepo;
 import org.junit.jupiter.api.Assertions;
@@ -39,4 +42,19 @@ public class FuncionTest {
         List<FuncionDTO> listaFunciones = funcionRepo.listarFunciones(1);
         listaFunciones.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerFuncionesSinCompra(){
+        List<Funcion> listaFuncion = funcionRepo.obtenerFuncionesSinCompra(1);
+        System.out.println(listaFuncion);
+    }
+
+    /*
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerFuncionesTeatro(){
+        List<Funcion> listaFunciones = funcionRepo.obtenerFuncionesTeatro(1, "", "");
+        System.out.println(listaFunciones);
+    }*/
 }

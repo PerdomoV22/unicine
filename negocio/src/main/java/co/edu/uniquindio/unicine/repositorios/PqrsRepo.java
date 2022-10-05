@@ -13,5 +13,4 @@ public interface PqrsRepo extends JpaRepository<Pqrs,Integer> {
     @Query("select pq From Pqrs pq where pq.cliente.cedula = :cedula")
     List<Pqrs> obtenerPqrsClientePorCedula(Integer cedula);
 
-
 }

@@ -43,8 +43,9 @@ public class Compra implements Serializable {
     @ManyToOne
     private Cliente cliente;
 
-    @ManyToMany
-    private List<Confiteria> confiterias;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "compra")
+    private List<CompraConfiteria> compraConfiterias;
 
     @ManyToOne
     private Funcion funcion;

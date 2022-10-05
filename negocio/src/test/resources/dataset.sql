@@ -35,27 +35,28 @@ insert into administrador_teatro values (1016, "0987", "ana@gmail.com", "ana");
 
 /*------------------------------Teatro----------------------------------------------*/
 /*Teatro: nit, direccion, nombre, adminCedula, adminTeatroCedula, codigoCiudad */
-insert into teatro values ("123456789", "Cl. 19 Nte. #13-9", "UniCine", 1090, 1012, 1);
-insert into teatro values ("0987", "Cra. 100 #5-169", "UniCine", 1090, 1013, 2);
-insert into teatro values ("7643", "Cra. 14 #6-02", "UniCine", 1090, 1014, 3);
-insert into teatro values ("1029", "Cra. 6 #3-180", "UniCine", 1090, 1015, 3);
-insert into teatro values ("0123", "Cra. 66B #34A-76", "UniCine", 1090, 1016, 3);
+insert into teatro values (1, "Cl. 19 Nte. #13-9", "UniCine", 1090, 1012, 1);
+insert into teatro values (2, "Cra. 100 #5-169", "UniCine", 1090, 1013, 2);
+insert into teatro values (3, "Cra. 14 #6-02", "UniCine", 1090, 1014, 3);
+insert into teatro values (4, "Cra. 6 #3-180", "UniCine", 1090, 1015, 3);
+insert into teatro values (5, "Cra. 66B #34A-76", "UniCine", 1090, 1016, 3);
 
 /*------------------------------Pelicula----------------------------------------------*/
 /*Pelicula: codigo, estado, genero, imagen, nombre, reparto, sinopsis, trailer*/
-insert into pelicula values (1, 1, 2, "url-imagen", "La huerfana: EL origen", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
-insert into pelicula values (2, 1, 0, "url-imagen", "Avatar Relanzamiento", "Sam Worthington, Zoe Saldaña, Stephen Lang, Michelle Rodriguez y Sigourney Weaver.  ", "Vive nuevamente la primera entrega de Avatar (2009) en nuestras salas. AVATAR, ganadora del Premio de la Academia® en 2009", "url-video");
-insert into pelicula values (3, 1, 1, "url-imagen", "Pasaje al paraiso", "George Clooney, Julia Roberts.", "George Clooney y Julia Roberts se reúnen en la pantalla grande como ex esposos que comparten la misión de evitar que su enamorada hija cometa el mismo error que ellos mismos cometieron una vez.", "url-video");
-insert into pelicula values (4, 1, 3, "url-imagen", "No te preocuoes cariño", "Florence Pugh, Harry Styles, Chris Pine.", "Thriller psicológico centrado en una infeliz ama de casa en la década de 1950 que descubre una inquietante verdad. ", "url-video");
-insert into pelicula values (5, 0, 2, "url-imagen", "Fantasma", "Sophie Stevens, Kirstie Steele, Nick Bayly.", "Emma ha sido contratada como cuidadora nocturna del Sr. Cunningham. El que fuera un pilar de la comunidad local tiene demencia y ha sufrido un derrame cerebral, por lo que está solo en su destartalada casa.", "url-video");
+insert into pelicula values (1, 1, "url-imagen", "La huerfana: EL origen", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
+insert into pelicula values (2, 1, "url-imagen", "Avatar Relanzamiento", "Sam Worthington, Zoe Saldaña, Stephen Lang, Michelle Rodriguez y Sigourney Weaver.  ", "Vive nuevamente la primera entrega de Avatar (2009) en nuestras salas. AVATAR, ganadora del Premio de la Academia® en 2009", "url-video");
+insert into pelicula values (3, 1, "url-imagen", "Pasaje al paraiso", "George Clooney, Julia Roberts.", "George Clooney y Julia Roberts se reúnen en la pantalla grande como ex esposos que comparten la misión de evitar que su enamorada hija cometa el mismo error que ellos mismos cometieron una vez.", "url-video");
+insert into pelicula values (4, 1, "url-imagen", "No te preocuoes carinho", "Florence Pugh, Harry Styles, Chris Pine.", "Thriller psicológico centrado en una infeliz ama de casa en la década de 1950 que descubre una inquietante verdad. ", "url-video");
+insert into pelicula values (5, 0, "url-imagen", "Fantasma", "Sophie Stevens, Kirstie Steele, Nick Bayly.", "Emma ha sido contratada como cuidadora nocturna del Sr. Cunningham. El que fuera un pilar de la comunidad local tiene demencia y ha sufrido un derrame cerebral, por lo que está solo en su destartalada casa.", "url-video");
+insert into pelicula values (6, 1, "url-imagen", "La huerfana", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
 
 /*------------------------------Calificacion----------------------------------------------*/
 /*Calificacion : codigo, puntuacion, cedCliente, codPelicula*/
 insert into calificacion values (1, 4, 1004, 1);
-insert into calificacion values (2, 2, 1005, 2);
-insert into calificacion values (3, 1, 1006, 3);
+insert into calificacion values (2, 2, 1004, 2);
+insert into calificacion values (3, 1, 1006, 2);
 insert into calificacion values (4, 1, 1007, 4);
-insert into calificacion values (5, 5, 1004, 5);
+insert into calificacion values (5, 5, 1004, 4);
 
 /*------------------------------Cupon----------------------------------------------*/
 /*Cupon : codigo, criterio, descripcion, fechaVencimiento, valorDescuento*/
@@ -91,11 +92,11 @@ insert into distribucion_sillas values (5, 14, "", 14, 160);
 
 /*------------------------------Sala----------------------------------------------*/
 /*Sala: numero_sala, nombre, distriSillasCodigo, teatroNit*/
-insert into sala values (1, "sala 1", 1, "0987");
-insert into sala values (2, "sala 2", 2, "7643");
-insert into sala values (3, "sala 3", 3, "1029");
-insert into sala values (4, "sala 4", 4, "0123");
-insert into sala values (5, "sala 5", 5, "123456789");
+insert into sala values (1, "sala 1", 1, 1);
+insert into sala values (2, "sala 2", 2, 2);
+insert into sala values (3, "sala 3", 3, 3);
+insert into sala values (4, "sala 4", 4, 4);
+insert into sala values (5, "sala 5", 5, 5);
 
 /*------------------------------CuponClinete----------------------------------------------*/
 /*CuponCliente: codgio, estado, cedCliente, codCupon*/
@@ -107,7 +108,7 @@ insert into cupon_cliente values (5, 0, 1008, 5);
 
 /*------------------------------Confiteria----------------------------------------------*/
 /*Confiteria: codProducto, categoria, nombre, precio, unidades*/
-insert into confiteria values (1, 'Bebida', "CocaCola", 10.000, 2);
+insert into confiteria values (1, 'Bebidas', "CocaCola", 10.000, 2);
 insert into confiteria values (2, 'Combos', "Combo Mayor", 45.000, 1);
 insert into confiteria values (3, 'Crispetas', "Crispetas 250gr", 25.000, 1);
 insert into confiteria values (4, 'Dulceria', "Chocolatina", 3.000, 2);
@@ -125,7 +126,7 @@ insert into funcion values (5, 7.500, 5, 5, 5);
 /*Compra: codgio, fechaCompra, medioPago, numBoletas, valorTotal, cedCliente, codCupon, codFuncion */
 insert into compra values (1, "2022-10-14", 'PSE', 2, 45.000, 1004, 1, 1);
 insert into compra values (2, "2022-11-22", 'VISA', 3, 45.000, 1005, null, 1);
-insert into compra values (3, "2022-10-30", 'PSE', 4, 50.000, 1004, 3, 1);
+insert into compra values (3, "2022-10-30", 'PSE', 4, 50.000, 1005, 3, 1);
 insert into compra values (4, "2022-10-01", 'MASTERCARD', 2, 65.000, 1007, null, 4);
 insert into compra values (5, "2022-10-24", 'VISA', 2, 25.000, 1004, 5, 5);
 
@@ -138,7 +139,9 @@ insert into entrada values (4, 1, 10, 6.000, 4);
 insert into entrada values (5, 14, 20, 6.000, 1);
 
 /*------------------------------CompraConfiteria--------------------------------------*/
-/*CompraConfiteria: codCompra, confitCodProducto*/
-insert into compra_confiterias values (2, 2);
-insert into compra_confiterias values (2, 1);
-insert into compra_confiterias values (3, 4);
+/*CompraConfiteria: codigo, precio, unidades, codCompra, confitCodProducto*/
+insert into compra_confiteria values (1, 45.000, 2, 2, 2);
+insert into compra_confiteria values (2, 10.000, 3, 2, 1);
+insert into compra_confiteria values (3, 25.000, 2, 3, 3);
+insert into compra_confiteria values (4, 3.000, 4, 3, 4);
+insert into compra_confiteria values (5, 12.000, 2, 3, 5);

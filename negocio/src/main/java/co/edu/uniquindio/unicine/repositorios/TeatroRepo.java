@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.repositorios;
 
+import co.edu.uniquindio.unicine.entidades.Funcion;
 import co.edu.uniquindio.unicine.entidades.Teatro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,4 +13,8 @@ public interface TeatroRepo extends JpaRepository<Teatro, Integer> {
 
     @Query("select t from Teatro t where t.ciudad.nombreCiudad = :ciudad")
     List<Teatro> listaTeatros(String ciudad);
+
+    @Query("select teatro.ciudad.codigoPostal, teatro.ciudad.nombreCiudad, count(teatro) from Teatro teatro group by teatro.ciudad")
+    List<Object[]> contarCiudad();
+
 }

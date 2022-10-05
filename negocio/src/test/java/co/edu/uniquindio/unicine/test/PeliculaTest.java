@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.dto.HorarioSalaDTO;
 import co.edu.uniquindio.unicine.entidades.Genero;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.repositorios.PeliculaRepo;
@@ -20,16 +21,38 @@ public class PeliculaTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtenerPeliculasPorEstado(){
+    public void obtenerPeliculasPorEstado() {
         List<Pelicula> peliculas = peliculaRepo.obtenerPeliculasPorEstado(false);
         peliculas.forEach(System.out::println);
     }
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtenerPeliculasPorGenero(){
+    public void obtenerPeliculasPorGenero() {
         List<Pelicula> peliculas = peliculaRepo.obtenerPeliculasPorGenero(Genero.TERROR);
         peliculas.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void buscarPelicula(){
+        List<Pelicula> peliculas = peliculaRepo.buscarPelicula("La huerfana", true);
+        peliculas.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listasHorario(){
+        List<HorarioSalaDTO> listaHoraraio = peliculaRepo.listarHorario(1, 1);
+        System.out.println(listaHoraraio);
+    }
+
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarPeliculas(){
+        List<Pelicula> listaPeliculas = peliculaRepo.listarPeliculas(Genero.TERROR);
+        System.out.println(listaPeliculas);
     }
 
 }

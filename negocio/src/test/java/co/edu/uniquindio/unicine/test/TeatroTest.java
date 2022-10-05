@@ -25,4 +25,13 @@ public class TeatroTest {
         Assertions.assertEquals(3, listaTeatrosCiudad.size());
         System.out.println(listaTeatrosCiudad);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void contarCiudad(){
+        List<Object[]> listaCiudades = teatroRepo.contarCiudad();
+        listaCiudades.forEach( o ->
+                System.out.println(o [0] + "," + o[1] + "," + o[2])
+        );
+    }
 }

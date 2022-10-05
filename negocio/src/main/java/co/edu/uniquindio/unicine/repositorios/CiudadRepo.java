@@ -9,7 +9,4 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CiudadRepo extends JpaRepository<Ciudad,Integer> {
-
-
-}
+public interface CiudadRepo extends JpaRepository<Ciudad,Integer> {}

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.entidades.Calificacion;
 import co.edu.uniquindio.unicine.entidades.Cliente;
 import co.edu.uniquindio.unicine.entidades.Compra;
 import co.edu.uniquindio.unicine.entidades.CuponCliente;
@@ -140,4 +141,13 @@ public class ClienteTest {
                 System.out.println(o [0] + "," + o[1] + "," + o[2])
         );
     }
+
+    /**/
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerCalificaciones(){
+        List<Calificacion> listaCalificaciones = clienteRepo.obtenerCalificaciones(1004);
+        listaCalificaciones.forEach(System.out::println);
+    }
+
 }
