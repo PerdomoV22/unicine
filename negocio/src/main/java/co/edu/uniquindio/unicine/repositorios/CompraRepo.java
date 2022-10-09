@@ -25,9 +25,9 @@ public interface CompraRepo extends JpaRepository<Compra, Integer> {
     List<Object[]> obtenerCompraMaxCostasa();
 
 
-    /*
+
     @Query("select new co.edu.uniquindio.unicine.dto.InformacionCompraDTO( c.valorTotal, c.fechaCompra, c.funcion, (select sum(e.precio) from Entrada e where e.compra.codigo = c.codigo), (select sum(cc.precio*cc.unidades) from CompraConfiteria cc where cc.compra.codigo = c.codigo)) from Compra c where c.cliente.cedula = :codigoCliente")
-    List<InformacionCompraDTO> obtenerInformacionUsuario(Integer codigoCliente);*/
+    List<InformacionCompraDTO> obtenerInformacionUsuario(Integer codigoCliente);
 
     @Query("select c.funcion.pelicula, count(c) from Compra c where c.funcion.sala.teatro.ciudad.codigoPostal = :codigoCiudad group by c.funcion.pelicula")
     List<Object[]> obtenerPeliculaMasVista(Integer codigoCiudad);

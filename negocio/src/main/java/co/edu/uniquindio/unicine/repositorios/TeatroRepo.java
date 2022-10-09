@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TeatroRepo extends JpaRepository<Teatro, Integer> {
@@ -16,5 +17,7 @@ public interface TeatroRepo extends JpaRepository<Teatro, Integer> {
 
     @Query("select teatro.ciudad.codigoPostal, teatro.ciudad.nombreCiudad, count(teatro) from Teatro teatro group by teatro.ciudad")
     List<Object[]> contarCiudad();
+
+    Optional<Teatro> findByNombre(String nombre);
 
 }

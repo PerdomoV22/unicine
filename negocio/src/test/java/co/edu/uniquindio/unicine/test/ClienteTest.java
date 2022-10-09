@@ -68,7 +68,7 @@ public class ClienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void obtenerClienteCorreo(){
-        Cliente cliente = clienteRepo.findByCorreo("perdomov.j07@gmail.com");
+        Cliente cliente = clienteRepo.findByCorreo("perdomov.j07@gmail.com").orElse(null);
         Assertions.assertNotNull(cliente);
         System.out.println(cliente);
     }

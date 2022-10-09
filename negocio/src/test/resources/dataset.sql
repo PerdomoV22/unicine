@@ -107,12 +107,12 @@ insert into cupon_cliente values (4, 1, 1004, 4);
 insert into cupon_cliente values (5, 0, 1008, 5);
 
 /*------------------------------Confiteria----------------------------------------------*/
-/*Confiteria: codProducto, categoria, nombre, precio, unidades*/
-insert into confiteria values (1, 'Bebidas', "CocaCola", 10.000, 2);
-insert into confiteria values (2, 'Combos', "Combo Mayor", 45.000, 1);
-insert into confiteria values (3, 'Crispetas', "Crispetas 250gr", 25.000, 1);
-insert into confiteria values (4, 'Dulceria', "Chocolatina", 3.000, 2);
-insert into confiteria values (5, 'Hot_Dogs', "Perro sencillo", 12.000, 2);
+/*Confiteria: codProducto, categoria, imagen,  nombre, precio*/
+insert into confiteria values (1, 'Bebidas', "fotobebida","CocaCola", 10000);
+insert into confiteria values (2, 'Combos', "fotocombos" , "Combo Mayor", 45000);
+insert into confiteria values (3, 'Crispetas', "fotocrispetas","Crispetas 250gr", 25000);
+insert into confiteria values (4, 'Dulceria', "fotodulceria", "Chocolatina", 3000);
+insert into confiteria values (5, 'Hot_Dogs',  "fotoHotdogs","Perro sencillo", 12000);
 
 /*------------------------------Funcion----------------------------------------------*/
 /*Funcion: codigo, precio, horaioCod, codPelicula, sala_numero_sala*/
