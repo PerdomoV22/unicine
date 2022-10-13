@@ -9,9 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
+
+    Optional<Pelicula> findByNombrePelicula(String nombrePelicula);
 
     @Query("select p from Pelicula p where p.estado = :estado")
     List<Pelicula> obtenerPeliculasPorEstado(Boolean estado);
