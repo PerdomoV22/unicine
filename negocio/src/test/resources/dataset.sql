@@ -116,7 +116,7 @@ insert into confiteria values (5, 'Hot_Dogs',  "fotoHotdogs","Perro sencillo", 1
 
 /*------------------------------Funcion----------------------------------------------*/
 /*Funcion: codigo, precio, horaioCod, codPelicula, sala_numero_sala*/
-insert into funcion values (1, 6.500, 1, 1, 1);
+insert into funcion values (1, 6.500, 1, 1, null);
 insert into funcion values (2, 8.500, 2, 2, 2);
 insert into funcion values (3, 7.500, 3, 3, 3);
 insert into funcion values (4, 6.500, 4, 4, 4);
@@ -129,6 +129,11 @@ insert into compra values (2, "2022-11-22", 'VISA', 3, 45.000, 1005, null, 1);
 insert into compra values (3, "2022-10-30", 'PSE', 4, 50.000, 1005, 3, 1);
 insert into compra values (4, "2022-10-01", 'MASTERCARD', 2, 65.000, 1007, null, 4);
 insert into compra values (5, "2022-10-24", 'VISA', 2, 25.000, 1004, 5, 5);
+
+insert into compra values (6, "2022-11-5", 'VISA', 2, 25.000, 1005, 5, 5);
+insert into compra values (7, "2022-11-10",'MASTERCARD', 2, 25.000, 1005, 5, 5);
+insert into compra values (8, "2022-12-24", 'VISA', 2, 25.000, 1005, 5, 5);
+insert into compra values (9, "2022-12-28", 'PSE', 2, 15.000, 1005, 5, 5);
 
 /*------------------------------Entrada----------------------------------------------*/
 /*Entrada: codigo, columna. fila, precio, codCompra*/

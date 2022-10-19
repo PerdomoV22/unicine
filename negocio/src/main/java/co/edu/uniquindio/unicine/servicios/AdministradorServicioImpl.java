@@ -89,13 +89,17 @@ public class AdministradorServicioImpl implements AdministradorServicio{
         return ciudadRepo.findAll();
     }
 
-    //------------------------------ CRUD DE ADMINISTRADORTEATROS --------------------------------------------
+    //------------------------------ CRUD DE ADMINISTRADOR_TEATROS --------------------------------------------
     @Override
     public AdministradorTeatro crearAdministradorTeatros(AdministradorTeatro administradorTeatro) throws Exception {
 
-        boolean administradorTeatrosExiste = AdministradorRepetido(administradorTeatro.getNombre());
+        boolean administradorTeatrosExiste = AdministradorRepetido(administradorTeatro.getCedula());
         if(administradorTeatrosExiste){
-            throw new Exception("El administrador ya Existe");
+            throw new Exception("La cedula para el administrador ya Existe");
+        }
+        boolean administradorTeatrosExisteCorreo = AdministradorRepetidoCorreo(administradorTeatro.getCorreo()) ;
+        if(administradorTeatrosExisteCorreo){
+            throw new Exception("El correo para el administrador ya Existe");
         }
         return administradorTeatroRepo.save(administradorTeatro);
     }
@@ -109,8 +113,12 @@ public class AdministradorServicioImpl implements AdministradorServicio{
         return administradorTeatro.get();
     }
 
-    private boolean AdministradorRepetido(String nombre){
-        return administradorTeatroRepo.findByNombre(nombre).orElse(null)!=null;
+    private boolean AdministradorRepetidoCorreo(String correo){
+        return administradorTeatroRepo.findByCorreo(correo).orElse(null)!=null;
+    }
+
+    private boolean AdministradorRepetido(Integer cedula){
+        return administradorTeatroRepo.findByCedula(cedula).orElse(null)!=null;
     }
     @Override
     public AdministradorTeatro actualizarAdministradorTeatros(AdministradorTeatro administradorTeatro) throws Exception {

@@ -19,13 +19,14 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
     private final TeatroRepo teatroRepo;
     private final SalaRepo salaRepo;
     private final FuncionRepo funcionRepo;
+    private final PeliculaRepo peliculaRepo;
 
-    public AdminTeatroServicioImpl(AdministradorTeatroRepo administradorTeatroRepo, HorarioRepo horarioRepo, TeatroRepo teatroRepo, SalaRepo salaRepo, FuncionRepo funcionRepo) {
-        this.administradorTeatroRepo = administradorTeatroRepo;
+    public AdminTeatroServicioImpl(HorarioRepo horarioRepo, TeatroRepo teatroRepo, SalaRepo salaRepo, FuncionRepo funcionRepo, PeliculaRepo peliculaRepo) {
         this.horarioRepo = horarioRepo;
         this.teatroRepo = teatroRepo;
         this.salaRepo = salaRepo;
         this.funcionRepo = funcionRepo;
+        this.peliculaRepo = peliculaRepo;
     }
 
     //--------------------------------LOGIN------------------------------------------------
@@ -130,8 +131,30 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
 
     //----------------------------------- CRUD DE FUNCIONES -----------------------------------
     @Override
-    public Funcion crearFunciones(Funcion funcion) {
+    public Funcion crearFunciones(Funcion funcion) throws Exception{
+
+        boolean peliculaEnCartelera = peliculaEnCartelera(funcion.getPelicula().getNombrePelicula());
+        if(!peliculaEnCartelera){
+            throw new Exception("La pelicula no esta en cartelera");
+        }
+        boolean horarioExiste ;
+        boolean salaExiste;
+
+
         return null;
+    }
+
+    public boolean horarioExiste (){
+    return true;
+    }
+
+    public boolean peliculaEnCartelera(String nombre){
+        Pelicula pelicula = peliculaRepo.buscarPeliculaPorNombre(nombre);
+        if (pelicula.getEstado()==true){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override

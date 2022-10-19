@@ -119,7 +119,7 @@ public class ClienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void obtenerComprasOpcion2(){
-        List<Compra> listaCompras = clienteRepo.obtenerCompraOpcion2("perdomov.j07@gmail.com");
+        List<Compra> listaCompras = clienteRepo.obtenerCompraOpcion3("perdomov.j07@gmail.com");
         Assertions.assertEquals(1, listaCompras.size());
         listaCompras.forEach(System.out::println);
     }
@@ -148,6 +148,14 @@ public class ClienteTest {
     public void obtenerCalificaciones(){
         List<Calificacion> listaCalificaciones = clienteRepo.obtenerCalificaciones(1004);
         listaCalificaciones.forEach(System.out::println);
+    }
+
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerComprasCliente(){
+        List<Compra> compras= clienteRepo.obtenerComprasCliente(1006);
+        compras.forEach(System.out::println);
     }
 
 }

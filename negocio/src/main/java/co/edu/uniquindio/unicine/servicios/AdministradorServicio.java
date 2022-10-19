@@ -18,7 +18,7 @@ public interface AdministradorServicio {
 
     List<Ciudad> listarCiudad();
 
-    //-------------------------METODOS CRUD PARA LOS TEATROS--------------------------------
+    //-------------------------METODOS CRUD PARA LOS ADMINISTRADOR_TEATROS--------------------------------
     AdministradorTeatro crearAdministradorTeatros(AdministradorTeatro administradorTeatro) throws Exception;
 
     AdministradorTeatro obtenerAdministrador(Integer codigo)throws Exception;

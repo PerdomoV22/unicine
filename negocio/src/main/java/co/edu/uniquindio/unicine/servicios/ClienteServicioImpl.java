@@ -119,25 +119,39 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     //------------------------------ LISTAR LA COMPRAS -------------------------------
     @Override
-    public List<Compra> listarHitorialCompra(Integer codigoCliente) throws Exception{
-        return null;
+    public void listarHitorialCompra(Integer codigoCliente){
+        List<Compra> compras = clienteRepo.obtenerComprasCliente(codigoCliente);
+        compras.forEach(System.out::println);
     }
 
     //---------------------------------- HACER UNA COMPRA --------------------------------
     @Override
     public Compra hacerCompra(Compra compra) throws Exception {
+
+
+
+
+
         return null;
     }
 
     //------------------------------------ REDMIR CUPON -----------------------------------
     @Override
     public boolean redirCupon(Integer codigoCupon) throws Exception{
+
+
         return false;
     }
 
     //------------------------------------- Cambiar Contraseña ------------------------------
     @Override
-    public boolean cambiarContraseña(Integer cedela) throws Exception {
+    public boolean cambiarContraseña(Integer cedula ) throws Exception {
+
+        Cliente cliente = clienteRepo.findById(cedula).orElse(null);
+        if(cliente==null){
+            throw new Exception("El cliente no se encontro");
+        }
+
         return false;
     }
 }

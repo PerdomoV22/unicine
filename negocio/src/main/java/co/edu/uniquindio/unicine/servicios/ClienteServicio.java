@@ -28,7 +28,7 @@ public interface ClienteServicio {
     List<Cliente> listarClientes();
 
     //-------------------------------- LISTAR LAS PROPIAS COMPRAS ---------------------
-    List<Compra> listarHitorialCompra(Integer codigoCliente) throws Exception;
+    void listarHitorialCompra(Integer codigoCliente);
 
     //-------------------------------- REALIZAR COMPRA ---------------------------------
     Compra hacerCompra(Compra compra) throws Exception;
