@@ -9,6 +9,7 @@ import co.edu.uniquindio.unicine.repositorios.PeliculaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +33,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(cliente == null){
             throw new Exception("Los Datos de Autentificacion son INCORRECTOS");
         }
+
+        //validar  estado del cliente
 
         return cliente;
     }
@@ -68,6 +71,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(correoExiste){
             throw new Exception("El Correo ya esta en Uso");
         }
+
+        //cedula
 
         emailServicio.enviarEmail("Registro de cuenta en UniCine", "Hola "+cliente.getNombre()+" es un gusto que haya registrado en Unicine, para activar su cuenta ingrese en el siguiente link: url", cliente.getCorreo());
         return clienteRepo.save(cliente);
@@ -126,9 +131,19 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     //---------------------------------- HACER UNA COMPRA --------------------------------
     @Override
-    public Compra hacerCompra(Compra compra) throws Exception {
+    public Compra hacerCompra(Compra compra) throws Exception { // Cliente, Entradas, Canfiterias, medio de pago, cupon, funcion
 
+        compra.setFechaCompra(LocalDateTime.now());
 
+        //verificar cliente,
+
+        //verificar que las sillas esten disponibles
+
+        //redimir el cupon si no es null
+
+        //sumar los precios, aplicar el descuento
+
+        //persiste la compra
 
 
 
@@ -139,19 +154,27 @@ public class ClienteServicioImpl implements ClienteServicio{
     @Override
     public boolean redirCupon(Integer codigoCupon) throws Exception{
 
-
         return false;
+    }
+
+    public void enviarLinkRecuperacion(String correo){
+        emailServicio.enviarEmail("Recuperacion password", "Para recupear la contraseña ingrese a: []", correo);
     }
 
     //------------------------------------- Cambiar Contraseña ------------------------------
     @Override
-    public boolean cambiarContraseña(Integer cedula ) throws Exception {
+    public boolean cambiarContraseña(String correo, String passwordNueva ) throws Exception {
 
-        Cliente cliente = clienteRepo.findById(cedula).orElse(null);
+        Cliente cliente = clienteRepo.findByCorreo(correo).orElse(null);
+        enviarLinkRecuperacion(correo);
+
         if(cliente==null){
-            throw new Exception("El cliente no se encontro");
+            throw new Exception("El cliente no se encontro con el correo ingresado");
         }
 
-        return false;
+        cliente.setContrasena(passwordNueva);
+        clienteRepo.save(cliente);
+
+        return true;
     }
 }

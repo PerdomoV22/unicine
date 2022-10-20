@@ -5,6 +5,7 @@ import co.edu.uniquindio.unicine.repositorios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,9 +85,9 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
     //---------------------------------CRUD DE HORARIOS-------------------------------------
     @Override
     public Horario crearHorarios(Horario horario) throws Exception {
-        boolean horarioExiste = HorarioRepetido(horario.getDia());
+        boolean horarioExiste = HorarioRepetido(horario.getHora());
         if(horarioExiste){
-            throw new Exception("El horario ya Existe");
+            throw new Exception("El horario ya EXISTE en el hora agregada");
         }
         return horarioRepo.save(horario);
     }
@@ -100,8 +101,8 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
         return horario.get();
     }
 
-    public boolean HorarioRepetido(String dia){
-        return horarioRepo.findByDia(dia).orElse(null)!= null;
+    public boolean HorarioRepetido(Time hora){
+        return horarioRepo.findByHora(hora).orElse(null)!= null;
     }
 
     @Override
@@ -131,9 +132,10 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
 
     //----------------------------------- CRUD DE FUNCIONES -----------------------------------
     @Override
-    public Funcion crearFunciones(Funcion funcion) throws Exception{
+    public Funcion crearFuncion(Funcion funcion) throws Exception{
 
         boolean peliculaEnCartelera = peliculaEnCartelera(funcion.getPelicula().getNombrePelicula());
+
         if(!peliculaEnCartelera){
             throw new Exception("La pelicula no esta en cartelera");
         }
@@ -158,7 +160,7 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
     }
 
     @Override
-    public Funcion obtenerFunciones(Integer codigo) throws Exception {
+    public Funcion obtenerFuncion(Integer codigo) throws Exception {
         Optional<Funcion> funcion = funcionRepo.findById(codigo);
         if(funcion.isEmpty()){
             throw new Exception("No existe la funcion con ese codigo");
@@ -167,7 +169,7 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
     }
 
     @Override
-    public Funcion actuaizarFunciones(Funcion funcion) throws Exception {
+    public Funcion actuaizarFuncion(Funcion funcion) throws Exception {
         Optional<Funcion> funcionGuardada = funcionRepo.findById(funcion.getCodigo());
         if(funcionGuardada.isEmpty()){
             throw new Exception("La funcion NO EXISTE");

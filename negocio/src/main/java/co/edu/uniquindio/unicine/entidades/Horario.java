@@ -23,7 +23,8 @@ public class Horario implements Serializable {
     private Integer codigo;
 
     @Column(nullable = false)
-    private String dia;
+    @ElementCollection
+    private List<DiaSemana> dia;
 
     @Column(nullable = false)
     private Time hora;
@@ -38,7 +39,7 @@ public class Horario implements Serializable {
     @OneToMany(mappedBy = "horario")
     private List<Funcion> funciones;
 
-    public Horario(String dia, Time hora, LocalDate fechaInicio, LocalDate fechaFinal) {
+    public Horario(List<DiaSemana> dia, Time hora, LocalDate fechaInicio, LocalDate fechaFinal) {
         this.dia = dia;
         this.hora = hora;
         this.fechaInicio = fechaInicio;

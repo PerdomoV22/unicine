@@ -1,14 +1,12 @@
 package co.edu.uniquindio.unicine.repositorios;
 
 import co.edu.uniquindio.unicine.dto.FuncionDTO;
-import co.edu.uniquindio.unicine.entidades.Funcion;
-import co.edu.uniquindio.unicine.entidades.Pelicula;
-import co.edu.uniquindio.unicine.entidades.Sala;
+import co.edu.uniquindio.unicine.entidades.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.sql.Time;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,4 +32,7 @@ public interface FuncionRepo extends JpaRepository<Funcion, Integer> {
     //PENDIENTE---------------------
     @Query("select funcion.sala from Funcion funcion where funcion.sala.numeroSala = :codigoSala")
     Optional<Funcion> buscarSalaPorHorario(Integer codigoSala);
+
+    @Query("select f from Funcion f where f.sala.numeroSala = :codigoSala and :dIaSemana in f.horario.dia and f.horario.hora = :hora")
+    List<Funcion> obtenerFuncionesHorario(Integer codigoSala, DiaSemana dIaSemana, Time hora);
 }

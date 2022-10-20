@@ -29,9 +29,9 @@ public interface AdminTeatroServicio {
     List<Horario> listarHorarios();
 
     //----------------------------CRUD DE FUNCIONES------------------------------------------
-    Funcion crearFunciones(Funcion funcion)throws Exception;
-    Funcion obtenerFunciones(Integer codigo)throws Exception;
-    Funcion actuaizarFunciones(Funcion funcion)throws Exception;
+    Funcion crearFuncion(Funcion funcion)throws Exception;
+    Funcion obtenerFuncion(Integer codigo)throws Exception;
+    Funcion actuaizarFuncion(Funcion funcion)throws Exception;
 
     void eliminarFuncion(Integer codigo)throws Exception;
 

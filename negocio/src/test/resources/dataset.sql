@@ -42,13 +42,23 @@ insert into teatro values (4, "Cra. 6 #3-180", "UniCine", 1090, 1015, 3);
 insert into teatro values (5, "Cra. 66B #34A-76", "UniCine", 1090, 1016, 3);
 
 /*------------------------------Pelicula----------------------------------------------*/
-/*Pelicula: codigo, estado, genero, imagen, nombre, reparto, sinopsis, trailer*/
+/*Pelicula: codigo, estado, imagen, nombre, reparto, sinopsis, trailer*/
 insert into pelicula values (1, 1, "url-imagen", "La huerfana: EL origen", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
 insert into pelicula values (2, 1, "url-imagen", "Avatar Relanzamiento", "Sam Worthington, Zoe Saldaña, Stephen Lang, Michelle Rodriguez y Sigourney Weaver.  ", "Vive nuevamente la primera entrega de Avatar (2009) en nuestras salas. AVATAR, ganadora del Premio de la Academia® en 2009", "url-video");
 insert into pelicula values (3, 1, "url-imagen", "Pasaje al paraiso", "George Clooney, Julia Roberts.", "George Clooney y Julia Roberts se reúnen en la pantalla grande como ex esposos que comparten la misión de evitar que su enamorada hija cometa el mismo error que ellos mismos cometieron una vez.", "url-video");
 insert into pelicula values (4, 1, "url-imagen", "No te preocuoes carinho", "Florence Pugh, Harry Styles, Chris Pine.", "Thriller psicológico centrado en una infeliz ama de casa en la década de 1950 que descubre una inquietante verdad. ", "url-video");
 insert into pelicula values (5, 0, "url-imagen", "Fantasma", "Sophie Stevens, Kirstie Steele, Nick Bayly.", "Emma ha sido contratada como cuidadora nocturna del Sr. Cunningham. El que fuera un pilar de la comunidad local tiene demencia y ha sufrido un derrame cerebral, por lo que está solo en su destartalada casa.", "url-video");
 insert into pelicula values (6, 1, "url-imagen", "La huerfana", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
+
+/*------------------------------Genero---------------------------------------------------*/
+insert into pelicula_genero values (1, "DRAMA");
+insert into pelicula_genero values (1, "TERROR");
+insert into pelicula_genero values (3, "DRAMA");
+insert into pelicula_genero values (4, "ROMANTICA");
+insert into pelicula_genero values (5, "TERROR");
+insert into pelicula_genero values (2, "ACCION");
+insert into pelicula_genero values (2, "CIENVIA_FICCION");
+
 
 /*------------------------------Calificacion----------------------------------------------*/
 /*Calificacion : codigo, puntuacion, cedCliente, codPelicula*/
@@ -73,6 +83,15 @@ insert into horario values (2, "LMMJVSD", "2022-09-29", "2022-11-01", "14:30");
 insert into horario values (3, "LMJVS", "2022-11-01", "2022-12-02", "18:00");
 insert into horario values (4, "LMMJV", "2022-10-21", "2022-11-22", "22:20");
 insert into horario values (5, "LMJVSD", "2022-11-22", "2022-12-23", "17:30");
+
+/*------------------------------Horario_Dia ------------------------------------------*/
+insert into horario_dia values (1, "LUNES");
+insert into horario_dia values (1, "MARTES");
+insert into horario_dia values (2, "MARTES");
+insert into horario_dia values (3, "MIERCOLES");
+insert into horario_dia values (5, "VIERNES");
+insert into horario_dia values (4, "SABADO");
+insert into horario_dia values (4, "DOMINGO");
 
 /*------------------------------PQRS----------------------------------------------*/
 /*PQRS: codigo, asunto, descripcion, cedCliente*/
@@ -116,7 +135,7 @@ insert into confiteria values (5, 'Hot_Dogs',  "fotoHotdogs","Perro sencillo", 1
 
 /*------------------------------Funcion----------------------------------------------*/
 /*Funcion: codigo, precio, horaioCod, codPelicula, sala_numero_sala*/
-insert into funcion values (1, 6.500, 1, 1, null);
+insert into funcion values (1, 6.500, 1, 1, 1);
 insert into funcion values (2, 8.500, 2, 2, 2);
 insert into funcion values (3, 7.500, 3, 3, 3);
 insert into funcion values (4, 6.500, 4, 4, 4);

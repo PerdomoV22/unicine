@@ -37,5 +37,5 @@ public interface ClienteServicio {
     boolean redirCupon(Integer codigoCupon) throws Exception;
 
     //-------------------------------- Cambiar Contraseña ----------------------------
-    boolean cambiarContraseña(Integer cedela)throws Exception;
+    boolean cambiarContraseña(String correo, String passwordNueva)throws Exception;
 }
