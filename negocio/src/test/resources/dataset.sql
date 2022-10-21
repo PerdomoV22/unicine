@@ -62,10 +62,10 @@ insert into pelicula_genero values (2, "ACCION");
 /*------------------------------Calificacion----------------------------------------------*/
 /*Calificacion : codigo, puntuacion, cedCliente, codPelicula*/
 insert into calificacion values (1, 4, 1004, 1);
-insert into calificacion values (2, 2, 1004, 2);
+insert into calificacion values (2, 2, 1004, 5);
 insert into calificacion values (3, 1, 1006, 2);
-insert into calificacion values (4, 1, 1007, 4);
-insert into calificacion values (5, 5, 1004, 4);
+insert into calificacion values (4, 1, 1007, 5);
+insert into calificacion values (5, 5, 1004, 5);
 
 /*------------------------------Cupon----------------------------------------------*/
 /*Cupon : codigo, criterio, descripcion, fechaVencimiento, valorDescuento*/
@@ -102,11 +102,11 @@ insert into pqrs values (5, "Informacion", "Informacion de mis cupones", 1007);
 
 /*------------------------------Distribucion_Sillas----------------------------------------------*/
 /*Distribuciion_ sillas: codigo, columnas, esquema, filas, total_sillas*/
-insert into distribucion_sillas values (1, 14, "", 14, 180);
-insert into distribucion_sillas values (2, 14, "", 14, 190);
-insert into distribucion_sillas values (3, 14, "", 14, 170);
-insert into distribucion_sillas values (4, 14, "", 14, 180);
-insert into distribucion_sillas values (5, 14, "", 14, 160);
+insert into distribucion_sillas values (1, 10, "rute", 10, 100);
+insert into distribucion_sillas values (2, 10, "ruta", 10, 100);
+insert into distribucion_sillas values (3, 11, "ruta", 11, 121);
+insert into distribucion_sillas values (4, 9, "ruta", 9, 81);
+insert into distribucion_sillas values (5, 8, "ruta", 14, 112);
 
 /*------------------------------Sala----------------------------------------------*/
 /*Sala: numero_sala, nombre, distriSillasCodigo, teatroNit*/
@@ -135,8 +135,8 @@ insert into confiteria values (5, 'Hot_Dogs',  "fotoHotdogs","Perro sencillo", 1
 /*------------------------------Funcion----------------------------------------------*/
 /*Funcion: codigo, precio, horaioCod, codPelicula, sala_numero_sala*/
 insert into funcion values (1, 6.500, 1, 1, 1);
-insert into funcion values (2, 8.500, 2, 2, 2);
-insert into funcion values (3, 7.500, 3, 3, 3);
+insert into funcion values (2, 6.500, 2, 2, 2);
+insert into funcion values (3, 6.500, 3, 3, 3);
 insert into funcion values (4, 6.500, 4, 4, 4);
 insert into funcion values (5, 7.500, 5, 5, 5);
 
@@ -145,12 +145,12 @@ insert into funcion values (5, 7.500, 5, 5, 5);
 insert into compra values (1, "2022-10-14", 'PSE', 2, 45.000, 1004, 1, 1);
 insert into compra values (2, "2022-11-22", 'VISA', 3, 45.000, 1005, null, 1);
 insert into compra values (3, "2022-10-30", 'PSE', 4, 50.000, 1005, 3, 1);
-insert into compra values (4, "2022-10-01", 'MASTERCARD', 2, 65.000, 1007, null, 4);
-insert into compra values (5, "2022-10-24", 'VISA', 2, 25.000, 1004, 5, 5);
+insert into compra values (4, "2022-10-01", 'MASTERCARD', 2, 65.000, 1007, null, 2);
+insert into compra values (5, "2022-10-24", 'VISA', 2, 25.000, 1004, 5, 3);
 
-insert into compra values (6, "2022-11-5", 'VISA', 2, 25.000, 1005, 5, 5);
-insert into compra values (7, "2022-11-10",'MASTERCARD', 2, 25.000, 1005, 5, 5);
-insert into compra values (8, "2022-12-24", 'VISA', 2, 25.000, 1005, 5, 5);
+insert into compra values (6, "2022-11-5", 'VISA', 2, 25.000, 1005, 5, 2);
+insert into compra values (7, "2022-11-10",'MASTERCARD', 2, 25.000, 1005, 5, 3);
+insert into compra values (8, "2022-12-24", 'VISA', 2, 25.000, 1005, 5, 4);
 insert into compra values (9, "2022-12-28", 'PSE', 2, 15.000, 1005, 5, 5);
 
 /*------------------------------Entrada----------------------------------------------*/
@@ -165,6 +165,6 @@ insert into entrada values (5, 14, 20, 6.000, 1);
 /*CompraConfiteria: codigo, precio, unidades, codCompra, confitCodProducto*/
 insert into compra_confiteria values (1, 45.000, 2, 2, 2);
 insert into compra_confiteria values (2, 10.000, 3, 2, 1);
-insert into compra_confiteria values (3, 25.000, 2, 3, 3);
-insert into compra_confiteria values (4, 3.000, 4, 3, 4);
-insert into compra_confiteria values (5, 12.000, 2, 3, 5);
+insert into compra_confiteria values (3, 25.000, 2, 2, 3);
+insert into compra_confiteria values (4, 3.000, 4, 2, 4);
+insert into compra_confiteria values (5, 12.000, 2, 2, 5);

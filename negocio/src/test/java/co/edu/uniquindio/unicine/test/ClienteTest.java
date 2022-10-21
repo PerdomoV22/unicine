@@ -90,8 +90,15 @@ public class ClienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void obtenerPorEstado(){
-        List<Cliente> listaClientes = clienteRepo.obtenerPorEstado(true,PageRequest.of(0,3));
+        List<Cliente> listaClientes = clienteRepo.obtenerPorEstados(true,PageRequest.of(0,3));
         listaClientes.forEach (System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPorEstado2(){
+        Cliente cliente = clienteRepo.obtenerPorEstado(1004,true);
+        System.out.println(cliente);
     }
 
     @Test

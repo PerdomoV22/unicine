@@ -1,10 +1,7 @@
 package co.edu.uniquindio.unicine.servicios;
 
 import co.edu.uniquindio.unicine.entidades.*;
-import co.edu.uniquindio.unicine.repositorios.CalificacionRepo;
-import co.edu.uniquindio.unicine.repositorios.ClienteRepo;
-import co.edu.uniquindio.unicine.repositorios.PeliculaRepo;
-import co.edu.uniquindio.unicine.repositorios.PqrsRepo;
+import co.edu.uniquindio.unicine.repositorios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +18,19 @@ public class ClienteServicioImpl implements ClienteServicio{
     private EmailServicio emailServicio;
     private CalificacionRepo calificacionRepo;
     private PqrsRepo pqrsRepo;
+    private FuncionRepo funcionRepo;
+    private CuponRepo cuponRepo;
+    private CuponClienteRepo cuponClienteRepo;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, CalificacionRepo calificacionRepo, EmailServicio emailServicio, PqrsRepo pqrsRepo) {
+    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, EmailServicio emailServicio, CalificacionRepo calificacionRepo, PqrsRepo pqrsRepo, FuncionRepo funcionRepo, CuponRepo cuponRepo, CuponClienteRepo cuponClienteRepo) {
         this.clienteRepo = clienteRepo;
         this.peliculaRepo = peliculaRepo;
-        this.calificacionRepo = calificacionRepo;
         this.emailServicio = emailServicio;
+        this.calificacionRepo = calificacionRepo;
         this.pqrsRepo = pqrsRepo;
+        this.funcionRepo = funcionRepo;
+        this.cuponRepo = cuponRepo;
+        this.cuponClienteRepo = cuponClienteRepo;
     }
 
     //------------------------------------LOGIN----------------------------------------
@@ -39,7 +42,10 @@ public class ClienteServicioImpl implements ClienteServicio{
             throw new Exception("Los Datos de Autentificacion son INCORRECTOS");
         }
         //validar  estado del cliente
-        //if(cliente.){}
+        cliente = clienteRepo.obtenerPorEstado(cliente.getCedula(), true);
+        if(cliente == null){
+            throw new Exception("No se activado la cuenta para ingresar");
+        }
 
         return cliente;
     }
@@ -141,20 +147,45 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     //---------------------------------- HACER UNA COMPRA --------------------------------
     @Override
-    public Compra hacerCompra(Compra compra) throws Exception { // Cliente, Entradas, Canfiterias, medio de pago, cupon, funcion
+    public Compra hacerCompra(Cliente cliente, Entrada entradas, CompraConfiteria compraConfiteria, MedioPago medioPago, Cupon cupon, Funcion funcion) throws Exception { // Cliente, Entradas, Canfiterias, medio de pago, cupon, funcion
 
+        Compra compra = new Compra();
         compra.setFechaCompra(LocalDateTime.now());
 
         //verificar cliente,
-
+        Optional<Cliente> clienteExiste = clienteRepo.findById(cliente.getCedula());
+        if (clienteExiste.isEmpty()){
+            throw new Exception("Cliente no existe");
+        }
         //verificar que las sillas esten disponibles
 
+        entradas = funcionRepo.verificarSilla(funcion.getCodigo(), entradas.getFila(), entradas.getColumna());
+        if(entradas != null){
+            throw new Exception("Las entredad seleccionadas ya estan ocupadas");
+        }
+
         //redimir el cupon si no es null
+
+        Optional<Cupon> cuponExiste = cuponRepo.findById(cupon.getCodigo());
+        if (cuponExiste.isEmpty()){
+            throw new Exception("El cupon no existe");
+        }
+        boolean cuponCliente =false ;
+
+        List<Cupon> cuponesCliente = cuponRepo.obtenerCuponesCliente(cliente.getCedula());
+        for (Cupon cup : cuponesCliente){
+            if (cupon.getCodigo() == cupon.getCodigo()){
+                cuponCliente=true;
+            }
+        }
+        if (!cuponCliente){
+            throw new Exception("El cupon no es del cliente");
+        }
+        redirCupon(cupon.getCodigo());
 
         //sumar los precios, aplicar el descuento
 
         //persiste la compra
-
 
 
         return null;
@@ -163,7 +194,13 @@ public class ClienteServicioImpl implements ClienteServicio{
     //------------------------------------ REDMIR CUPON -----------------------------------
     @Override
     public boolean redirCupon(Integer codigoCupon) throws Exception{
-        return false;
+        CuponCliente cuponGuardado = cuponClienteRepo.buscarCuponClientePorCodigoCupon(codigoCupon);
+        if(cuponGuardado == null) {
+            throw new Exception("El cupon no existe");
+        }
+        cuponGuardado.setEstado(true);
+        cuponClienteRepo.save(cuponGuardado);
+        return true;
     }
 
     //------------------------------------- Cambiar Contraseña ------------------------------
@@ -207,6 +244,10 @@ public class ClienteServicioImpl implements ClienteServicio{
         return calificacionRepo.save(calificacion);
     }
 
+    public Double promedioPelicula (Pelicula pelicula){
+        Double promedio = calificacionRepo.obtenerPromedioCalificacionPelicula(pelicula.getNombrePelicula());
+        return promedio;
+    }
 
     //----------------------------- METODOS PQRS ---------------------------------------
     @Override

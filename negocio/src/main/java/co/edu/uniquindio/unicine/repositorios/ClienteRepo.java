@@ -24,7 +24,10 @@ public interface ClienteRepo extends JpaRepository<Cliente, Integer> {
     Cliente findByCorreoAndContrasena(String email, String clave);
 
     @Query("select c from Cliente c where c.estado = :estado")
-    List<Cliente> obtenerPorEstado (Boolean estado, Pageable paginador);
+    List<Cliente> obtenerPorEstados (Boolean estado, Pageable paginador);
+
+    @Query("select c from Cliente c where c.cedula = :cedula and c.estado = :estado")
+    Cliente obtenerPorEstado(Integer cedula, Boolean estado);
 
     @Query("select comp from Cliente cliente, in(cliente.compras) comp where cliente.correo = :correo")
     List<Compra> obtenerCompra (String correo);

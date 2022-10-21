@@ -2,10 +2,7 @@ package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.dto.FuncionDTO;
 import co.edu.uniquindio.unicine.dto.HorarioSalaDTO;
-import co.edu.uniquindio.unicine.entidades.Cliente;
-import co.edu.uniquindio.unicine.entidades.Funcion;
-import co.edu.uniquindio.unicine.entidades.Pelicula;
-import co.edu.uniquindio.unicine.entidades.Sala;
+import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.repositorios.FuncionRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -61,14 +58,31 @@ public class FuncionTest {
     }*/
 
 
-
-//PENDIENTE--------------------------------------
     @Test
     @Sql("classpath:dataset.sql")
-    public void buscarSalaPorHorario(){
-        Optional<Funcion> funcion = funcionRepo.buscarSalaPorHorario(1);
-        System.out.println(funcion);
+    public void ListaEntradas(){
+        List<Entrada> listaEntradas = funcionRepo.listaEntradas(1);
+        System.out.println(listaEntradas);
     }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void ListasCompras() {
+        List<Compra> listaCompras = funcionRepo.listaCompra(1);
+        System.out.println(listaCompras);
+    }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void verificarSillas() {
+        List<Entrada> listaEntradas = funcionRepo.verificarSillas(1, 3, 3);
+        System.out.println(listaEntradas);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void verificarSilla() {
+        Entrada entrada = funcionRepo.verificarSilla(1, 3, 3);
+        System.out.println(entrada);
+    }
 }

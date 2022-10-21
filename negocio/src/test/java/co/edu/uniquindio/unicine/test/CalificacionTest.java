@@ -23,4 +23,11 @@ public class CalificacionTest {
         List<Calificacion> calificaciones = calificacionRepo.obtenerCalificacionesClientePorCedula(1004);
         calificaciones.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPromedioCalificacionPelicula() {
+        Double promedio = calificacionRepo.obtenerPromedioCalificacionPelicula("Fantasma");
+        System.out.println(promedio);
+    }
 }
