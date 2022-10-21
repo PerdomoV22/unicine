@@ -57,7 +57,6 @@ insert into pelicula_genero values (3, "DRAMA");
 insert into pelicula_genero values (4, "ROMANTICA");
 insert into pelicula_genero values (5, "TERROR");
 insert into pelicula_genero values (2, "ACCION");
-insert into pelicula_genero values (2, "CIENVIA_FICCION");
 
 
 /*------------------------------Calificacion----------------------------------------------*/
@@ -77,12 +76,12 @@ insert into cupon values (4, "", "", "2022-10-08", 0);
 insert into cupon values (5, "", "", "2022-11-01", 0);
 
 /*------------------------------Horario----------------------------------------------*/
-/*Horario: codigo, dia, fechafinal, fechainicial, hora*/
-insert into horario values (1, "LMJV", "2022-10-01", "2022-11-02", "20:30");
-insert into horario values (2, "LMMJVSD", "2022-09-29", "2022-11-01", "14:30");
-insert into horario values (3, "LMJVS", "2022-11-01", "2022-12-02", "18:00");
-insert into horario values (4, "LMMJV", "2022-10-21", "2022-11-22", "22:20");
-insert into horario values (5, "LMJVSD", "2022-11-22", "2022-12-23", "17:30");
+/*Horario: codigo, fechafinal, fechainicial, hora*/
+insert into horario values (1, "2022-10-01", "2022-11-02", "20:30");
+insert into horario values (2, "2022-09-29", "2022-11-01", "14:30");
+insert into horario values (3, "2022-11-01", "2022-12-02", "18:00");
+insert into horario values (4, "2022-10-21", "2022-11-22", "22:20");
+insert into horario values (5, "2022-11-22", "2022-12-23", "17:30");
 
 /*------------------------------Horario_Dia ------------------------------------------*/
 insert into horario_dia values (1, "LUNES");

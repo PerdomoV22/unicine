@@ -141,8 +141,6 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
         }
         boolean horarioExiste ;
         boolean salaExiste;
-
-
         return null;
     }
 

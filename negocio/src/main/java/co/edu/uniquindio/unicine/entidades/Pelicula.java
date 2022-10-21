@@ -38,6 +38,7 @@ public class Pelicula implements Serializable {
      @Column(nullable = false)
     private Boolean estado;
 
+    @Enumerated(EnumType.STRING)
     @ElementCollection
     @Column(nullable = false, length = 10)
     private List<Genero> genero;

@@ -22,6 +22,7 @@ public class Horario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @ElementCollection
     private List<DiaSemana> dia;

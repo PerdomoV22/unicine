@@ -38,8 +38,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(cliente == null){
             throw new Exception("Los Datos de Autentificacion son INCORRECTOS");
         }
-
         //validar  estado del cliente
+        //if(cliente.){}
 
         return cliente;
     }
@@ -68,7 +68,6 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     //---------------------------------- CRUD DE CLIENTE --------------------------------
-    // Registrar --> No se con cuales parametros serian
     @Override
     public Cliente registrarCliente(Cliente cliente) throws Exception{
 
@@ -76,8 +75,11 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(correoExiste){
             throw new Exception("El Correo ya esta en Uso");
         }
-
         //cedula
+        boolean cedulaExiste = cedulaRepetida(cliente.getCedula());
+        if(cedulaExiste){
+            throw  new Exception("La cedula ingresada ya existe");
+        }
 
         emailServicio.enviarEmail("Registro de cuenta en UniCine", "Hola "+cliente.getNombre()+" es un gusto que haya registrado en Unicine, para activar su cuenta ingrese en el siguiente link: url", cliente.getCorreo());
         return clienteRepo.save(cliente);
@@ -87,6 +89,9 @@ public class ClienteServicioImpl implements ClienteServicio{
         return clienteRepo.findByCorreo(correo).orElse(null) != null;
     }
 
+    private boolean cedulaRepetida(Integer cedula) {
+        return clienteRepo.existsById(cedula);
+    }
     @Override
     public Cliente obtenerClientePorCedula(Integer cedula) throws Exception {
 
@@ -158,15 +163,14 @@ public class ClienteServicioImpl implements ClienteServicio{
     //------------------------------------ REDMIR CUPON -----------------------------------
     @Override
     public boolean redirCupon(Integer codigoCupon) throws Exception{
-
         return false;
     }
 
+    //------------------------------------- Cambiar Contraseña ------------------------------
     public void enviarLinkRecuperacion(String correo){
         emailServicio.enviarEmail("Recuperacion password", "Para recupear la contraseña ingrese a: []", correo);
     }
 
-    //------------------------------------- Cambiar Contraseña ------------------------------
     @Override
     public boolean cambiarContraseña(String correo, String passwordNueva ) throws Exception {
 
@@ -183,7 +187,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         return true;
     }
 
-
+    //---------------------------- METODOS DE CALIFICACION ----------------------------------------------------------
     @Override
     public Calificacion asignarCalificacion(Cliente cliente, Pelicula pelicula, Integer valorCalificacion) throws Exception {
 
@@ -203,6 +207,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         return calificacionRepo.save(calificacion);
     }
 
+
+    //----------------------------- METODOS PQRS ---------------------------------------
     @Override
     public Pqrs crearPqrs(Cliente cliente, Pqrs pqrs) throws Exception{
 
