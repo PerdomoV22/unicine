@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unicine.servicios;
 
-import co.edu.uniquindio.unicine.entidades.Cliente;
-import co.edu.uniquindio.unicine.entidades.Compra;
-import co.edu.uniquindio.unicine.entidades.Genero;
-import co.edu.uniquindio.unicine.entidades.Pelicula;
+import co.edu.uniquindio.unicine.entidades.*;
 
 import java.util.List;
 
@@ -38,4 +35,11 @@ public interface ClienteServicio {
 
     //-------------------------------- Cambiar Contraseña ----------------------------
     boolean cambiarContraseña(String correo, String passwordNueva)throws Exception;
+
+
+    Calificacion asignarCalificacion(Cliente cliente , Pelicula pelicula, Integer calificacion) throws Exception;
+
+    Pqrs crearPqrs(Cliente cliente, Pqrs pqrs) throws Exception;
+
+    void listarPqrs();
 }

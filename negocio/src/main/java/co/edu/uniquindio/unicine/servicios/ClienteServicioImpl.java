@@ -1,11 +1,10 @@
 package co.edu.uniquindio.unicine.servicios;
 
-import co.edu.uniquindio.unicine.entidades.Cliente;
-import co.edu.uniquindio.unicine.entidades.Compra;
-import co.edu.uniquindio.unicine.entidades.Genero;
-import co.edu.uniquindio.unicine.entidades.Pelicula;
+import co.edu.uniquindio.unicine.entidades.*;
+import co.edu.uniquindio.unicine.repositorios.CalificacionRepo;
 import co.edu.uniquindio.unicine.repositorios.ClienteRepo;
 import co.edu.uniquindio.unicine.repositorios.PeliculaRepo;
+import co.edu.uniquindio.unicine.repositorios.PqrsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +19,15 @@ public class ClienteServicioImpl implements ClienteServicio{
     private ClienteRepo clienteRepo;
     private PeliculaRepo peliculaRepo;
     private EmailServicio emailServicio;
+    private CalificacionRepo calificacionRepo;
+    private PqrsRepo pqrsRepo;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo) {
+    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, CalificacionRepo calificacionRepo, EmailServicio emailServicio, PqrsRepo pqrsRepo) {
         this.clienteRepo = clienteRepo;
+        this.peliculaRepo = peliculaRepo;
+        this.calificacionRepo = calificacionRepo;
+        this.emailServicio = emailServicio;
+        this.pqrsRepo = pqrsRepo;
     }
 
     //------------------------------------LOGIN----------------------------------------
@@ -176,5 +181,40 @@ public class ClienteServicioImpl implements ClienteServicio{
         clienteRepo.save(cliente);
 
         return true;
+    }
+
+
+    @Override
+    public Calificacion asignarCalificacion(Cliente cliente, Pelicula pelicula, Integer valorCalificacion) throws Exception {
+
+        Pelicula peliculaExiste = peliculaRepo.buscarPeliculaPorNombre(pelicula.getNombrePelicula());
+
+        if (peliculaExiste == null){
+            throw new Exception("lA PELICULA NO SE ENCONTRO");
+        }
+
+        Calificacion calificacion = new Calificacion();
+        calificacion.setPuntuacion(valorCalificacion);
+        calificacion.setPelicula(pelicula);
+        calificacion.setCliente(cliente);
+
+        peliculaExiste.getCalificaciones().add(calificacion);
+
+        return calificacionRepo.save(calificacion);
+    }
+
+    @Override
+    public Pqrs crearPqrs(Cliente cliente, Pqrs pqrs) throws Exception{
+
+        Optional<Cliente> clienteExiste= clienteRepo.findById(cliente.getCedula());
+        if(clienteExiste.isEmpty()){
+            throw new Exception("El cliente no existe");
+        }
+        return pqrsRepo.save(pqrs);
+    }
+
+    @Override
+    public void listarPqrs() {
+        pqrsRepo.findAll();
     }
 }
