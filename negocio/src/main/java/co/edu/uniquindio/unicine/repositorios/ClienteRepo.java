@@ -49,5 +49,8 @@ public interface ClienteRepo extends JpaRepository<Cliente, Integer> {
     @Query("select c from Cliente cliente join cliente.calificaciones c where cliente.cedula = :cedula")
     List<Calificacion> obtenerCalificaciones(Integer cedula);
 
+    @Query("select count(cliente.compras) from Cliente cliente where cliente.cedula = :cedula")
+    Integer obtenerCantidadComprasCliente(Integer cedula);
+
 }
 

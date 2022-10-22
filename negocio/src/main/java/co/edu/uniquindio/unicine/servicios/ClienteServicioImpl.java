@@ -23,10 +23,12 @@ public class ClienteServicioImpl implements ClienteServicio{
     private CuponRepo cuponRepo;
     private CuponClienteRepo cuponClienteRepo;
     private ConfiteriaRepo confiteriaRepo;
-
     private CompraRepo compraRepo;
+    private EntradaRepo entradaRepo;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, EmailServicio emailServicio, CalificacionRepo calificacionRepo, PqrsRepo pqrsRepo, FuncionRepo funcionRepo, CuponRepo cuponRepo, CuponClienteRepo cuponClienteRepo, ConfiteriaRepo confiteriaRepo, CompraRepo compraRepo) {
+    private CompraConfiteriaRepo compraConfiteriaRepo;
+
+    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, EmailServicio emailServicio, CalificacionRepo calificacionRepo, PqrsRepo pqrsRepo, FuncionRepo funcionRepo, CuponRepo cuponRepo, CuponClienteRepo cuponClienteRepo, ConfiteriaRepo confiteriaRepo, CompraRepo compraRepo, EntradaRepo entradaRepo, CompraConfiteriaRepo compraConfiteriaRepo) {
         this.clienteRepo = clienteRepo;
         this.peliculaRepo = peliculaRepo;
         this.emailServicio = emailServicio;
@@ -37,6 +39,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         this.cuponClienteRepo = cuponClienteRepo;
         this.confiteriaRepo = confiteriaRepo;
         this.compraRepo = compraRepo;
+        this.entradaRepo = entradaRepo;
+        this.compraConfiteriaRepo = compraConfiteriaRepo;
     }
 
     //------------------------------------LOGIN----------------------------------------
@@ -94,6 +98,9 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
 
         emailServicio.enviarEmail("Registro de cuenta en UniCine", "Hola "+cliente.getNombre()+" es un gusto que haya registrado en Unicine, para activar su cuenta ingrese en el siguiente link: url", cliente.getCorreo());
+
+        emailServicio.enviarEmail("Regalo Cupon Por Registro", "Hola "+cliente.getNombre()+" Haz adquirido un cupon por registrarte", cliente.getCorreo());
+
         return clienteRepo.save(cliente);
     }
 
@@ -156,13 +163,14 @@ public class ClienteServicioImpl implements ClienteServicio{
     public Compra hacerCompra(Cliente cliente, List<Entrada> entradas, List<CompraConfiteria> compraConfiteria, MedioPago medioPago, Cupon cupon, Funcion funcion) throws Exception { // Cliente, Entradas, Canfiterias, medio de pago, cupon, funcion
 
         Compra compra = new Compra();
-        compra.setFechaCompra(LocalDateTime.now());
-
+        
         //verificar cliente,
         Optional<Cliente> clienteExiste = clienteRepo.findById(cliente.getCedula());
         if (clienteExiste.isEmpty()){
             throw new Exception("Cliente no existe");
         }
+
+        Integer numeroCompras = clienteRepo.obtenerCantidadComprasCliente(cliente.getCedula());
         //verificar que las sillas esten disponibles
 
         for (Entrada entrada : entradas ) {
@@ -173,30 +181,47 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
         //redimir el cupon si no es null
 
-        Optional<Cupon> cuponExiste = cuponRepo.findById(cupon.getCodigo());
-        if (cuponExiste.isEmpty()){
-            throw new Exception("El cupon no existe");
-        }
-        boolean cuponCliente =false ;
-
-        List<Cupon> cuponesCliente = cuponRepo.obtenerCuponesCliente(cliente.getCedula());
-        for (Cupon cup : cuponesCliente){
-            if (cupon.getCodigo() == cupon.getCodigo()){
-                cuponCliente=true;
+            Optional<Cupon> cuponExiste = cuponRepo.findById(cupon.getCodigo());
+            if (cuponExiste.isEmpty()) {
+                throw new Exception("El cupon no existe");
             }
-        }
-        if (!cuponCliente){
-            throw new Exception("El cupon no es del cliente");
-        }
-        redirCupon(cupon.getCodigo());
+            boolean cuponCliente = false;
+
+            List<Cupon> cuponesCliente = cuponRepo.obtenerCuponesCliente(cliente.getCedula());
+            for (Cupon cup : cuponesCliente) {
+                if (cupon.getCodigo() == cupon.getCodigo()) {
+                    cuponCliente = true;
+                }
+            }
+            if (!cuponCliente) {
+                throw new Exception("El cupon no es del cliente");
+            }
+            redirCupon(cupon.getCodigo());
 
         //sumar los precios, aplicar el descuento
 
         Double valorTotal = calcularValorTotal(entradas, compraConfiteria);
         Double valorTotalConDescuento = calcularValorTotalConDescuento (valorTotal, cupon.getValorDescuento());
 
+        compra.setEntradas(entradas);
+        compra.setCompraConfiterias(compraConfiteria);
         compra.setValorTotal(valorTotalConDescuento);
+
+        for (Entrada entrada : entradas) {
+            entrada.setCompra(compra);
+            entradaRepo.save(entrada);
+        }
+
+        for (CompraConfiteria compConfi : compraConfiteria){
+            compConfi.setCompra(compra);
+            compraConfiteriaRepo.save(compConfi);
+        }
         //persiste la compra
+        if (numeroCompras == 0) {
+            Cupon cuponPrimeraCompra = new Cupon ();
+            emailServicio.enviarEmail("Primera compra", "Hola " + cliente.getNombre() + " Por tu primera compra, haz adquirido un cupon " , cliente.getCorreo());
+        }
+        compra.setFechaCompra(LocalDateTime.now());
         return compraRepo.save(compra);
     }
 
