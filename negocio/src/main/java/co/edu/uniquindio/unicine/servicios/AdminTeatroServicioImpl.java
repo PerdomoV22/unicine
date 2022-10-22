@@ -139,13 +139,10 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
         if(!peliculaEnCartelera){
             throw new Exception("La pelicula no esta en cartelera");
         }
-        boolean horarioExiste ;
-        boolean salaExiste;
-        return null;
-    }
+        DiaSemana diaSemana ;
+        List<Funcion> funciones = funcionRepo.obtenerFuncionesHorario(funcion.getSala().getNumeroSala(), funcion.getHorario().getDia(),funcion.getHorario().getHora());
 
-    public boolean horarioExiste (){
-    return true;
+        return null;
     }
 
     public boolean peliculaEnCartelera(String nombre){

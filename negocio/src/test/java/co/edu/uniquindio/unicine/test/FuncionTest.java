@@ -4,6 +4,12 @@ import co.edu.uniquindio.unicine.dto.FuncionDTO;
 import co.edu.uniquindio.unicine.dto.HorarioSalaDTO;
 import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.repositorios.FuncionRepo;
+import co.edu.uniquindio.unicine.repositorios.HorarioRepo;
+import co.edu.uniquindio.unicine.repositorios.PeliculaRepo;
+import co.edu.uniquindio.unicine.repositorios.SalaRepo;
+import co.edu.uniquindio.unicine.servicios.AdminTeatroServicioImpl;
+import co.edu.uniquindio.unicine.servicios.ClienteServicio;
+import co.edu.uniquindio.unicine.servicios.ClienteServicioImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +20,25 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 import java.util.Optional;
 
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class FuncionTest {
 
     @Autowired
     private FuncionRepo funcionRepo;
+
+    @Autowired
+    private PeliculaRepo peliculaRepo;
+
+    @Autowired
+    private HorarioRepo horarioRepo;
+
+    @Autowired
+    private SalaRepo salaRepo;
+
+    @Autowired
+    private AdminTeatroServicioImpl adminTeatroServicioImpl;
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -84,5 +103,31 @@ public class FuncionTest {
     public void verificarSilla() {
         Entrada entrada = funcionRepo.verificarSilla(1, 3, 3);
         System.out.println(entrada);
+    }
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void crearFuncion() throws Exception{
+
+        Horario horario = horarioRepo.findById(1).orElse(null);
+        Sala sala = salaRepo.findById(1).orElse(null);
+        Pelicula pelicula = peliculaRepo.findById(1).orElse(null);
+        Funcion funcion = new Funcion(4.500, sala, horario, pelicula);
+
+        List<Funcion> funcs = funcionRepo.findAll();
+        funcs.forEach(System.out::println);
+
+        adminTeatroServicioImpl.crearFuncion(funcion);
+
+        funcs = funcionRepo.findAll();
+        funcs.forEach(System.out::println);
+    }
+
+    public boolean peliculaEnCartelera(String nombre){
+        Pelicula pelicula = peliculaRepo.buscarPeliculaPorNombre(nombre);
+        if (pelicula.getEstado()==true){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
