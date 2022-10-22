@@ -170,7 +170,6 @@ public class ClienteServicioImpl implements ClienteServicio{
             throw new Exception("Cliente no existe");
         }
 
-        Integer numeroCompras = clienteRepo.obtenerCantidadComprasCliente(cliente.getCedula());
         //verificar que las sillas esten disponibles
 
         for (Entrada entrada : entradas ) {
@@ -203,10 +202,12 @@ public class ClienteServicioImpl implements ClienteServicio{
         Double valorTotal = calcularValorTotal(entradas, compraConfiteria);
         Double valorTotalConDescuento = calcularValorTotalConDescuento (valorTotal, cupon.getValorDescuento());
 
-        compra.setEntradas(entradas);
-        compra.setCompraConfiterias(compraConfiteria);
+        //persiste la compra
         compra.setValorTotal(valorTotalConDescuento);
+        compra.setFechaCompra(LocalDateTime.now());
+        compraRepo.save(compra);
 
+        //Mandar compra a todas las entrdas y las conprasConfiterias que lleagn
         for (Entrada entrada : entradas) {
             entrada.setCompra(compra);
             entradaRepo.save(entrada);
@@ -216,13 +217,16 @@ public class ClienteServicioImpl implements ClienteServicio{
             compConfi.setCompra(compra);
             compraConfiteriaRepo.save(compConfi);
         }
-        //persiste la compra
+       
+        //Mandar cupon primera compra
+        Integer numeroCompras = clienteRepo.obtenerCantidadComprasCliente(cliente.getCedula());
+
         if (numeroCompras == 0) {
             Cupon cuponPrimeraCompra = new Cupon ();
             emailServicio.enviarEmail("Primera compra", "Hola " + cliente.getNombre() + " Por tu primera compra, haz adquirido un cupon " , cliente.getCorreo());
         }
-        compra.setFechaCompra(LocalDateTime.now());
-        return compraRepo.save(compra);
+
+        return compra;
     }
 
     public Double calcularValorTotal(List<Entrada> entradas,List<CompraConfiteria> compraConfiteria ){
