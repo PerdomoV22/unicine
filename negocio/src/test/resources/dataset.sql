@@ -157,7 +157,7 @@ insert into compra values (9, "2022-12-28", 'PSE', 2, 15.000, 1005, 5, 5);
 /*Entrada: codigo, columna. fila, precio, codCompra*/
 insert into entrada values (1, 3, 10, 6.000, 1);
 insert into entrada values (2, 6, 12, 6.000, 2);
-insert into entrada values (3, 9, 19, 6.000, 1);
+insert into entrada values (3, 9, 19, 6.000, 2);
 insert into entrada values (4, 1, 10, 6.000, 4);
 insert into entrada values (5, 14, 20, 6.000, 1);
 

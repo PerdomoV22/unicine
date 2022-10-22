@@ -28,7 +28,7 @@ public interface ClienteServicio {
     void listarHitorialCompra(Integer codigoCliente);
 
     //-------------------------------- REALIZAR COMPRA ---------------------------------
-    Compra hacerCompra(Cliente cliente, Entrada entradas, CompraConfiteria compraConfiteria, MedioPago medioPago, Cupon cupon, Funcion funcion) throws Exception;
+    Compra hacerCompra(Cliente cliente, List<Entrada> entradas, List<CompraConfiteria> compraConfiteria, MedioPago medioPago, Cupon cupon, Funcion funcion) throws Exception;
 
     //-------------------------------- REDIMIR CUPONES --------------------------------
     boolean redirCupon(Integer codigoCupon) throws Exception;

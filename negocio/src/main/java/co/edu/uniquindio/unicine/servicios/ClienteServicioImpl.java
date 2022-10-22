@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,11 @@ public class ClienteServicioImpl implements ClienteServicio{
     private FuncionRepo funcionRepo;
     private CuponRepo cuponRepo;
     private CuponClienteRepo cuponClienteRepo;
+    private ConfiteriaRepo confiteriaRepo;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, EmailServicio emailServicio, CalificacionRepo calificacionRepo, PqrsRepo pqrsRepo, FuncionRepo funcionRepo, CuponRepo cuponRepo, CuponClienteRepo cuponClienteRepo) {
+    private CompraRepo compraRepo;
+
+    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, EmailServicio emailServicio, CalificacionRepo calificacionRepo, PqrsRepo pqrsRepo, FuncionRepo funcionRepo, CuponRepo cuponRepo, CuponClienteRepo cuponClienteRepo, ConfiteriaRepo confiteriaRepo, CompraRepo compraRepo) {
         this.clienteRepo = clienteRepo;
         this.peliculaRepo = peliculaRepo;
         this.emailServicio = emailServicio;
@@ -31,6 +35,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         this.funcionRepo = funcionRepo;
         this.cuponRepo = cuponRepo;
         this.cuponClienteRepo = cuponClienteRepo;
+        this.confiteriaRepo = confiteriaRepo;
+        this.compraRepo = compraRepo;
     }
 
     //------------------------------------LOGIN----------------------------------------
@@ -147,7 +153,7 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     //---------------------------------- HACER UNA COMPRA --------------------------------
     @Override
-    public Compra hacerCompra(Cliente cliente, Entrada entradas, CompraConfiteria compraConfiteria, MedioPago medioPago, Cupon cupon, Funcion funcion) throws Exception { // Cliente, Entradas, Canfiterias, medio de pago, cupon, funcion
+    public Compra hacerCompra(Cliente cliente, List<Entrada> entradas, List<CompraConfiteria> compraConfiteria, MedioPago medioPago, Cupon cupon, Funcion funcion) throws Exception { // Cliente, Entradas, Canfiterias, medio de pago, cupon, funcion
 
         Compra compra = new Compra();
         compra.setFechaCompra(LocalDateTime.now());
@@ -159,11 +165,12 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
         //verificar que las sillas esten disponibles
 
-        entradas = funcionRepo.verificarSilla(funcion.getCodigo(), entradas.getFila(), entradas.getColumna());
-        if(entradas != null){
-            throw new Exception("Las entredad seleccionadas ya estan ocupadas");
+        for (Entrada entrada : entradas ) {
+           Entrada entradaOcupada = funcionRepo.verificarSilla(funcion.getCodigo(), entrada.getFila(), entrada.getColumna());
+            if (entradas != null) {
+                throw new Exception("Las entredad seleccionadas ya estan ocupadas");
+            }
         }
-
         //redimir el cupon si no es null
 
         Optional<Cupon> cuponExiste = cuponRepo.findById(cupon.getCodigo());
@@ -185,10 +192,32 @@ public class ClienteServicioImpl implements ClienteServicio{
 
         //sumar los precios, aplicar el descuento
 
+        Double valorTotal = calcularValorTotal(entradas, compraConfiteria);
+        Double valorTotalConDescuento = calcularValorTotalConDescuento (valorTotal, cupon.getValorDescuento());
+
+        compra.setValorTotal(valorTotalConDescuento);
         //persiste la compra
+        return compraRepo.save(compra);
+    }
 
+    public Double calcularValorTotal(List<Entrada> entradas,List<CompraConfiteria> compraConfiteria ){
 
-        return null;
+        Double valorTotal = 0.0;
+
+        for (CompraConfiteria cmConfi : compraConfiteria){
+            valorTotal = valorTotal + cmConfi.getPrecio();
+        }
+        for (Entrada entrada : entradas){
+            valorTotal = valorTotal + entrada.getPrecio();
+        }
+        System.out.println(valorTotal) ;
+        return valorTotal ;
+    }
+
+    public Double calcularValorTotalConDescuento(Double valorTotal, Double descuento ){
+
+        Double valorConDescuento = valorTotal-(valorTotal*descuento);
+        return valorConDescuento ;
     }
 
     //------------------------------------ REDMIR CUPON -----------------------------------
