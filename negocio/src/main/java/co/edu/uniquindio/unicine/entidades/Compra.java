@@ -49,14 +49,14 @@ public class Compra implements Serializable {
     @ManyToOne
     private Cliente cliente;
 
+    // Esta entidad tiene funcion, la cual esta diseñada para la organizacion del teatro
+    @ManyToOne
+    private Funcion funcion;
+
     // Esta entidad tiene una lista de compraConfiteria, que se encarga de toda la confiteria elegida por el cliente
     @ToString.Exclude
     @OneToMany(mappedBy = "compra")
     private List<CompraConfiteria> compraConfiterias;
-
-    // Esta entidad tiene funcion, la cual esta diseñada para la organizacion del teatro
-    @ManyToOne
-    private Funcion funcion;
 
     // Esta entidad tiene una lista de entredad, la cual validad por el cliente, todas las entradas que el selecciona
     @ToString.Exclude
@@ -64,4 +64,13 @@ public class Compra implements Serializable {
     private List<Entrada> entradas;
 
     //Constructor
+    public Compra(Integer numeroBoletas, LocalDateTime fechaCompra, MedioPago medioPago, Double valorTotal, Cupon cupon, Cliente cliente, Funcion funcion) {
+        this.numeroBoletas = numeroBoletas;
+        this.fechaCompra = fechaCompra;
+        this.medioPago = medioPago;
+        this.valorTotal = valorTotal;
+        this.cupon = cupon;
+        this.cliente = cliente;
+        this.funcion = funcion;
+    }
 }

@@ -173,8 +173,8 @@ public class ClienteServicioImpl implements ClienteServicio{
 
         for (Entrada entrada : entradas ) {
            Entrada entradaOcupada = funcionRepo.verificarSilla(funcion.getCodigo(), entrada.getFila(), entrada.getColumna());
-            if (entradas != null) {
-                throw new Exception("Las entredad seleccionadas ya estan ocupadas");
+            if (entradas == null) {
+                throw new Exception("Las entredas seleccionadas ya estan ocupadas");
             }
         }
         //redimir el cupon si no es null
@@ -185,9 +185,9 @@ public class ClienteServicioImpl implements ClienteServicio{
             }
             boolean cuponCliente = false;
 
-            List<Cupon> cuponesCliente = cuponRepo.obtenerCuponesCliente(cliente.getCedula());
-            for (Cupon cup : cuponesCliente) {
-                if (cupon.getCodigo() == cupon.getCodigo()) {
+            List<CuponCliente> cuponesCliente = clienteRepo.obtenerCuponesPorCedula(cliente.getCedula());
+            for (CuponCliente cup : cuponesCliente) {
+                if (cup.getCupon().getCodigo() == cupon.getCodigo()) {
                     cuponCliente = true;
                 }
             }
@@ -204,6 +204,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         //persiste la compra
         compra.setValorTotal(valorTotalConDescuento);
         compra.setFechaCompra(LocalDateTime.now());
+        compra.setMedioPago(medioPago);
+        compra.setNumeroBoletas(2);
         compraRepo.save(compra);
 
         //Mandar compra a todas las entrdas y las conprasConfiterias que lleagn
@@ -218,12 +220,11 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
        
         //Mandar cupon primera compra
-        Integer numeroCompras = clienteRepo.obtenerCantidadComprasCliente(cliente.getCedula());
+       /* Integer numeroCompras = clienteRepo.obtenerCantidadComprasCliente(cliente.getCedula());
 
         if (numeroCompras == 0) {
-            Cupon cuponPrimeraCompra = new Cupon ();
             emailServicio.enviarEmail("Primera compra", "Hola " + cliente.getNombre() + " Por tu primera compra, haz adquirido un cupon " , cliente.getCorreo());
-        }
+        }*/
 
         return compra;
     }

@@ -1,6 +1,9 @@
 package co.edu.uniquindio.unicine.serviceTest;
 
 import co.edu.uniquindio.unicine.entidades.*;
+import co.edu.uniquindio.unicine.repositorios.AdministradorTeatroRepo;
+import co.edu.uniquindio.unicine.servicios.AdminTeatroServicio;
+import co.edu.uniquindio.unicine.servicios.AdministradorServicio;
 import co.edu.uniquindio.unicine.servicios.ClienteServicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +22,12 @@ public class ClienteServicioTest {
 
     @Autowired
     private ClienteServicio clienteServicio;
+
+    @Autowired
+    private AdministradorServicio administradorServicio;
+
+    @Autowired
+    private AdminTeatroServicio adminTeatroServicio;
 
     //---------------------------------  LOGUEARSE -------------------------------------------------
     @Test
@@ -104,10 +114,48 @@ public class ClienteServicioTest {
     }
 
     //----------------------------------- REALIZAR COMPRA ---------------------------------------
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void realizarCompraTest() throws Exception {
+        //Metodos obtenidos
+        Cliente cliente = clienteServicio.obtenerClientePorCedula(1004);
+        MedioPago medioPago = MedioPago.PSE;
+        Cupon cupon = administradorServicio.obtenerCupones(1);
+        Funcion funcion = adminTeatroServicio.obtenerFuncion(3);
+        Confiteria confiteria = administradorServicio.obtenerConfiteria(1);
+        Confiteria confiteria1 = administradorServicio.obtenerConfiteria(3);
 
+        //Realizar
+        List<Entrada> entradas = new ArrayList<>();
+        Entrada entrada = new Entrada(4.500, 5, 5, null);
+        Entrada entrada1= new Entrada(4.500, 6, 5, null);
+        entradas.add(entrada);
+        entradas.add(entrada1);
+
+        List<CompraConfiteria> compraConfiterias = new ArrayList<>();
+        CompraConfiteria compraConfiteria = new CompraConfiteria(1, null, confiteria);
+        CompraConfiteria compraConfiteria1 = new CompraConfiteria(2, null, confiteria1);
+
+        try {
+            Compra compra = clienteServicio.hacerCompra(cliente, entradas, compraConfiterias, medioPago, cupon, funcion);
+            Assertions.assertNotNull(compra);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     //------------------------------------REDIMIR CUPON -----------------------------------------
-
+    /*
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void redimirCuponTest() {
+        try {
+            boolean cuponRedimido = clienteServicio.redirCupon(3);
+            Assertions.assertTrue(cuponRedimido);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }*/
 
     //------------------------------------CAMBIAR CONTRASEÑA ------------------------------------
     @Test

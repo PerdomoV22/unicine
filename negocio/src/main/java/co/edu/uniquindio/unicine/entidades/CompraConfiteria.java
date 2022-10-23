@@ -41,8 +41,8 @@ public class CompraConfiteria implements Serializable {
     private Confiteria confiteria;
 
     //Constructor
-    public CompraConfiteria(Double precio, Integer unidades, Compra compra, Confiteria confiteria) {
-        this.precio = precio;
+    public CompraConfiteria(Integer unidades, Compra compra, Confiteria confiteria) {
+        this.precio = confiteria.getPrecio()*unidades;
         this.unidades = unidades;
         this.compra = compra;
         this.confiteria = confiteria;

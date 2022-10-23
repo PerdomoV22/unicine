@@ -14,6 +14,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -180,15 +181,16 @@ public class AdminTeatroServicioTest {
     }
 
     //----------------------------------------FUNCIONES---------------------------------------
-/*
     @Test
     @Sql("classpath:dataset.sql")
     public void crearFuncion() throws Exception{
+        List<DiaSemana> dias = new ArrayList<>();
+        Pelicula pelicula = administradorServicio.obtenerPelicula(3);
+        Horario horario = new Horario(null, Time.valueOf(LocalTime.now()), LocalDate.now(), LocalDate.now());
+        Sala sala = adminTeatroServicio.obtenerSala(3);
+        Funcion funcion = new Funcion(3500.00,sala, horario, pelicula);
 
         try {
-            Pelicula pelicula = administradorServicio.obtenerPelicula(3);
-            Horario horario = new Horario(null, Time.valueOf(LocalTime.now()), LocalDate.now(), LocalDate.now());
-            Funcion funcion = new Funcion(3500.00,null, horario, pelicula);
             Funcion funcionCreada = adminTeatroServicio.crearFuncion(funcion);
             Assertions.assertNotNull(funcionCreada);
             System.out.println(funcionCreada.getCodigo());
@@ -197,7 +199,6 @@ public class AdminTeatroServicioTest {
         }
     }
 
- */
 
     @Test
     @Sql("classpath:dataset.sql")
