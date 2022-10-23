@@ -143,9 +143,7 @@ public class ClienteServicioTest {
             throw new RuntimeException(e);
         }
     }
-
-    //------------------------------------REDIMIR CUPON -----------------------------------------
-    /*
+    
     @Test
     @Sql("classpath:dataset.sql")
     public void redimirCuponTest() {
@@ -155,7 +153,7 @@ public class ClienteServicioTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 
     //------------------------------------CAMBIAR CONTRASEÑA ------------------------------------
     @Test

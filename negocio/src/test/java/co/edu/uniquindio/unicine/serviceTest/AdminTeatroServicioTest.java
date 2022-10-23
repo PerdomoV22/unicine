@@ -185,8 +185,9 @@ public class AdminTeatroServicioTest {
     @Sql("classpath:dataset.sql")
     public void crearFuncion() throws Exception{
         List<DiaSemana> dias = new ArrayList<>();
+        dias.add(DiaSemana.LUNES);
         Pelicula pelicula = administradorServicio.obtenerPelicula(3);
-        Horario horario = new Horario(null, Time.valueOf(LocalTime.now()), LocalDate.now(), LocalDate.now());
+        Horario horario = new Horario(dias, Time.valueOf(LocalTime.now()), LocalDate.now(), LocalDate.now());
         Sala sala = adminTeatroServicio.obtenerSala(3);
         Funcion funcion = new Funcion(3500.00,sala, horario, pelicula);
 
