@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class HorarioSalaDTO {
 
+    // Esta clase creada con la intencion de poner los atributos requeridos en la consulta del Horario y la Sala
     private Horario horario;
     private Sala sala;
 }

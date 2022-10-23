@@ -13,10 +13,14 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 public class AdministradorTeatro extends Persona implements Serializable {
 
+    // Esta entidad extiende de la entidad persona, la cual contiene la llave primera que seria la cedula.
+
+    //El administrador tiene un solo teatro
     @ToString.Exclude
     @OneToOne(mappedBy = "administradorTeatro")
     private Teatro teatro;
 
+    //Construxtor
     public AdministradorTeatro(Integer cedula, String nombre, String correo, String contrasena) {
         super(cedula, nombre, correo, contrasena);
     }

@@ -15,11 +15,13 @@ import java.io.Serializable;
 @ToString
 public class Entrada implements Serializable {
 
+    //Esta es la Pk de esta Entidad
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
+    //-------------------------------- Atributos de la Entidad
     @Positive
     @Column(nullable = false)
     private Double precio;
@@ -32,9 +34,13 @@ public class Entrada implements Serializable {
     @Column(nullable = false)
     private Integer columna;
 
+    //------------------------- Entidades Relacionadas -------------------------------------
+
+    //Esta entidad se relaciona con la compra, para saber el precion y la posicion de en la cual se va ubicar el cliente
     @ManyToOne
     private Compra compra;
 
+    //Constructor
     public Entrada(Double precio, Integer fila, Integer columna, Compra compra) {
         this.precio = precio;
         this.fila = fila;

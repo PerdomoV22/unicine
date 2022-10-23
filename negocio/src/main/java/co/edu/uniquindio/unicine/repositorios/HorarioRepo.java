@@ -11,8 +11,10 @@ import java.util.Optional;
 @Repository
 public interface HorarioRepo extends JpaRepository<Horario, Integer> {
 
+    // Esta consulta validad el horario dado el codigo
     @Override
     Optional<Horario> findById(Integer integer);
 
+    // Esta consulta validad el horario dado la hora
     Optional<Horario> findByHora (Time hora);
 }

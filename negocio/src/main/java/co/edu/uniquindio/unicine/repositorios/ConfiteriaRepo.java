@@ -14,6 +14,7 @@ public interface ConfiteriaRepo extends JpaRepository<Confiteria,Integer> {
 
     Optional<Confiteria> findByNombre(String nombreConfiteria);
 
+    //Esta consulta obtiene las compras que hay en esa entidad dado el codigo de la compra
     @Query("select cp from CompraConfiteria  cp where cp.compra.codigo = :codigo")
     List<CompraConfiteria> obtenerComprasConfit(Integer codigo);
 }

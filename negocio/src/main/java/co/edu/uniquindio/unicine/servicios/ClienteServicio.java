@@ -9,12 +9,8 @@ public interface ClienteServicio {
     //--------------------------------- LOGIN --------------------------------------
     Cliente login(String correo, String password) throws Exception;
 
-    //--------------------------------- LOGIN --------------------------------------
-
+    //--------------------------------- Buscar Pelicula --------------------------------------
     List<Pelicula> buscarPeliculaPorNombre (String nombre) throws Exception;
-
-    List<Pelicula> buscarPeliculaPorGenero (Genero genero) throws Exception;
-
     //-------------------------------- CRUD DE CLIENTE ----------------------------
     Cliente registrarCliente(Cliente cliente) throws Exception;
     Cliente obtenerClientePorCedula(Integer cedula) throws Exception;
@@ -25,7 +21,7 @@ public interface ClienteServicio {
     List<Cliente> listarClientes();
 
     //-------------------------------- LISTAR LAS PROPIAS COMPRAS ---------------------
-    void listarHitorialCompra(Integer codigoCliente);
+    void listarHitorialCompra(Integer cedulaCliente) throws Exception;
 
     //-------------------------------- REALIZAR COMPRA ---------------------------------
     Compra hacerCompra(Cliente cliente, List<Entrada> entradas, List<CompraConfiteria> compraConfiteria, MedioPago medioPago, Cupon cupon, Funcion funcion) throws Exception;
@@ -36,10 +32,13 @@ public interface ClienteServicio {
     //-------------------------------- Cambiar Contraseña ----------------------------
     boolean cambiarContraseña(String correo, String passwordNueva)throws Exception;
 
+    //------------------------------- Metodos de Calificacion -----------------------------------
+    Calificacion asignarCalificacion(Calificacion calificacion) throws Exception;
 
-    Calificacion asignarCalificacion(Cliente cliente , Pelicula pelicula, Integer calificacion) throws Exception;
+    Double promedioPelicula (Pelicula pelicula);
 
-    Pqrs crearPqrs(Cliente cliente, Pqrs pqrs) throws Exception;
+    //-------------------------------- Metodos de PQRS -------------------------------------------
+    Pqrs crearPqrs(Pqrs pqrs) throws Exception;
 
-    void listarPqrs();
+    void listarPqrs(String correo)throws Exception;
 }

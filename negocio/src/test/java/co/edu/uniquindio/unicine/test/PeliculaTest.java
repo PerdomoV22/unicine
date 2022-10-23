@@ -29,7 +29,8 @@ public class PeliculaTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void obtenerPeliculasPorGenero() {
-        List<Pelicula> peliculas = peliculaRepo.obtenerPeliculasPorGenero(Genero.TERROR);
+        Genero genero = Genero.TERROR;
+        List<Pelicula> peliculas = peliculaRepo.obtenerPeliculasPorGenero(genero);
         peliculas.forEach(System.out::println);
     }
 

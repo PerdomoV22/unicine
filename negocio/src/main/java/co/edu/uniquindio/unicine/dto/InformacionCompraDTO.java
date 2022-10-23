@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 public class InformacionCompraDTO {
 
+    // Esta clase creada con la intencion de poner los atributos requeridos en la consulta de la compra
     private Double precioTotal;
     private LocalDateTime fecha;
     private Funcion funcion;

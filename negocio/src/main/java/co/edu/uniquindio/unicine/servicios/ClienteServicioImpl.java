@@ -28,6 +28,7 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     private CompraConfiteriaRepo compraConfiteriaRepo;
 
+    //Construtor
     public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, EmailServicio emailServicio, CalificacionRepo calificacionRepo, PqrsRepo pqrsRepo, FuncionRepo funcionRepo, CuponRepo cuponRepo, CuponClienteRepo cuponClienteRepo, ConfiteriaRepo confiteriaRepo, CompraRepo compraRepo, EntradaRepo entradaRepo, CompraConfiteriaRepo compraConfiteriaRepo) {
         this.clienteRepo = clienteRepo;
         this.peliculaRepo = peliculaRepo;
@@ -44,6 +45,11 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     //------------------------------------LOGIN----------------------------------------
+    /**
+     * @Param String correo, String password
+     * @Return administrador
+     * Este metodo se registra un cliente, el cual primero se validad su autenticacion
+     */
     @Override
     public Cliente login(String correo, String password) throws Exception{
         Cliente cliente = clienteRepo.comprobarAutenticacion(correo, password);
@@ -63,18 +69,7 @@ public class ClienteServicioImpl implements ClienteServicio{
     //----------------------------------- BUSCAR PELICULA -------------------------------
     @Override
     public List<Pelicula> buscarPeliculaPorNombre(String nombre) throws Exception {
-        Optional<Pelicula> peliculaGuardada = peliculaRepo.findByNombrePelicula(nombre);
-
-        if(peliculaGuardada.isEmpty()){
-            throw new Exception("La pelicula NO EXISTE");
-        }
-
-        return (List<Pelicula>) peliculaGuardada.get();
-    }
-
-    @Override
-    public List<Pelicula> buscarPeliculaPorGenero(Genero genero) throws Exception {
-        List<Pelicula> peliculaGuardada = peliculaRepo.obtenerPeliculasPorGenero(genero);
+        List<Pelicula> peliculaGuardada = peliculaRepo.findByNombrePelicula(nombre);
 
         if(peliculaGuardada.isEmpty()){
             throw new Exception("La pelicula NO EXISTE");
@@ -153,8 +148,12 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     //------------------------------ LISTAR LA COMPRAS -------------------------------
     @Override
-    public void listarHitorialCompra(Integer codigoCliente){
-        List<Compra> compras = clienteRepo.obtenerComprasCliente(codigoCliente);
+    public void listarHitorialCompra(Integer cedulaCliente) throws Exception {
+        Boolean cedulaExiste = clienteRepo.existsById(cedulaCliente);
+        if(cedulaExiste == false){
+            throw new Exception("La cedula del cliente ingresado no hiciste");
+        }
+        List<Compra> compras = clienteRepo.obtenerComprasCliente(cedulaCliente);
         compras.forEach(System.out::println);
     }
 
@@ -284,20 +283,22 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     //---------------------------- METODOS DE CALIFICACION ----------------------------------------------------------
     @Override
-    public Calificacion asignarCalificacion(Cliente cliente, Pelicula pelicula, Integer valorCalificacion) throws Exception {
+    public Calificacion asignarCalificacion(Calificacion calificacion) throws Exception {
 
-        Pelicula peliculaExiste = peliculaRepo.buscarPeliculaPorNombre(pelicula.getNombrePelicula());
-
+        //Validar si el cliente existe
+        boolean clienteExiste = cedulaRepetida(calificacion.getCliente().getCedula());
+        if(!clienteExiste){
+            throw new Exception("El cliente con la cedula ingresada no existe");
+        }
+        //Validar la pelicula
+        Pelicula peliculaExiste = peliculaRepo.buscarPeliculaPorNombre(calificacion.getPelicula().getNombrePelicula());
         if (peliculaExiste == null){
-            throw new Exception("lA PELICULA NO SE ENCONTRO");
+            throw new Exception("lA PELICULA NO SE ENCONTRO por el nombre ingresado");
         }
 
-        Calificacion calificacion = new Calificacion();
-        calificacion.setPuntuacion(valorCalificacion);
-        calificacion.setPelicula(pelicula);
-        calificacion.setCliente(cliente);
-
+        //Se le actucalizando el valor de la calificacion a la pelicula
         peliculaExiste.getCalificaciones().add(calificacion);
+        peliculaRepo.save(peliculaExiste);
 
         return calificacionRepo.save(calificacion);
     }
@@ -309,17 +310,22 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     //----------------------------- METODOS PQRS ---------------------------------------
     @Override
-    public Pqrs crearPqrs(Cliente cliente, Pqrs pqrs) throws Exception{
+    public Pqrs crearPqrs(Pqrs pqrs) throws Exception{
 
-        Optional<Cliente> clienteExiste= clienteRepo.findById(cliente.getCedula());
+        Optional<Cliente> clienteExiste= clienteRepo.findById(pqrs.getCliente().getCedula());
         if(clienteExiste.isEmpty()){
-            throw new Exception("El cliente no existe");
+            throw new Exception("El cliente no existe con la cedula ingresada");
         }
         return pqrsRepo.save(pqrs);
     }
 
     @Override
-    public void listarPqrs() {
-        pqrsRepo.findAll();
+    public void listarPqrs(String correo)throws Exception {
+        Optional<Cliente> correoExisteCliente = clienteRepo.findByCorreo(correo);
+        if(correoExisteCliente.isEmpty()){
+            throw new Exception("El correo ingresado no existe");
+        }
+        List<Pqrs> pqrs = clienteRepo.obtenerPqrs(correo);
+        pqrs.forEach(System.out::println);
     }
 }

@@ -10,9 +10,11 @@ import java.util.List;
 @Repository
 public interface CalificacionRepo extends JpaRepository<Calificacion, Integer> {
 
+    //Esta consulta obtiene la calificacion de un cliente ingresando su cedula
     @Query("select c from Calificacion c where c.cliente.cedula = :cedula")
     List<Calificacion> obtenerCalificacionesClientePorCedula(Integer cedula);
 
+    // Esta consulta valida el promedio de las calificaciones de cada pelicula ingresando su nombre
     @Query("select avg(c.puntuacion) from Calificacion c where c.pelicula.nombrePelicula = :nombre")
     Double obtenerPromedioCalificacionPelicula(String nombre);
 }

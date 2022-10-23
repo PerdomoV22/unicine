@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface CuponRepo extends JpaRepository<Cupon,Integer> {
 
+    //Esta consulta obtiene los cupones de un cliente dado su cedula
     @Query("select cli.cuponClientes from Cliente cli where cli.cedula = :cedula")
     List<Cupon> obtenerCuponesCliente(Integer cedula);
 }

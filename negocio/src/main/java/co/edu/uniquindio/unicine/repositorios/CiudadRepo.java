@@ -12,9 +12,11 @@ import java.util.Optional;
 @Repository
 public interface CiudadRepo extends JpaRepository<Ciudad,Integer> {
 
+    //Esta consulta cuenta los teatros y los agrupa
     @Query("select ciudad.codigoPostal, ciudad.nombreCiudad from Ciudad ciudad join ciudad.teatros tea group by ciudad.codigoPostal")
-        List<Object[]> contarTeatros();
+    List<Object[]> contarTeatros();
 
+    //Esta consulta verifica la ciudad dado el nombre
     Optional<Ciudad> findByNombreCiudad(String nombre);
 
 }

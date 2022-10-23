@@ -17,11 +17,13 @@ import java.util.List;
 @ToString
 public class Horario implements Serializable {
 
+    // Esta es la PK de esta entidad
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
+    // --------------------------- Atributos de esta Entidad
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @ElementCollection
@@ -36,10 +38,14 @@ public class Horario implements Serializable {
     @Column(nullable = false)
     private LocalDate fechaFinal;
 
+    //------------------------------------ Entidades Relacionadad ------------------------------------
+
+    // Esta entidad tiene una lista de funciones, para relacionar los horarios disponibles y ocupados
     @ToString.Exclude
     @OneToMany(mappedBy = "horario")
     private List<Funcion> funciones;
 
+    // Constructor
     public Horario(List<DiaSemana> dia, Time hora, LocalDate fechaInicio, LocalDate fechaFinal) {
         this.dia = dia;
         this.hora = hora;

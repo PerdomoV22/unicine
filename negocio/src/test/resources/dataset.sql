@@ -95,8 +95,8 @@ insert into horario_dia values (4, "DOMINGO");
 /*------------------------------PQRS----------------------------------------------*/
 /*PQRS: codigo, asunto, descripcion, cedCliente*/
 insert into pqrs values (1, "Error eleccion de medio de pago", "Elegi erroneamente el medio de pago en el proceso de la compra", 1004);
-insert into pqrs values (2, "Informacion cupon", "Informacion para redimir cupones", 1005);
-insert into pqrs values (3, "Informacion confiteria", "Informacion de nuevos productos de la confiteria", 1006);
+insert into pqrs values (2, "Informacion cupon", "Informacion para redimir cupones", 1004);
+insert into pqrs values (3, "Informacion confiteria", "Informacion de nuevos productos de la confiteria", 1004);
 insert into pqrs values (4, "Error de seleccion de asientos", "Seleccione erroneamente los asientos", 1007);
 insert into pqrs values (5, "Informacion", "Informacion de mis cupones", 1007);
 

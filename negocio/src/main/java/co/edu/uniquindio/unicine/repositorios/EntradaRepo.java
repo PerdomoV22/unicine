@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface EntradaRepo extends JpaRepository<Entrada,Integer> {
 
+    //Esta consulta obtiene una lista de todas las entredad dado el codigo de la compra
     @Query("select comp.entradas from Compra comp where comp.codigo = :codigo")
     List<Entrada> obtenerEntradasCompra(Integer codigo);
 }

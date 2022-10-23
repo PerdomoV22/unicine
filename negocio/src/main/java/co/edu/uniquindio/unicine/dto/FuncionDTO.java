@@ -10,6 +10,7 @@ import lombok.ToString;
 @ToString
 public class FuncionDTO {
 
+    // Esta clase creada con la intencion de poner los atributos requeridos en la consulta de la funcion
     private String nombrePelicula;
     private Boolean estadoPelicula;
     private String rutaImagen;

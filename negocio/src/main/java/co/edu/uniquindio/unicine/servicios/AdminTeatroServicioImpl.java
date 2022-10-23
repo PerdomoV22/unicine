@@ -15,13 +15,13 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
 
     @Autowired
     private AdministradorTeatroRepo administradorTeatroRepo;
-
     private final HorarioRepo horarioRepo;
     private final TeatroRepo teatroRepo;
     private final SalaRepo salaRepo;
     private final FuncionRepo funcionRepo;
     private final PeliculaRepo peliculaRepo;
 
+    //Constructor
     public AdminTeatroServicioImpl(HorarioRepo horarioRepo, TeatroRepo teatroRepo, SalaRepo salaRepo, FuncionRepo funcionRepo, PeliculaRepo peliculaRepo) {
         this.horarioRepo = horarioRepo;
         this.teatroRepo = teatroRepo;
@@ -31,6 +31,11 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
     }
 
     //--------------------------------LOGIN------------------------------------------------
+    /**
+     * @Param String correo, String password
+     * @Return administrador
+     * Este metodo se registra un administradorTeatro, el cual primero se validad su autenticacion
+     */
     @Override
     public AdministradorTeatro login(String correo, String password) throws Exception {
         AdministradorTeatro administrador = administradorTeatroRepo.comprobarAutenticacion(correo, password);

@@ -15,11 +15,13 @@ import java.util.List;
 @ToString
 public class Pelicula implements Serializable {
 
+    //Esta es la pk de esta entidad
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
+    // ------------------------------------ Atributos de esta Entidad --------------------------------
     @Column(nullable = false, length = 50)
     private String nombrePelicula;
 
@@ -43,14 +45,19 @@ public class Pelicula implements Serializable {
     @Column(nullable = false, length = 10)
     private List<Genero> genero;
 
+    // ------------------------------------- Entidades Relacionadas ------------------------------------
+
+    // Esta entidad tiene una lista de calificaciones generadas por el cliente
     @ToString.Exclude
     @OneToMany(mappedBy = "pelicula")
     private List<Calificacion> calificaciones;
 
+    // Esta entidad tiene una lista de funciones que se relaciona con todo para la eleccion del cliente
     @ToString.Exclude
     @OneToMany(mappedBy = "pelicula")
     private List<Funcion> funciones;
 
+    // Constructor
     public Pelicula(String nombrePelicula, String trailer, String imagen, String sinopsis, String reparto, Boolean estado, List<Genero> genero) {
         this.nombrePelicula = nombrePelicula;
         this.trailer = trailer;
