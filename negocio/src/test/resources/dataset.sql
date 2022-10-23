@@ -73,7 +73,7 @@ insert into cupon values (1, "", "", "2022-10-10", 0);
 insert into cupon values (2, "", "", "2022-11-11", 0);
 insert into cupon values (3, "", "", "2022-12-02", 0);
 insert into cupon values (4, "", "", "2022-10-08", 0);
-insert into cupon values (5, "", "", "2022-11-01", 0);
+insert into cupon values (5, "Primera compra", "", "2022-11-01", 0);
 
 /*------------------------------Horario----------------------------------------------*/
 /*Horario: codigo, fechafinal, fechainicial, hora*/
@@ -112,7 +112,7 @@ insert into distribucion_sillas values (5, 8, "ruta", 14, 112);
 /*Sala: numero_sala, nombre, distriSillasCodigo, teatroNit*/
 insert into sala values (1, "sala 1", 1, 1);
 insert into sala values (2, "sala 2", 2, 2);
-insert into sala values (3, "sala 3", 3, 3);
+insert into sala values (3, "sala 3 gold", 3, 3);
 insert into sala values (4, "sala 4", 4, 4);
 insert into sala values (5, "sala 5", 5, 5);
 

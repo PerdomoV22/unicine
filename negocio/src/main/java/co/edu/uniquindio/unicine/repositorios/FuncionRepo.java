@@ -31,8 +31,8 @@ public interface FuncionRepo extends JpaRepository<Funcion, Integer> {
     List<Funcion> obtenerFuncionesSinCompra(Integer codigo);
 
     // Esta consulta retorna la funcion dado el codigo del teatro y las fechas de inicio y fin
-    @Query("select f from Funcion f where f.sala.teatro.nit = :codigoTeatro and f.horario.fechaInicio < :fechafin or f.horario.fechaFinal > :fechaInicio")
-    List<Funcion> obtenerFuncionesTeatro(Integer codigoTeatro, LocalDate fechaInicio, LocalDate fechaFin);
+   // @Query("select f from Funcion f where f.sala.teatro.nit = :codigoTeatro and f.horario.fechaInicio < :fechafin or f.horario.fechaFinal > :fechaInicio")
+    //List<Funcion> obtenerFuncionesTeatro(Integer codigoTeatro, LocalDate fechaInicio, LocalDate fechaFin);
 
     //Esta consulta obtiene una sala de una funcion dado el codigo de la sala
     @Query("select funcion.sala from Funcion funcion where funcion.sala.numeroSala = :codigoSala")

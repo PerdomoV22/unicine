@@ -15,12 +15,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Service
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class FuncionTest {
@@ -104,6 +105,8 @@ public class FuncionTest {
         Entrada entrada = funcionRepo.verificarSilla(1, 3, 3);
         System.out.println(entrada);
     }
+
+    /*
     @Test
     @Sql("classpath:dataset.sql")
     public void crearFuncion() throws Exception{
@@ -130,4 +133,6 @@ public class FuncionTest {
             return false;
         }
     }
+
+     */
 }

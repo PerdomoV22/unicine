@@ -69,5 +69,8 @@ public class CompraTest {
         peliculas.forEach(o ->
                 System.out.println(o[0] + "," + o[1])
         );
+
+
+
     }
 }

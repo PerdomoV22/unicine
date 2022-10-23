@@ -12,6 +12,8 @@ public interface AdminTeatroServicio {
     //-------------------------METODOS CRUD PARA LOS TEATROS--------------------------------
     Teatro crearTeatros(Teatro teatro) throws Exception;
 
+    Teatro obtenerTeatro(Integer codigo) throws Exception;
+
     Teatro actualizarTeatros(Teatro teatro) throws Exception;
 
     void eliminarTeatros(Integer codigo) throws Exception;

@@ -57,6 +57,15 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
         return teatroRepo.save(teatro);
     }
 
+    @Override
+    public Teatro obtenerTeatro(Integer codigo) throws Exception {
+        Optional<Teatro> teatro = teatroRepo.findById(codigo);
+        if(teatro.isEmpty()){
+            throw new Exception("No existe el teatro con ese codigo ");
+        }
+        return teatro.get();
+    }
+
     public boolean teatroRepetido(String nombreTeatro){
         return teatroRepo.findByNombre(nombreTeatro).orElse(null) != null;
     }
@@ -68,7 +77,7 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
         if (teatroGuardado.isEmpty()){
             throw new Exception("El teatro NO EXISTE");
         }
-        return teatroRepo.save(teatroGuardado.get());
+        return teatroRepo.save(teatro);
     }
 
     @Override
@@ -144,10 +153,12 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
         if(!peliculaEnCartelera){
             throw new Exception("La pelicula no esta en cartelera");
         }
-        DiaSemana diaSemana ;
         List<Funcion> funciones = funcionRepo.obtenerFuncionesHorario(funcion.getSala().getNumeroSala(), funcion.getHorario().getDia(),funcion.getHorario().getHora());
 
-        return null;
+        if(!funciones.isEmpty()){
+            throw new Exception("Hay problemas en crear la funcion");
+        }
+        return funcionRepo.save(funcion);
     }
 
     public boolean peliculaEnCartelera(String nombre){

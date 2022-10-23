@@ -233,7 +233,7 @@ public class AdministradorServicioImpl implements AdministradorServicio{
         if (peliculaGuardada.isEmpty()){
             throw new Exception("La pelicula NO EXISTE");
         }
-        return peliculaRepo.save(peliculaGuardada.get());
+        return peliculaRepo.save(pelicula);
     }
 
     /**
@@ -294,7 +294,7 @@ public class AdministradorServicioImpl implements AdministradorServicio{
         if (confiteriaGuardada.isEmpty()){
             throw new Exception("El producto NO EXISTE");
         }
-        return confiteriaRepo.save(confiteriaGuardada.get());
+        return confiteriaRepo.save(confiteria);
     }
 
     /**
@@ -356,7 +356,7 @@ public class AdministradorServicioImpl implements AdministradorServicio{
         if(cuponGuardado.isEmpty()){
             throw new Exception("El cupon NO EXISTE");
         }
-        return cuponRepo.save(cuponGuardado.get());
+        return cuponRepo.save(cupon);
     }
 
     /**
