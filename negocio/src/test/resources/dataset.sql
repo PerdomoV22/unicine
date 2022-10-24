@@ -69,11 +69,11 @@ insert into calificacion values (5, 5, 1004, 5);
 
 /*------------------------------Cupon----------------------------------------------*/
 /*Cupon : codigo, criterio, descripcion, fechaVencimiento, valorDescuento*/
-insert into cupon values (1, "", "", "2022-10-10", 0);
-insert into cupon values (2, "", "", "2022-11-11", 0);
-insert into cupon values (3, "", "", "2022-12-02", 0);
-insert into cupon values (4, "", "", "2022-10-08", 0);
-insert into cupon values (5, "Primera compra", "", "2022-11-01", 0);
+insert into cupon values (1, "Navidad", "Cupon por fiestas navidenias", "2022-10-10", 0);
+insert into cupon values (2, "Halloween", "Cupon por mes de halloween", "2022-11-11", 0);
+insert into cupon values (3, "Aniversario", "Cupon de aniversario de unicine", "2022-12-02", 0);
+insert into cupon values (4, "Primer Registro", "Cupon por realizar primer registro", "2022-10-08", 0);
+insert into cupon values (5, "Primera compra", "Cupon por realizar primera compra", "2022-11-01", 0);
 
 /*------------------------------Horario----------------------------------------------*/
 /*Horario: codigo, fechafinal, fechainicial, hora*/
