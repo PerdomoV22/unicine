@@ -92,11 +92,12 @@ public class ClienteServicioImpl implements ClienteServicio{
             throw  new Exception("La cedula ingresada ya existe");
         }
 
-        emailServicio.enviarEmail("Registro de cuenta en UniCine", "Hola "+cliente.getNombre()+" es un gusto que haya registrado en Unicine, para activar su cuenta ingrese en el siguiente link: url", cliente.getCorreo());
+        Cliente clienteRegistrado =  clienteRepo.save(cliente);
 
+        emailServicio.enviarEmail("Registro de cuenta en UniCine", "Hola "+cliente.getNombre()+" es un gusto que haya registrado en Unicine, para activar su cuenta ingrese en el siguiente link: url", cliente.getCorreo());
         emailServicio.enviarEmail("Regalo Cupon Por Registro", "Hola "+cliente.getNombre()+" Haz adquirido un cupon por registrarte", cliente.getCorreo());
 
-        return clienteRepo.save(cliente);
+        return clienteRegistrado;
     }
 
     private boolean esRepetido(String correo){
