@@ -8,8 +8,6 @@ import co.edu.uniquindio.unicine.repositorios.HorarioRepo;
 import co.edu.uniquindio.unicine.repositorios.PeliculaRepo;
 import co.edu.uniquindio.unicine.repositorios.SalaRepo;
 import co.edu.uniquindio.unicine.servicios.AdminTeatroServicioImpl;
-import co.edu.uniquindio.unicine.servicios.ClienteServicio;
-import co.edu.uniquindio.unicine.servicios.ClienteServicioImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,33 +108,16 @@ public class FuncionTest {
         System.out.println(entrada);
     }
 
-    /*
+
     @Test
     @Sql("classpath:dataset.sql")
-    public void crearFuncion() throws Exception{
-
-        Horario horario = horarioRepo.findById(1).orElse(null);
-        Sala sala = salaRepo.findById(1).orElse(null);
-        Pelicula pelicula = peliculaRepo.findById(1).orElse(null);
-        Funcion funcion = new Funcion(4.500, sala, horario, pelicula);
-
-        List<Funcion> funcs = funcionRepo.findAll();
-        funcs.forEach(System.out::println);
-
-        adminTeatroServicioImpl.crearFuncion(funcion);
-
-        funcs = funcionRepo.findAll();
-        funcs.forEach(System.out::println);
+    public void obtenerFuncion() throws Exception{
+        List<DiaSemana> dias = new ArrayList<>();
+        dias.add(DiaSemana.LUNES);
+        dias.add(DiaSemana.JUEVES);
+        Time hora = Time.valueOf("20:30");
+        List<Funcion> funciones = funcionRepo.obtenerFuncionesHorario(3, dias, hora);
+        funciones.forEach(System.out::println);
     }
 
-    public boolean peliculaEnCartelera(String nombre){
-        Pelicula pelicula = peliculaRepo.buscarPeliculaPorNombre(nombre);
-        if (pelicula.getEstado()==true){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-     */
 }

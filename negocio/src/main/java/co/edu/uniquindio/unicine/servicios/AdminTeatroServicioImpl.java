@@ -155,8 +155,8 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
         }
         List<Funcion> funciones = funcionRepo.obtenerFuncionesHorario(funcion.getSala().getNumeroSala(), funcion.getHorario().getDia(),funcion.getHorario().getHora());
 
-        if(funciones.isEmpty()){
-            throw new Exception("Hay problemas en crear la funcion");
+        if(!funciones.isEmpty()){
+            throw new Exception("Exu+iste una funcion en ese horario");
         }
         return funcionRepo.save(funcion);
     }

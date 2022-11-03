@@ -161,7 +161,7 @@ public class ClienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void obtenerComprasCliente(){
-        List<Compra> compras= clienteRepo.obtenerComprasCliente(1006);
+        List<Compra> compras= clienteRepo.obtenerComprasCliente(1005);
         compras.forEach(System.out::println);
     }
 

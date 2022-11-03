@@ -41,4 +41,6 @@ public interface ClienteServicio {
     Pqrs crearPqrs(Pqrs pqrs) throws Exception;
 
     void listarPqrs(String correo)throws Exception;
+
+    //-------------------------------- Metodo filtrar ---------------------------------------------
 }

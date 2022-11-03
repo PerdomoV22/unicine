@@ -22,7 +22,7 @@ public class Pelicula implements Serializable {
     private Integer codigo;
 
     // ------------------------------------ Atributos de esta Entidad --------------------------------
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String nombrePelicula;
 
     @Column(nullable = false)
@@ -31,6 +31,7 @@ public class Pelicula implements Serializable {
     @Column(nullable = false)
     private String imagen;
 
+    @Lob
     @Column(nullable = false, length = 500)
     private String sinopsis;
 

@@ -57,6 +57,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(cliente == null){
             throw new Exception("Los Datos de Autentificacion son INCORRECTOS");
         }
+
         //validar  estado del cliente
         cliente = clienteRepo.obtenerPorEstado(cliente.getCedula(), true);
         if(cliente == null){
@@ -94,8 +95,16 @@ public class ClienteServicioImpl implements ClienteServicio{
 
         Cliente clienteRegistrado =  clienteRepo.save(cliente);
 
+        CuponCliente cupon = new CuponCliente();
+        cupon.setCliente(clienteRegistrado);
+        cupon.setCupon( cuponRepo.findById(4).get() );
+        cupon.setEstado(false);
+        cuponClienteRepo.save(cupon);
+
+        //Generar un codigo para el cupon
+
         emailServicio.enviarEmail("Registro de cuenta en UniCine", "Hola "+cliente.getNombre()+" es un gusto que haya registrado en Unicine, para activar su cuenta ingrese en el siguiente link: url", cliente.getCorreo());
-        emailServicio.enviarEmail("Regalo Cupon Por Registro", "Hola "+cliente.getNombre()+" Haz adquirido un cupon por registrarte", cliente.getCorreo());
+        emailServicio.enviarEmail("Regalo Cupon Por Registro", "Hola "+cliente.getNombre()+" Haz adquirido un cupon por registrarte, el codigo es: "+cupon.getCodigo(), cliente.getCorreo());
 
         return clienteRegistrado;
     }
@@ -174,16 +183,21 @@ public class ClienteServicioImpl implements ClienteServicio{
 
         for (Entrada entrada : entradas ) {
            Entrada entradaOcupada = funcionRepo.verificarSilla(funcion.getCodigo(), entrada.getFila(), entrada.getColumna());
-            if (entradas == null) {
+            if (entradaOcupada == null) {
                 throw new Exception("Las entredas seleccionadas ya estan ocupadas");
             }
         }
         //redimir el cupon si no es null
 
-            Optional<Cupon> cuponExiste = cuponRepo.findById(cupon.getCodigo());
+        if(cupon != null) {
+
+            Optional<CuponCliente> cuponExiste = cuponClienteRepo.findById(cupon.getCodigo());
             if (cuponExiste.isEmpty()) {
                 throw new Exception("El cupon no existe");
             }
+
+        }
+
             boolean cuponCliente = false;
 
             List<CuponCliente> cuponesCliente = clienteRepo.obtenerCuponesPorCedula(cliente.getCedula());
@@ -206,7 +220,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         compra.setValorTotal(valorTotalConDescuento);
         compra.setFechaCompra(LocalDateTime.now());
         compra.setMedioPago(medioPago);
-        compra.setNumeroBoletas(2);
+        compra.setNumeroBoletas(entradas.size());
         compraRepo.save(compra);
 
         //Mandar compra a todas las entrdas y las conprasConfiterias que lleagn
@@ -221,11 +235,11 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
        
         //Mandar cupon primera compra
-       /* Integer numeroCompras = clienteRepo.obtenerCantidadComprasCliente(cliente.getCedula());
+        List<Compra> compras = clienteRepo.obtenerComprasCliente(cliente.getCedula());
 
-        if (numeroCompras == 0) {
+        if (compras.size() == 1) {
             emailServicio.enviarEmail("Primera compra", "Hola " + cliente.getNombre() + " Por tu primera compra, haz adquirido un cupon " , cliente.getCorreo());
-        }*/
+        }
 
         return compra;
     }
@@ -235,7 +249,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         Double valorTotal = 0.0;
 
         for (CompraConfiteria cmConfi : compraConfiteria){
-            valorTotal = valorTotal + cmConfi.getPrecio();
+            valorTotal = valorTotal + cmConfi.getPrecio() * cmConfi.getUnidades();
         }
         for (Entrada entrada : entradas){
             valorTotal = valorTotal + entrada.getPrecio();
@@ -268,6 +282,7 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
+    //no usar ñs
     public boolean cambiarContraseña(String correo, String passwordNueva ) throws Exception {
 
         Cliente cliente = clienteRepo.findByCorreo(correo).orElse(null);

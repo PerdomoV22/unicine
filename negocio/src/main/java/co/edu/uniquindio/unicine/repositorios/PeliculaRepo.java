@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.repositorios;
 
 import co.edu.uniquindio.unicine.dto.HorarioSalaDTO;
+import co.edu.uniquindio.unicine.dto.PeliculaFuncion;
 import co.edu.uniquindio.unicine.entidades.Calificacion;
 import co.edu.uniquindio.unicine.entidades.Genero;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
@@ -44,5 +45,8 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
     //Esta consulta retorna una lista de peliculas dado el genero de las peliculas
     @Query("select pelicula from Pelicula pelicula where :genero member of pelicula.genero order by pelicula.nombrePelicula asc")
     List<Pelicula> listarPeliculas(Genero genero);
+
+    @Query("select new co.edu.uniquindio.unicine.dto.PeliculaFuncion(p,f) from Pelicula p join p.funciones f where p.nombrePelicula like concat('%',:nombre,'%') ")
+    List<PeliculaFuncion> buscarPelicula (String nombre);
 
 }
