@@ -57,7 +57,12 @@ public class AdministradorServicioImpl implements AdministradorServicio{
      * Este metodo se crea una ciudad
      */
     @Override
-    public Ciudad crearCiudad(Ciudad ciudad){
+    public Ciudad crearCiudad(Ciudad ciudad) throws Exception {
+
+        Ciudad ciudadExiste = ciudadRepo.findById(ciudad.getCodigoPostal()).orElse(null);
+        if(ciudadExiste != null){
+            throw new Exception("Ya existe la ciudad con ese codigo postal");
+        }
         return ciudadRepo.save(ciudad);
     }
 

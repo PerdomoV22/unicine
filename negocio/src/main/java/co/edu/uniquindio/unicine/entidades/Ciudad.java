@@ -18,7 +18,6 @@ public class Ciudad implements Serializable {
     //Este atrubuto es la PK de la entidad
     @Id
     @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigoPostal;
 
     //----------------------------------- Atribustos de la entidad -------------------------------------

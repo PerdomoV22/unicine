@@ -87,7 +87,6 @@ public class AdminTeatroServicioTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Test
@@ -101,8 +100,6 @@ public class AdminTeatroServicioTest {
         }catch (Exception e){
             throw new Exception(e);
         }
-
-
     }
 
     @Test
@@ -184,17 +181,17 @@ public class AdminTeatroServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void crearFuncion() throws Exception{
-        List<DiaSemana> dias = new ArrayList<>();
-        dias.add(DiaSemana.LUNES);
+
         Pelicula pelicula = administradorServicio.obtenerPelicula(3);
-        Horario horario = new Horario(dias, Time.valueOf(LocalTime.now()), LocalDate.now(), LocalDate.now());
+        Horario horario = new Horario(null, Time.valueOf(LocalTime.now()), LocalDate.now(), LocalDate.now());
         Sala sala = adminTeatroServicio.obtenerSala(3);
-        Funcion funcion = new Funcion(3500.00,sala, horario, pelicula);
+        Funcion funcion = Funcion.builder().precio(3500.00).pelicula(pelicula).horario(horario).sala(sala).build();
 
         try {
             Funcion funcionCreada = adminTeatroServicio.crearFuncion(funcion);
             Assertions.assertNotNull(funcionCreada);
             System.out.println(funcionCreada.getCodigo());
+            System.out.println(funcionCreada.getSala());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

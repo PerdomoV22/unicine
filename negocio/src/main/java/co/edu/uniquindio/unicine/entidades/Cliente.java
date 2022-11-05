@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,9 +16,9 @@ public class Cliente  extends Persona implements Serializable{
 
     //---------------------------------- Atributos de la Entidad -------------------------------
     @Column(nullable = false)
-    private Boolean estado;
+    private Boolean estado = false;
 
-    @Column(nullable = false)
+    @Nullable
     private String imagen_perfil;
 
     @ElementCollection

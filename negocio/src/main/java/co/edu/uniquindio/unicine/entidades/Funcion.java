@@ -47,6 +47,7 @@ public class Funcion implements Serializable {
     private List<Compra> compras;
 
     //Constructor
+    @Builder
     public Funcion(Double precio, Sala sala, Horario horario, Pelicula pelicula) {
         this.precio = precio;
         this.sala = sala;

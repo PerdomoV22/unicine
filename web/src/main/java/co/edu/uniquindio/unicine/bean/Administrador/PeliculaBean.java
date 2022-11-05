@@ -1,4 +1,4 @@
-package co.edu.uniquindio.unicine.bean;
+package co.edu.uniquindio.unicine.bean.Administrador;
 
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.servicios.AdministradorServicio;

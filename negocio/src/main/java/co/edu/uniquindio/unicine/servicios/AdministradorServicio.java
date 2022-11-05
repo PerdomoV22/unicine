@@ -9,7 +9,7 @@ public interface AdministradorServicio {
     //-----------------------------LOGIN----------------------------------------------
     Administrador  login(String correo, String password) throws Exception;
     //------------------------------METODOS CRUD PARA LA CIUDAD---------------------------
-    Ciudad crearCiudad(Ciudad ciudad);
+    Ciudad crearCiudad(Ciudad ciudad) throws Exception;
 
     Ciudad obtenerCiudad(Integer codigo)throws Exception;
     Ciudad actualizarCiudad(Ciudad ciudad) throws Exception;
