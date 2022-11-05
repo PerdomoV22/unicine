@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -36,6 +37,7 @@ public class Teatro implements Serializable {
 
     // Esta entidad tiene un administrador que se encarga de gestionar lo nacional del teatro
     @ManyToOne
+    @Nullable
     private Administrador administrador;
 
     //Esta entidad tiene un lista de salas, para las funciones relacionadas

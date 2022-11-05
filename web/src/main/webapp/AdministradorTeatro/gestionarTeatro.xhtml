@@ -11,13 +11,15 @@
     <h:outputStylesheet name="bootstrap.min.css" library="css" />
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
     <h:outputStylesheet name="styles.css" library="css" />
-    <title>Registro Producto</title>
+    <title>Registro Teatro</title>
 </h:head>
 
 
 <h:body style="background-color: whitesmoke">
     <p:panel>
+
         <div>
+
             <header>
                 <div class="px-3 py-2 text-bg-dark" style="background-color: #4f5050">
                     <div class="container">
@@ -31,33 +33,28 @@
 
                             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                                 <li>
-                                    <a href="/Administrador/menuAdministrador.xhtml" class="nav-link text-secondary">
+                                    <a href="/AdministradorTeatro/menuAdminTeatro.xhtml" class="nav-link text-secondary">
                                         INICIO
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Administrador/gestionarCiudad.xhtml" class="nav-link text-white">
-                                        CIUDADES
+                                    <a href="/AdministradorTeatro/gestionarTeatro.xhtml" class="nav-link text-white">
+                                        TEATROS
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Administrador/gestionarAdminTeatro.xhtml" class="nav-link text-white">
-                                        ADMINISTRADORES
+                                    <a href="/AdministradorTeatro/gestionarHorario.xhtml" class="nav-link text-white">
+                                        HORARIOS
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Administrador/gestionarPelicula.xhtml" class="nav-link text-white">
-                                        PELICULAS
+                                    <a href="/AdministradorTeatro/gestionarFuncion.xhtml" class="nav-link text-white">
+                                        FUNCIONES
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Administrador/gestionarConfiteria.xhtml" class="nav-link text-white">
-                                        CONFITERIA
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/Administrador/gestionarCupon.xhtml" class="nav-link text-white">
-                                        CUPONES
+                                    <a href="/AdministradorTeatro/gestionarSala.xhtml" class="nav-link text-white">
+                                        SALAS
                                     </a>
                                 </li>
                             </ul>
@@ -66,8 +63,6 @@
                                     <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" />
                                 </a>
                                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                                    <li><a class="dropdown-item" href="#">Settings</a></li>
                                     <li><a class="dropdown-item" href="#">Profile</a></li>
                                     <li><hr class="dropdown-divider"></hr></li>
                                     <li><a class="dropdown-item" href="#">Sign out</a></li>
@@ -77,25 +72,37 @@
                     </div>
                 </div>
             </header>
+
         </div>
 
-        <h1>REGISTRO PRODUCTO</h1>
-
+        <h1>REGISTRO TEATRO</h1>
         <h:form>
             <h:panelGrid columns="3" cellpadding="5" >
 
+                <p:outputLabel for="nombre_teatro" value = "Nombre Teatro : "/>
+                <p:inputText id="nombre_teatro" value = "#{teatroBean.teatro.nombre}" required="true"/>
+                <p:messages for="nombre_teatro"/>
 
-                <p:outputLabel for="codigo_ciudad" value = "Codigo Postal: "/>
-                <p:inputText id="codigo_ciudad" value = "#{ciudadBean.ciudad.codigoPostal}" required="true"/>
-                <p:messages for="codigo_ciudad"/>
+                <p:outputLabel for="direccion_teatro" value = "Direccion : "/>
+                <p:inputText id="direccion_teatro" value = "#{teatroBean.teatro.direccion}" required="true"/>
+                <p:messages for="direccion_teatro"/>
 
-                <p:outputLabel for="nombre_ciudad" value = "Nombre ciudad: "/>
-                <p:inputText id="nombre_ciudad" value = "#{ciudadBean.ciudad.nombreCiudad}" required="true"/>
-                <p:messages for="nombre_ciudad"/>
+                <p:outputLabel for="ciudad_teatro" value = "Ciudad Teatro : "/>
+                <p:selectOneMenu id="ciudad_teatro" value="#{teatroBean.teatro.ciudad}" converter="#{ciudadConverter}">
+                    <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true" itemValue="#{null}"/>
+                    <f:selectItems value="#{teatroBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombreCiudad}" itemValue="#{ciudad}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="adminteatro_teatro" value = "Administrador Teatro : "/>
+                <p:selectOneMenu id="adminteatro_teatro" value="#{teatroBean.teatro.administradorTeatro}" converter="#{adminTeatroConverter}">
+                    <f:selectItem itemLabel="Seleccione el administrador del teatro" noSelectionOption="true" itemValue="#{null}"/>
+                    <f:selectItems value="#{teatroBean.administradorTeatros}" var="administradorTeatro" itemLabel="#{administradorTeatro.nombre}" itemValue="#{administradorTeatro}"/>
+                </p:selectOneMenu>
+
 
             </h:panelGrid>
-            <p:commandButton value="Registrar Ciudad" action= "#{ciudadBean.registrarCiudad()}" icon="pi pi-plus-circle" update="@form"/>
-            <p:growl for="mensaje_registro_ciudad" showDetail="true"/>
+            <p:commandButton value="Registrar teatro" action= "#{teatroBean.registrarTeatro()}" icon="pi pi-plus-circle" update="@form"/>
+            <p:growl for="mensaje_registro_teatro" showDetail="true"/>
 
         </h:form>
     </p:panel>
