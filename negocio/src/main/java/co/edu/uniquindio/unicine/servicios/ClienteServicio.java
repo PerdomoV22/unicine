@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.servicios;
 
+import co.edu.uniquindio.unicine.dto.PeliculaFuncion;
 import co.edu.uniquindio.unicine.entidades.*;
 
 import java.util.List;
@@ -43,4 +44,5 @@ public interface ClienteServicio {
     void listarPqrs(String correo)throws Exception;
 
     //-------------------------------- Metodo filtrar ---------------------------------------------
+    List<PeliculaFuncion> listarPeliculasFuncionesn(String nombre);
 }

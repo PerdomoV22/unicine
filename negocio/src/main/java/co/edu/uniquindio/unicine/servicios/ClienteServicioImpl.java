@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.servicios;
 
+import co.edu.uniquindio.unicine.dto.PeliculaFuncion;
 import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.repositorios.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -344,5 +345,10 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
         List<Pqrs> pqrs = clienteRepo.obtenerPqrs(correo);
         pqrs.forEach(System.out::println);
+    }
+
+    @Override
+    public List<PeliculaFuncion> listarPeliculasFuncionesn(String nombre) {
+        return peliculaRepo.buscarPelicula(nombre);
     }
 }
