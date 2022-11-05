@@ -29,7 +29,7 @@ public interface AdministradorServicio {
     List<AdministradorTeatro> listarAdministradorTeatros();
 
     //-------------------------METODOS CRUD PARA LOS PELICULAS--------------------------------
-    Pelicula crearPeliculas(Pelicula pelicula);
+    Pelicula crearPeliculas(Pelicula pelicula) throws Exception;
 
     Pelicula obtenerPelicula(Integer codigo)throws Exception;
 
@@ -59,5 +59,6 @@ public interface AdministradorServicio {
     void eliminarCupones(Integer codigo) throws Exception;
 
     List<Cupon> listarCupones();
+
 
 }

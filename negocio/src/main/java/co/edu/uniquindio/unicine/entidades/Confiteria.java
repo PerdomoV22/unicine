@@ -33,7 +33,7 @@ public class Confiteria implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TipoConfiteria categoria;
+    private TipoConfiteria tipoConfiteria;
 
     //-------------------------------- Entidades Relacionadas -----------------------------------
 
@@ -43,10 +43,10 @@ public class Confiteria implements Serializable {
     private List<CompraConfiteria> compraConfiterias;
 
     //Constructor
-    public Confiteria(String nombre, Double precio, String imagen, TipoConfiteria categoria) {
+    public Confiteria(String nombre, Double precio, String imagen, TipoConfiteria tipoConfiteria) {
         this.nombre = nombre;
         this.precio = precio;
         this.imagen = imagen;
-        this.categoria = categoria;
+        this.tipoConfiteria = tipoConfiteria;
     }
 }

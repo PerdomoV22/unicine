@@ -44,7 +44,7 @@ insert into teatro values (5, "Cra. 66B #34A-76", "UniCine", 1090, 1016, 3);
 /*------------------------------Pelicula----------------------------------------------*/
 /*Pelicula: codigo, estado, imagen, nombre, reparto, sinopsis, trailer*/
 insert into pelicula values (1, 1, "url-imagen", "La huerfana: EL origen", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
-insert into pelicula values (2, 1, "url-imagen", "Avatar Relanzamiento", "Sam Worthington, Zoe Saldaña, Stephen Lang, Michelle Rodriguez y Sigourney Weaver.  ", "Vive nuevamente la primera entrega de Avatar (2009) en nuestras salas. AVATAR, ganadora del Premio de la Academia® en 2009", "url-video");
+insert into pelicula values (2, 1, "url-imagen", "Avatar Relanzamiento", "Sam Worthington, Zoe Saldaña, Stephen Lang, Michelle Rodriguez y Sigourney Weaver. ", "Vive nuevamente la primera entrega de Avatar (2009) en nuestras salas. AVATAR, ganadora del Premio de la Academia® en 2009", "url-video");
 insert into pelicula values (3, 1, "url-imagen", "Pasaje al paraiso", "George Clooney, Julia Roberts.", "George Clooney y Julia Roberts se reúnen en la pantalla grande como ex esposos que comparten la misión de evitar que su enamorada hija cometa el mismo error que ellos mismos cometieron una vez.", "url-video");
 insert into pelicula values (4, 1, "url-imagen", "No te preocuoes carinho", "Florence Pugh, Harry Styles, Chris Pine.", "Thriller psicológico centrado en una infeliz ama de casa en la década de 1950 que descubre una inquietante verdad. ", "url-video");
 insert into pelicula values (5, 0, "url-imagen", "Fantasma", "Sophie Stevens, Kirstie Steele, Nick Bayly.", "Emma ha sido contratada como cuidadora nocturna del Sr. Cunningham. El que fuera un pilar de la comunidad local tiene demencia y ha sufrido un derrame cerebral, por lo que está solo en su destartalada casa.", "url-video");
@@ -162,9 +162,14 @@ insert into entrada values (4, 1, 10, 6.000, 4);
 insert into entrada values (5, 14, 20, 6.000, 1);
 
 /*------------------------------CompraConfiteria--------------------------------------*/
+
+
 /*CompraConfiteria: codigo, precio, unidades, codCompra, confitCodProducto*/
+/*
 insert into compra_confiteria values (1, 45.000, 2, 2, 2);
 insert into compra_confiteria values (2, 10.000, 3, 2, 1);
 insert into compra_confiteria values (3, 25.000, 2, 2, 3);
 insert into compra_confiteria values (4, 3.000, 4, 2, 4);
 insert into compra_confiteria values (5, 12.000, 2, 2, 5);
+
+ */

@@ -79,31 +79,41 @@
             </header>
         </div>
 
-        <h1>REGISTRO DE ADMINISTRADORES TEATROS </h1>
+        <h1>REGISTRO PELICULA</h1>
 
         <h:form>
             <h:panelGrid columns="3" cellpadding="5" >
 
+                <p:outputLabel for="nombre_pelicula" value = "Nombre Pelicula : "/>
+                <p:inputText id="nombre_pelicula" value = "#{peliculaBean.pelicula.nombrePelicula}" required="true"/>
+                <p:messages for="nombre_pelicula"/>
 
-                <p:outputLabel for="cedula_AdminTeatro" value = "Cedula : "/>
-                <p:inputText id="cedula_AdminTeatro" value = "#{adminTeatroBean.administradorTeatro.cedula}" required="true"/>
-                <p:messages for="cedula_AdminTeatro"/>
+                <p:outputLabel for="trailer_pelicula" value = "Trailer : "/>
+                <p:inputText id="trailer_pelicula" value = "#{peliculaBean.pelicula.trailer}" required="true"/>
+                <p:messages for="trailer_pelicula"/>
 
-                <p:outputLabel for="nombre_AdminTeatro" value = "Nombre : "/>
-                <p:inputText id="nombre_AdminTeatro" value = "#{adminTeatroBean.administradorTeatro.nombre}" required="true"/>
-                <p:messages for="nombre_AdminTeatro"/>
+                <p:outputLabel for="sipnosis_pelicula" value = "Sipnosis : "/>
+                <p:inputTextarea id="sipnosis_pelicula" rows="6" value = "#{peliculaBean.pelicula.sinopsis}" required="true"/>
+                <p:messages for="sipnosis_pelicula"/>
 
-                <p:outputLabel for="correo_AdminTeatro" value = "Correo : "/>
-                <p:inputText id="correo_AdminTeatro" value = "#{adminTeatroBean.administradorTeatro.correo}" required="true"/>
-                <p:messages for="correo_AdminTeatro"/>
+                <p:outputLabel for="imagen_pelicula" value = "Imagen : "/>
+                <p:inputText id="imagen_pelicula" value = "#{peliculaBean.pelicula.imagen}" required="true" />
+                <p:messages for="imagen_pelicula"/>
 
-                <p:outputLabel for="contrasenia_AdminTeatro" value = "Password : "/>
-                <p:inputText id="contrasenia_AdminTeatro" value = "#{adminTeatroBean.administradorTeatro.contrasena}" required="true"/>
-                <p:messages for="contrasenia_adminTeatro"/>
+                <p:outputLabel for="reparto_pelicula" value = "Reparto : "/>
+                <p:inputTextarea id="reparto_pelicula" rows="6" value = "#{peliculaBean.pelicula.reparto}" required="true" />
+                <p:messages for="reparto_pelicula"/>
+
+                <!--
+                <p:outputLabel for="estado_producto" value = "Estado: "/>
+                <p:inputText id="estado_producto" value = "#{peliculaBean.pelicula.estado}" required="true" />
+                <p:messages for="estado_producto"/>
+                -->
+
 
             </h:panelGrid>
-            <p:commandButton value="Registrar Administrador Teatro" action= "#{adminTeatroBean.registrarAdminTeatro()}" icon="pi pi-plus-circle" update="@form"/>
-            <p:growl for="mensaje_registro_adminTeatro" showDetail="true"/>
+            <p:commandButton value="Registrar Producto" action= "#{peliculaBean.registrarPelicula()}" icon="pi pi-plus-circle" update="@form"/>
+            <p:growl for="mensaje_registro_pelicula" showDetail="true"/>
 
         </h:form>
     </p:panel>

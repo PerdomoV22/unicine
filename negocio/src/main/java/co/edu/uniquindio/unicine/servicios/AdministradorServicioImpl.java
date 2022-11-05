@@ -208,7 +208,8 @@ public class AdministradorServicioImpl implements AdministradorServicio{
      * Este metodo se crea una pelicula
      */
     @Override
-    public Pelicula crearPeliculas(Pelicula pelicula){
+    public Pelicula crearPeliculas(Pelicula pelicula) throws Exception {
+
         return peliculaRepo.save(pelicula);
     }
 

@@ -79,31 +79,31 @@
             </header>
         </div>
 
-        <h1>REGISTRO DE ADMINISTRADORES TEATROS </h1>
+        <h1>REGISTRO CUPON</h1>
 
         <h:form>
             <h:panelGrid columns="3" cellpadding="5" >
 
+                <p:outputLabel for="criterio_cupon" value = "Criterio Cupon : "/>
+                <p:inputText id="criterio_cupon" value = "#{cuponBean.cupon.criterio}" required="true"/>
+                <p:messages for="criterio_cupon"/>
 
-                <p:outputLabel for="cedula_AdminTeatro" value = "Cedula : "/>
-                <p:inputText id="cedula_AdminTeatro" value = "#{adminTeatroBean.administradorTeatro.cedula}" required="true"/>
-                <p:messages for="cedula_AdminTeatro"/>
+                <p:outputLabel for="descripcion_cupon" value = "Descripcion : "/>
+                <p:inputText id="descripcion_cupon" value = "#{cuponBean.cupon.descripcion}" required="true"/>
+                <p:messages for="descripcion_cupon"/>
 
-                <p:outputLabel for="nombre_AdminTeatro" value = "Nombre : "/>
-                <p:inputText id="nombre_AdminTeatro" value = "#{adminTeatroBean.administradorTeatro.nombre}" required="true"/>
-                <p:messages for="nombre_AdminTeatro"/>
+                <p:outputLabel for="fechaVencimiento_cupon" value = "Fecha Vencimiento(dd/mm/aa) : "/>
+                <p:datePicker id="fechaVencimiento_cupon" value = "#{cuponBean.cupon.fechaVencimiento}" required="true"/>
+                <p:messages for="fechaVencimiento_cupon"/>
 
-                <p:outputLabel for="correo_AdminTeatro" value = "Correo : "/>
-                <p:inputText id="correo_AdminTeatro" value = "#{adminTeatroBean.administradorTeatro.correo}" required="true"/>
-                <p:messages for="correo_AdminTeatro"/>
+                <p:outputLabel for="descuento_cupon" value = "Descuento : "/>
+                <p:inputText id="descuento_cupon" value = "#{cuponBean.cupon.valorDescuento}" required="true" />
+                <p:messages for="descuento_cupon"/>
 
-                <p:outputLabel for="contrasenia_AdminTeatro" value = "Password : "/>
-                <p:inputText id="contrasenia_AdminTeatro" value = "#{adminTeatroBean.administradorTeatro.contrasena}" required="true"/>
-                <p:messages for="contrasenia_adminTeatro"/>
 
             </h:panelGrid>
-            <p:commandButton value="Registrar Administrador Teatro" action= "#{adminTeatroBean.registrarAdminTeatro()}" icon="pi pi-plus-circle" update="@form"/>
-            <p:growl for="mensaje_registro_adminTeatro" showDetail="true"/>
+            <p:commandButton value="Registrar Cupon" action= "#{cuponBean.registrarCupon()}" icon="pi pi-plus-circle" update="@form"/>
+            <p:growl for="mensaje_registro_cupon" showDetail="true"/>
 
         </h:form>
     </p:panel>
