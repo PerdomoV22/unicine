@@ -23,7 +23,7 @@ public interface FuncionRepo extends JpaRepository<Funcion, Integer> {
     List<Pelicula> obtenerPelicula();
 
     //Esta consulta retora los atributos de la FuncionDTO y busca una funcion dado el codigo de la pelicula
-    @Query("select new  co.edu.uniquindio.unicine.dto.FuncionDTO(f.pelicula.nombrePelicula, f.pelicula.estado, f.pelicula.imagen, f.sala.numeroSala, f.sala.teatro.direccion, f.sala.teatro.ciudad.nombreCiudad, f.horario) from Funcion f where f.pelicula.codigo = :codigo")
+    @Query("select new  co.edu.uniquindio.unicine.dto.FuncionDTO(f.pelicula.nombrePelicula, f.pelicula.estadoPelicula, f.pelicula.imagen, f.sala.numeroSala, f.sala.teatro.direccion, f.sala.teatro.ciudad.nombreCiudad, f.horario) from Funcion f where f.pelicula.codigo = :codigo")
     List<FuncionDTO> listarFunciones(Integer codigo);
 
     //Esta funcion retorna todas funciones que no tienen compra
@@ -57,4 +57,10 @@ public interface FuncionRepo extends JpaRepository<Funcion, Integer> {
     //Esta consulta muestra la entradasdisponibles con sillas de una funcion validando el codigo de la funcion, la fila y la colunma
     @Query("select entrada from Funcion funcion, IN (funcion.compras) compras, IN(compras.entradas) entrada where funcion.codigo = :codigo and entrada.fila = :fila and entrada.columna = :columna")
     Entrada verificarSilla(Integer codigo, Integer fila, Integer columna);
+
+    @Query("select distinct f.pelicula from Funcion f where f.sala.teatro.ciudad.codigoPostal = :codigoPostal and f.pelicula.estadoPelicula = :estadoPelicula")
+    List<Pelicula> listarPeliculaEstadoCiudad(Integer codigoPostal, EstadoPelicula estadoPelicula);
+
+    @Query("select distinct f.pelicula from Funcion f where  f.pelicula.estadoPelicula = :estadoPelicula")
+    List<Pelicula> listarPeliculaEstado(EstadoPelicula estadoPelicula);
 }

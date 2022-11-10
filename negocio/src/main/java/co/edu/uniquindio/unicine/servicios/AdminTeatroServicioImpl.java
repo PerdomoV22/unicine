@@ -163,7 +163,7 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
 
     public boolean peliculaEnCartelera(String nombre){
         Pelicula pelicula = peliculaRepo.buscarPeliculaPorNombre(nombre);
-        if (pelicula.getEstado()==true){
+        if (pelicula.getEstadoPelicula()==EstadoPelicula.CARTELERA){
             return true;
         }else{
             return false;

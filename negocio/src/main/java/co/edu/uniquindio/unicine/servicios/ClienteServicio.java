@@ -12,6 +12,8 @@ public interface ClienteServicio {
 
     //--------------------------------- Buscar Pelicula --------------------------------------
     List<Pelicula> buscarPeliculaPorNombre (String nombre) throws Exception;
+    List<Pelicula> buscarPeliculaPorEstadoCiudad (Integer codigo, EstadoPelicula estadoPelicula)  throws Exception;
+    List<Pelicula> buscarPeliculaPorEstado (EstadoPelicula estadoPelicula)  throws Exception;
     //-------------------------------- CRUD DE CLIENTE ----------------------------
     Cliente registrarCliente(Cliente cliente) throws Exception;
     Cliente obtenerClientePorCedula(Integer cedula) throws Exception;
@@ -44,5 +46,5 @@ public interface ClienteServicio {
     void listarPqrs(String correo)throws Exception;
 
     //-------------------------------- Metodo filtrar ---------------------------------------------
-    List<PeliculaFuncion> listarPeliculasFuncionesn(String nombre);
+    List<PeliculaFuncion> listarPeliculasFunciones(String nombre);
 }

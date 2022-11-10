@@ -174,7 +174,7 @@ public class ClienteServicioTest {
     public void asignarCalificacionTest() {
         String[] telefonos = new String[] {"3117556502", "3148279730"};
         Cliente cliente = new Cliente(1004, "Juan", "perdomov.j07@gmail.com", "0987", Arrays.asList(telefonos), "url foto");
-        Pelicula pelicula = new Pelicula("La: EL origen", "url-video", "url-imagen", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan", true, null);
+        Pelicula pelicula = new Pelicula("La: EL origen", "url-video", "url-imagen", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan", EstadoPelicula.CARTELERA, null);
         Calificacion calificacion = new Calificacion(4, cliente, pelicula);
 
         try {
@@ -188,7 +188,7 @@ public class ClienteServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void promedioPeliculaTest() {
-        Pelicula pelicula = new Pelicula("La: EL origen", "url-video", "url-imagen", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan", true, null);
+        Pelicula pelicula = new Pelicula("La: EL origen", "url-video", "url-imagen", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan", EstadoPelicula.CARTELERA, null);
         try {
             Double promedio = clienteServicio.promedioPelicula(pelicula);
         } catch (Exception e) {

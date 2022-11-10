@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import co.edu.uniquindio.unicine.servicios.ClienteServicio;
+
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
@@ -21,21 +23,22 @@ public class BusquedaBean implements Serializable {
     @Autowired
     private ClienteServicio clienteServicio;
 
-    @Value("#{param['busqueda]}")
+    @Value("#{param['busqueda']}")
     private String busquedaParam;
 
     @Getter  @Setter
     private List<PeliculaFuncion> peliculas;
 
+    @PostConstruct
     public void init(){
         if(busquedaParam != null && !busquedaParam.isEmpty()){
-            peliculas = clienteServicio.listarPeliculasFuncionesn(busquedaParam);
+            peliculas = clienteServicio.listarPeliculasFunciones(busquedaParam);
         }
     }
 
     public String buscar(){
         if(!busqueda.isEmpty()){
-            return "/resultadoBusqueda?faces-redirect=true&amp;busqueda=" + busqueda;
+            return "resultadoBusqueda?faces-redirect=true&amp;busqueda="+busqueda;
         }
         return "";
     }

@@ -80,6 +80,23 @@ public class ClienteServicioImpl implements ClienteServicio{
         return peliculaGuardada;
     }
 
+    @Override
+    public List<Pelicula> buscarPeliculaPorEstadoCiudad(Integer codigo, EstadoPelicula estadoPelicula) throws Exception {
+        List<Pelicula> peliculaGuardada = funcionRepo.listarPeliculaEstadoCiudad(codigo, estadoPelicula);
+        if(peliculaGuardada.isEmpty()){
+            throw new Exception("La pelicula NO EXISTE");
+        }
+        return peliculaGuardada;
+    }
+
+    @Override
+    public List<Pelicula> buscarPeliculaPorEstado(EstadoPelicula estadoPelicula) throws Exception {
+        List<Pelicula> peliculaGuardada = funcionRepo.listarPeliculaEstado(estadoPelicula);
+        if(peliculaGuardada.isEmpty()){
+            throw new Exception("La pelicula NO EXISTE");
+        }
+        return peliculaGuardada;
+    }
     //---------------------------------- CRUD DE CLIENTE --------------------------------
     @Override
     public Cliente registrarCliente(Cliente cliente) throws Exception{
@@ -347,8 +364,11 @@ public class ClienteServicioImpl implements ClienteServicio{
         pqrs.forEach(System.out::println);
     }
 
+    /*------------------------------- Metodos de filtrar --------------------------------------------------*/
     @Override
-    public List<PeliculaFuncion> listarPeliculasFuncionesn(String nombre) {
+    public List<PeliculaFuncion> listarPeliculasFunciones(String nombre) {
         return peliculaRepo.buscarPelicula(nombre);
     }
+
+
 }

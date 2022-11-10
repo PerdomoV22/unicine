@@ -38,12 +38,13 @@ public class Pelicula implements Serializable {
     @Column(nullable = false)
     private String reparto;
 
-     @Column(nullable = false)
-    private Boolean estado;
-     @ToString.Exclude
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EstadoPelicula estadoPelicula;
+    @ToString.Exclude
     @Enumerated(EnumType.STRING)
     @ElementCollection
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 100)
     private List<Genero> genero;
 
     // ------------------------------------- Entidades Relacionadas ------------------------------------
@@ -59,13 +60,13 @@ public class Pelicula implements Serializable {
     private List<Funcion> funciones;
 
     // Constructor
-    public Pelicula(String nombrePelicula, String trailer, String imagen, String sinopsis, String reparto, Boolean estado, List<Genero> genero) {
+    public Pelicula(String nombrePelicula, String trailer, String imagen, String sinopsis, String reparto, EstadoPelicula estadoPelicula, List<Genero> genero) {
         this.nombrePelicula = nombrePelicula;
         this.trailer = trailer;
         this.imagen = imagen;
         this.sinopsis = sinopsis;
         this.reparto = reparto;
-        this.estado = estado;
+        this.estadoPelicula = estadoPelicula;
         this.genero = genero;
     }
 }

@@ -172,7 +172,7 @@ public class AdministradorServicioTest {
     @Sql("classpath:dataset.sql")
     public void crearPeliculas(){
         try {
-            Pelicula pelicula = new Pelicula("La purga 2", "trailer de la peli" , "img " , " sipnisis peli" , "reparto de la peli", true, null);
+            Pelicula pelicula = new Pelicula("La purga 2", "trailer de la peli" , "img " , " sipnisis peli" , "reparto de la peli", EstadoPelicula.CARTELERA, null);
             Pelicula peliculaCreada= administradorServicio.crearPeliculas(pelicula);
             Assertions.assertNotNull(peliculaCreada);
             System.out.println(peliculaCreada.getNombrePelicula());

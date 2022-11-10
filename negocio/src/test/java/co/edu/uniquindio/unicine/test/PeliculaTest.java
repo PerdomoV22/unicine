@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.dto.HorarioSalaDTO;
+import co.edu.uniquindio.unicine.entidades.EstadoPelicula;
 import co.edu.uniquindio.unicine.entidades.Genero;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.repositorios.PeliculaRepo;
@@ -22,7 +23,7 @@ public class PeliculaTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void obtenerPeliculasPorEstado() {
-        List<Pelicula> peliculas = peliculaRepo.obtenerPeliculasPorEstado(false);
+        List<Pelicula> peliculas = peliculaRepo.obtenerPeliculasPorEstado(EstadoPelicula.PROXIMAMENTE);
         peliculas.forEach(System.out::println);
     }
 
@@ -37,7 +38,7 @@ public class PeliculaTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void buscarPelicula(){
-        List<Pelicula> peliculas = peliculaRepo.buscarPelicula("La huerfana", true);
+        List<Pelicula> peliculas = peliculaRepo.buscarPelicula("La huerfana", EstadoPelicula.CARTELERA);
         peliculas.forEach(System.out::println);
     }
 

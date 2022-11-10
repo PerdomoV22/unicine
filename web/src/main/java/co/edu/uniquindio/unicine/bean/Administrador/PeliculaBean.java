@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.bean.Administrador;
 
+import co.edu.uniquindio.unicine.entidades.EstadoPelicula;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.servicios.AdministradorServicio;
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class PeliculaBean implements Serializable {
 
     public void registrarPelicula(){
        try {
-           pelicula.setEstado(true);
+           pelicula.setEstadoPelicula(EstadoPelicula.CARTELERA);
            administradorServicio.crearPeliculas(pelicula);
 
            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta","La pelicula se ha creado exitosamente");
