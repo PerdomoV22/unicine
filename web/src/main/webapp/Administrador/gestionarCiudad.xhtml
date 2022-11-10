@@ -11,12 +11,12 @@
     <h:outputStylesheet name="bootstrap.min.css" library="css" />
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
     <h:outputStylesheet name="styles.css" library="css" />
-    <title>Registro Producto</title>
+    <title>Gestionar Ciudad</title>
 </h:head>
 
 
 <h:body style="background-color: whitesmoke">
-    <p:panel>
+
         <div>
             <header>
                 <div class="px-3 py-2 text-bg-dark" style="background-color: #4f5050">
@@ -79,26 +79,70 @@
             </header>
         </div>
 
-        <h1>REGISTRO PRODUCTO</h1>
 
-        <h:form>
-            <h:panelGrid columns="3" cellpadding="5" >
+        <h:form id="crud_ciudad">
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Registrar" icon="pi pi-plus" styleClass="ui-button-success me-3" action="#{ciudadBean.crearCiudadDialog()}" update="dialogo_crear" oncomplete="PF('registrar_ciudad').show()" />
+                    <p:commandButton id="boton_borrar" value="#{ciudadBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{ciudadBean.ciudadesSeleccionados.size()==0}" styleClass="ui-button-danger" action="#{ciudadBean.eliminarCiudades()}" update="crud_ciudad:lista_ciudades,@this" />
+                </p:toolbarGroup>
+            </p:toolbar>
 
 
-                <p:outputLabel for="codigo_ciudad" value = "Codigo Postal: "/>
-                <p:inputText id="codigo_ciudad" value = "#{ciudadBean.ciudad.codigoPostal}" required="true"/>
-                <p:messages for="codigo_ciudad"/>
 
-                <p:outputLabel for="nombre_ciudad" value = "Nombre ciudad: "/>
-                <p:inputText id="nombre_ciudad" value = "#{ciudadBean.ciudad.nombreCiudad}" required="true"/>
-                <p:messages for="nombre_ciudad"/>
+            <p:dataTable id="lista_ciudades" value="#{ciudadBean.ciudades}" var="ciudad" paginator="true" rows="10"
+                         rowKey="#{ciudad.codigoPostal}"
+                         paginatorPosition="bottom" rowSelectMode="add"
+                         selection="#{ciudadBean.ciudadesSeleccionados}">
 
-            </h:panelGrid>
-            <p:commandButton value="Registrar Ciudad" action= "#{ciudadBean.registrarCiudad()}" icon="pi pi-plus-circle" update="@form"/>
-            <p:growl for="mensaje_registro_ciudad" showDetail="true"/>
+                <p:ajax event="rowSelect" update="crud_ciudad:boton_borrar" />
+                <p:ajax event="rowUnselect" update="crud_ciudad:boton_borrar" />
+                <p:ajax event="rowSelectCheckbox" update="crud_ciudad:boton_borrar" />
+                <p:ajax event="rowUnselectCheckbox" update="crud_ciudad:boton_borrar" />
+                <p:ajax event="toggleSelect" update="crud_ciudad:boton_borrar" />
 
+                <p:column selectionMode="multiple" exportable="false" />
+
+                <p:column headerText="Codigo Postal" >
+                    <h:outputText value="#{ciudad.codigoPostal}"/>
+                </p:column>
+
+                <p:column headerText="Nombre Ciudad" >
+                    <h:outputText value="#{ciudad.nombreCiudad}"/>
+                </p:column>
+
+                <p:column headerText="" >
+                    <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{ciudadBean.seleccionarCiudad(ciudad)}" oncomplete="PF('registrar_ciudad').show()" update="dialogo_crear"/>
+                </p:column>
+
+            </p:dataTable>
         </h:form>
-    </p:panel>
+
+
+        <p:dialog id="dialogo_crear" widgetVar="registrar_ciudad" modal="true" header="#{ciudadBean.mensajeCrearEditar}" showEffect="fade">
+
+        <h1>GESTIONAR CIUDAD</h1>
+
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5" >
+
+
+                    <p:outputLabel for="codigo_ciudad" value = "Codigo Postal: "/>
+                    <p:inputText id="codigo_ciudad" value = "#{ciudadBean.ciudad.codigoPostal}" required="true"/>
+                    <p:messages for="codigo_ciudad"/>
+
+                    <p:outputLabel for="nombre_ciudad" value = "Nombre ciudad: "/>
+                    <p:inputText id="nombre_ciudad" value = "#{ciudadBean.ciudad.nombreCiudad}" required="true"/>
+                    <p:messages for="nombre_ciudad"/>
+
+                </h:panelGrid>
+                <p:commandButton value="#{ciudadBean.mensajeCrearEditar}" action= "#{ciudadBean.registrarCiudad()}" icon="pi pi-plus-circle" update="@form,crud_ciudad:lista_ciudades"/>
+                <p:growl for="mensaje_registro_ciudad" showDetail="true"/>
+
+            </h:form>
+        </p:dialog>
+
 </h:body>
 
 </html>

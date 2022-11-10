@@ -11,12 +11,12 @@
     <h:outputStylesheet name="bootstrap.min.css" library="css" />
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
     <h:outputStylesheet name="styles.css" library="css" />
-    <title>Registro Producto</title>
+    <title>Registro Administrador Teatro</title>
 </h:head>
 
 
 <h:body style="background-color: whitesmoke">
-    <p:panel>
+
         <div>
             <header>
                 <div class="px-3 py-2 text-bg-dark" style="background-color: #4f5050">
@@ -79,6 +79,58 @@
             </header>
         </div>
 
+
+
+    <h:form id="crud_adminTeatro">
+
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:commandButton value="Registrar" icon="pi pi-plus" styleClass="ui-button-success me-3" action="#{adminTeatroBean.crearAdminTeatroDialog()}" update="dialogo_crear" oncomplete="PF('registrar_adminTeatro').show()" />
+                <p:commandButton id="boton_borrar" value="#{adminTeatroBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{adminTeatroBean.adminTeatrosSeleccionados.size()==0}" styleClass="ui-button-danger" action="#{adminTeatroBean.eliminarAdminTeatros()}" update="crud_adminTeatro:lista_adminTeatros,@this" />
+            </p:toolbarGroup>
+        </p:toolbar>
+
+
+
+        <p:dataTable id="lista_adminTeatros" value="#{adminTeatroBean.adminTeatros}" var="adminTeatro" paginator="true" rows="10"
+                     rowKey="#{adminTeatro.cedula}"
+                     paginatorPosition="bottom" rowSelectMode="add"
+                     selection="#{adminTeatroBean.adminTeatrosSeleccionados}">
+
+            <p:ajax event="rowSelect" update="crud_adminTeatro:boton_borrar" />
+            <p:ajax event="rowUnselect" update="crud_adminTeatro:boton_borrar" />
+            <p:ajax event="rowSelectCheckbox" update="crud_adminTeatro:boton_borrar" />
+            <p:ajax event="rowUnselectCheckbox" update="crud_adminTeatro:boton_borrar" />
+            <p:ajax event="toggleSelect" update="crud_adminTeatro:boton_borrar" />
+
+            <p:column selectionMode="multiple" exportable="false" />
+
+            <p:column headerText="Cedula" >
+                <h:outputText value="#{adminTeatro.cedula}"/>
+            </p:column>
+
+            <p:column headerText="Nombre" >
+                <h:outputText value="#{adminTeatro.nombre}"/>
+            </p:column>
+
+            <p:column headerText="Correo" >
+                <h:outputText value="#{adminTeatro.correo}"/>
+            </p:column>
+
+            <p:column headerText="Password" >
+                <h:outputText value="#{adminTeatro.contrasena}"/>
+            </p:column>
+
+            <p:column headerText="" >
+                <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{adminTeatroBean.seleccionarAdminTeatros(adminTeatro)}" oncomplete="PF('registrar_adminTeatro').show()" update="dialogo_crear"/>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+
+
+    <p:dialog id="dialogo_crear" widgetVar="registrar_adminTeatro" modal="true" header="#{adminTeatroBean.mensajeCrearEditar}" showEffect="fade">
+
         <h1>REGISTRO DE ADMINISTRADORES TEATROS </h1>
 
         <h:form>
@@ -102,11 +154,12 @@
                 <p:messages for="contrasenia_adminTeatro"/>
 
             </h:panelGrid>
-            <p:commandButton value="Registrar Administrador Teatro" action= "#{adminTeatroBean.registrarAdminTeatro()}" icon="pi pi-plus-circle" update="@form"/>
+            <p:commandButton value="#{adminTeatroBean.mensajeCrearEditar}" action= "#{adminTeatroBean.registrarAdminTeatro()}" icon="pi pi-plus-circle" update="@form,crud_adminTeatro:lista_adminTeatros"/>
             <p:growl for="mensaje_registro_adminTeatro" showDetail="true"/>
 
         </h:form>
-    </p:panel>
+    </p:dialog>
+
 </h:body>
 
 </html>

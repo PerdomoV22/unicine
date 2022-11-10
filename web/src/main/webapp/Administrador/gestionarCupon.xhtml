@@ -11,12 +11,12 @@
     <h:outputStylesheet name="bootstrap.min.css" library="css" />
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
     <h:outputStylesheet name="styles.css" library="css" />
-    <title>Registro Producto</title>
+    <title>Registro Cupon</title>
 </h:head>
 
 
 <h:body style="background-color: whitesmoke">
-    <p:panel>
+
         <div>
             <header>
                 <div class="px-3 py-2 text-bg-dark" style="background-color: #4f5050">
@@ -79,6 +79,56 @@
             </header>
         </div>
 
+
+    <h:form id="crud_cupon">
+
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:commandButton value="Registrar" icon="pi pi-plus" styleClass="ui-button-success me-3" action="#{cuponBean.crearCuponDialog()}" update="dialogo_crear" oncomplete="PF('registrar_cupon').show()" />
+                <p:commandButton id="boton_borrar" value="#{cuponBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{cuponBean.cuponesSeleccionados.size()==0}" styleClass="ui-button-danger" action="#{cuponBean.eliminarCupones()}" update="crud_cupon:lista_cupones,@this" />
+            </p:toolbarGroup>
+        </p:toolbar>
+
+
+
+        <p:dataTable id="lista_cupones" value="#{cuponBean.cupones}" var="cupon" paginator="true" rows="10"
+                     rowKey="#{cupon.codigo}"
+                     paginatorPosition="bottom" rowSelectMode="add"
+                     selection="#{cuponBean.cuponesSeleccionados}">
+
+            <p:ajax event="rowSelect" update="crud_cupon:boton_borrar" />
+            <p:ajax event="rowUnselect" update="crud_cupon:boton_borrar" />
+            <p:ajax event="rowSelectCheckbox" update="crud_cupon:boton_borrar" />
+            <p:ajax event="rowUnselectCheckbox" update="crud_cupon:boton_borrar" />
+            <p:ajax event="toggleSelect" update="crud_cupon:boton_borrar" />
+
+            <p:column selectionMode="multiple" exportable="false" />
+
+            <p:column headerText="Codigo" >
+                <h:outputText value="#{cupon.codigo}"/>
+            </p:column>
+
+            <p:column headerText="Descripcion" >
+                <h:outputText value="#{cupon.descripcion}"/>
+            </p:column>
+
+            <p:column headerText="Fecha Vencimiento" >
+                <h:outputText value="#{cupon.fechaVencimiento}"/>
+            </p:column>
+
+            <p:column headerText="Descuento" >
+                <h:outputText value="#{cupon.valorDescuento}"/>
+            </p:column>
+
+            <p:column headerText="" >
+                <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{cuponBean.seleccionarCupon(cupon)}" oncomplete="PF('registrar_cupon').show()" update="dialogo_crear"/>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+
+    <p:dialog id="dialogo_crear" widgetVar="registrar_cupon" modal="true" header="#{cuponBean.mensajeCrearEditar}" showEffect="fade">
+
         <h1>REGISTRO CUPON</h1>
 
         <h:form>
@@ -102,11 +152,12 @@
 
 
             </h:panelGrid>
-            <p:commandButton value="Registrar Cupon" action= "#{cuponBean.registrarCupon()}" icon="pi pi-plus-circle" update="@form"/>
+            <p:commandButton value="#{cuponBean.mensajeCrearEditar}" action= "#{cuponBean.registrarCupon()}" icon="pi pi-plus-circle" update="@form,crud_cupon:lista_cupones"/>
             <p:growl for="mensaje_registro_cupon" showDetail="true"/>
 
         </h:form>
-    </p:panel>
+    </p:dialog>
+
 </h:body>
 
 </html>

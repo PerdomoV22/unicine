@@ -11,12 +11,12 @@
     <h:outputStylesheet name="bootstrap.min.css" library="css" />
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
     <h:outputStylesheet name="styles.css" library="css" />
-    <title>Registro Producto</title>
+    <title>Registro Confiteria</title>
 </h:head>
 
 
 <h:body style="background-color: whitesmoke">
-    <p:panel>
+
         <div>
             <header>
                 <div class="px-3 py-2 text-bg-dark" style="background-color: #4f5050">
@@ -79,6 +79,61 @@
             </header>
         </div>
 
+
+    <h:form id="crud_confiteria">
+
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:commandButton value="Registrar" icon="pi pi-plus" styleClass="ui-button-success me-3" action="#{confiteriaBean.crearConfiteriaDialog()}" update="dialogo_crear" oncomplete="PF('registrar_confiteria').show()" />
+                <p:commandButton id="boton_borrar" value="#{confiteriaBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{confiteriaBean.confiteriasSeleccionados.size()==0}" styleClass="ui-button-danger" action="#{confiteriaBean.eliminarConfiterias()}" update="crud_confiteria:lista_confiterias,@this" />
+            </p:toolbarGroup>
+        </p:toolbar>
+
+
+
+        <p:dataTable id="lista_confiterias" value="#{confiteriaBean.confiterias}" var="confiteria" paginator="true" rows="10"
+                     rowKey="#{confiteria.codigoProducto}"
+                     paginatorPosition="bottom" rowSelectMode="add"
+                     selection="#{confiteriaBean.confiteriasSeleccionados}">
+
+            <p:ajax event="rowSelect" update="crud_confiteria:boton_borrar" />
+            <p:ajax event="rowUnselect" update="crud_confiteria:boton_borrar" />
+            <p:ajax event="rowSelectCheckbox" update="crud_confiteria:boton_borrar" />
+            <p:ajax event="rowUnselectCheckbox" update="crud_confiteria:boton_borrar" />
+            <p:ajax event="toggleSelect" update="crud_confiteria:boton_borrar" />
+
+            <p:column selectionMode="multiple" exportable="false" />
+
+            <p:column headerText="Codigo" >
+                <h:outputText value="#{confiteria.codigoProducto}"/>
+            </p:column>
+
+            <p:column headerText="Nombre" >
+                <h:outputText value="#{confiteria.nombre}"/>
+            </p:column>
+
+            <p:column headerText="Precio" >
+                <h:outputText value="#{confiteria.precio}"/>
+            </p:column>
+
+            <p:column headerText="Imagen" >
+                <h:outputText value="#{confiteria.imagen}"/>
+            </p:column>
+
+            <p:column headerText="Tipo Confiteria" >
+                <h:outputText value="#{confiteria.tipoConfiteria}"/>
+            </p:column>
+
+            <p:column headerText="" >
+                <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{confiteriaBean.seleccionarConfiteria(confiteria)}" oncomplete="PF('registrar_confiteria').show()" update="dialogo_crear"/>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+
+    <p:dialog id="dialogo_crear" widgetVar="registrar_confiteria" modal="true" header="#{confiteriaBean.mensajeCrearEditar}" showEffect="fade">
+
+
         <h1>REGISTRO CONFITERIA</h1>
 
         <h:form>
@@ -98,11 +153,12 @@
 
 
             </h:panelGrid>
-            <p:commandButton value="Registrar Confiteria" action= "#{confiteriaBean.registrarConfiteria()}" icon="pi pi-plus-circle" update="@form"/>
+            <p:commandButton value="#{confiteriaBean.mensajeCrearEditar}" action= "#{confiteriaBean.registrarConfiteria()}" icon="pi pi-plus-circle" update="@form,crud_confiteria:lista_confiterias"/>
             <p:growl for="mensaje_registro_confiteria" showDetail="true"/>
 
         </h:form>
-    </p:panel>
+    </p:dialog>
+
 </h:body>
 
 </html>
