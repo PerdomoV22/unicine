@@ -15,6 +15,7 @@
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="/css/normalize.css"></link>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
     <title>Unicine</title>
 </h:head>
 <h:body>
@@ -57,6 +58,7 @@
     </header>
 
     <!--Carousel -->
+   
 
     <!-- Buscador -->
     <div class="contenido-bus border-bottom">
@@ -81,17 +83,27 @@
                                 <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">#{pelicula.nombrePelicula}</h3>
                                 <ul class="d-flex list-unstyled mt-auto">
                                     <li class="me-auto">
-                                        <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"/>
+                                        <div class="contenido-boton">
+                                            <div class="btn">
+                                                    <h4>¡Ver!</h4>
+                                                    <i class="pi pi-shopping-cart" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li class="d-flex align-items-center me-3">
-                                        <!--<svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>-->
-                                        <i class="pi pi-star-fill" style="margin-right: 3px"></i>
-                                        <small>Genero</small>
+                                        <small>
+                                            <p:repeat value="#{pelicula.genero}" var="genero">
+                                                <p:chip label="#{genero}" styleClass="me-2" style="background-color: white"/>
+                                            </p:repeat>
+                                        </small>
                                     </li>
                                     <li class="d-flex align-items-center">
-                                        <!--<svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>-->
                                         <i class="pi pi-star-fill" style="margin-right: 3px"></i>
-                                        <small>Calificaciones</small>
+                                        <small>
+                                            <p:repeat value="#{pelicula.codigo}" var="codigo">
+                                                <p:chip label="#{codigo}" styleClass="me-2" style="background-color: white"/>
+                                            </p:repeat>
+                                        </small>
                                     </li>
                                 </ul>
                             </div>
@@ -112,17 +124,27 @@
                                 <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">#{pelicula.nombrePelicula}</h3>
                                 <ul class="d-flex list-unstyled mt-auto">
                                     <li class="me-auto">
-                                        <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"/>
+                                        <div class="contenido-boton">
+                                            <div class="btn">
+                                                <h4>¡Ver!</h4>
+                                                <i class="pi pi-thumbs-up" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li class="d-flex align-items-center me-3">
-                                        <!--<svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>-->
-                                        <i class="pi pi-star-fill" style="margin-right: 3px"></i>
-                                        <small>Genero</small>
+                                        <small>
+                                            <p:repeat value="#{pelicula.genero}" var="codigo">
+                                                <p:chip label="#{codigo}" styleClass="me-2" style="background-color: white" />
+                                            </p:repeat>
+                                        </small>
                                     </li>
                                     <li class="d-flex align-items-center">
-                                        <!--<svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>-->
                                         <i class="pi pi-star-fill" style="margin-right: 3px"></i>
-                                        <small>Calificaciones</small>
+                                        <small>
+                                            <p:repeat value="#{pelicula.codigo}" var="codigo">
+                                                <p:chip label="#{codigo}" styleClass="me-2" style="background-color: white" />
+                                            </p:repeat>
+                                        </small>
                                     </li>
                                 </ul>
                             </div>
