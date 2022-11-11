@@ -54,7 +54,7 @@ insert into pelicula values (5, "PROXIMAMENTE", "url-imagen", "Fantasma", "Sophi
 insert into pelicula_genero values (1, "DRAMA");
 insert into pelicula_genero values (1, "TERROR");
 insert into pelicula_genero values (3, "DRAMA");
-insert into pelicula_genero values (4, "ROMANTICA");
+insert into pelicula_genero values (4, "ROMANCE");
 insert into pelicula_genero values (5, "TERROR");
 insert into pelicula_genero values (2, "ACCION");
 
