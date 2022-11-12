@@ -31,15 +31,14 @@ public class InicioBean implements Serializable {
     private List<Ciudad> ciudades;
     @Getter @Setter
     private Ciudad ciudad;
-
+    @Getter @Setter
     private List<String> listaImagenes;
 
     @PostConstruct
     public void inicializar(){
         try {
             listaImagenes = new ArrayList<>();
-            listaImagenes.add(" ");
-            listaImagenes.add(" ");
+            listaImagenes.add("https://picsum.photos/300/200?random=1");
             listaImagenes.add(" ");
             listaImagenes.add(" ");
 

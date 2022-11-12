@@ -13,6 +13,7 @@
     <h:outputStylesheet name="bootstrap.min.css" library="css" />
     <h:outputStylesheet name="estilo.css" library="css" />
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="/css/normalize.css"></link>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
@@ -57,8 +58,23 @@
         </div>
     </header>
 
-    <!--Carousel -->
-   
+    <!--Carousel
+    <div class="main-carousel">
+       <p:carousel value="#{inicioBean.listaImagenes}" var="imagen" numVisible="1" numScroll="1">
+           <div class="item-carousel">
+               <h1></h1>
+           </div>
+       </p:carousel>
+    </div>-->
+
+    <div class="carousel" data-flickity='{ "wrapAround": true }'>
+        <p:repeat value="#{inicioBean.listaImagenes}" var="imaganes">
+            <div class="carousel-cell">
+                <h1></h1>
+            </div>
+        </p:repeat>
+    </div>
+
 
     <!-- Buscador -->
     <div class="contenido-bus border-bottom">
@@ -78,7 +94,7 @@
             <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
                 <p:repeat value="#{inicioBean.peliculasCartelera}" var="pelicula">
                     <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-color: #000000;">
+                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background: #1a1e21">
                             <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                                 <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">#{pelicula.nombrePelicula}</h3>
                                 <ul class="d-flex list-unstyled mt-auto">
@@ -225,5 +241,7 @@
             </a>
         </div>
     </div>
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </h:body>
 </html>

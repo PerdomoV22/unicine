@@ -167,6 +167,38 @@ header{
     padding: 0px 2rem 0px 0px;
 }
 
+/*Carousel*/
+.carousel {
+    background: #FFF;
+    padding-top: 1rem;
+}
+
+.carousel-cell {
+    width: 66%;
+    height: 200px;
+    margin-right: 10px;
+    background: #000;
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+}
+
+.carousel-cell:before {
+    display: block;
+    text-align: center;
+    content: counter(carousel-cell);
+    line-height: 200px;
+    font-size: 80px;
+    color: white;
+}
+
+.carousel-cell h1 {
+    background-color: #adb5bd;
+    width: 70%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-left: 15%;
+}
 /* Buscador*/
 .contenido-bus {
     display: flex;
@@ -174,7 +206,7 @@ header{
     width: 1040px;
     height: 50px;
     padding-bottom: 0;
-    margin: 0 auto;
+    margin: 40px auto 0 auto;
     align-items: center;
 }
 
@@ -185,6 +217,8 @@ header{
     padding: 0;
     margin: 0;
 }
+
+
 /*Contenido Peliculas*/
 .container {
     width: 1040px;

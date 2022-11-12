@@ -83,9 +83,6 @@ public class ClienteServicioImpl implements ClienteServicio{
     @Override
     public List<Pelicula> buscarPeliculaPorEstadoCiudad(Integer codigo, EstadoPelicula estadoPelicula) throws Exception {
         List<Pelicula> peliculaGuardada = funcionRepo.listarPeliculaEstadoCiudad(codigo, estadoPelicula);
-        if(peliculaGuardada.isEmpty()){
-            throw new Exception("La pelicula NO EXISTE");
-        }
         return peliculaGuardada;
     }
 

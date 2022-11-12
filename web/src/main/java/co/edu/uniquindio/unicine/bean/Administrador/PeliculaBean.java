@@ -1,10 +1,15 @@
 package co.edu.uniquindio.unicine.bean.Administrador;
 
 import co.edu.uniquindio.unicine.entidades.EstadoPelicula;
+import co.edu.uniquindio.unicine.servicios.CloudinaryServicio;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.servicios.AdministradorServicio;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.application.resource.barcode.UPCAGenerator;
+import org.primefaces.component.fileupload.FileUpload;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +17,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 @ViewScoped
@@ -28,19 +38,21 @@ public class PeliculaBean implements Serializable {
 
     @Setter @Getter
     private List<Pelicula> peliculasSeleccionados;
-
     private boolean editar;
-
+    @Autowired
+    private CloudinaryServicio cloudinaryServicio;
     @Autowired
     private  AdministradorServicio administradorServicio;
+
+    private Map<String, String> imagenes;
 
     @PostConstruct
     public void init(){
         pelicula = new Pelicula();
-
         peliculas = administradorServicio.listarPeliculas();
         peliculasSeleccionados = new ArrayList<>();
         editar= false;
+        imagenes = new HashMap<>();
     }
 
     public void registrarPelicula(){
@@ -106,5 +118,40 @@ public class PeliculaBean implements Serializable {
     public void crearPeliculaDialog(){
         this.pelicula= new Pelicula();
         editar=false;
+
+        try{
+            if(!imagenes.isEmpty()){
+                pelicula.setImagenes(imagenes);
+
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Pelicula creada correctamente");
+                FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
+            }else{
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Es necesario subir al menos una foto");
+                FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
+            }
+        }catch (Exception e){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
+        }
+    }
+
+    public void subirImagenes(FileUploadEvent event) throws IOException {
+        try {
+            UploadedFile imagen = event.getFile();
+            File imagenFile = convertirUploadedfile(imagen);
+            Map resultado = cloudinaryServicio.subirImagen(imagenFile, "peliculas");
+            imagenes.put(resultado.get("public_id").toString(), resultado.get("url").toString());
+        }catch (Exception e){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
+        }
+    }
+
+    private File convertirUploadedfile(UploadedFile imagen) throws IOException{
+        File file = new File(imagen.getFileName());
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.write(imagen.getContent());
+        fos.close();
+        return file;
     }
 }

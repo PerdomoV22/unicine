@@ -23,7 +23,7 @@ public interface FuncionRepo extends JpaRepository<Funcion, Integer> {
     List<Pelicula> obtenerPelicula();
 
     //Esta consulta retora los atributos de la FuncionDTO y busca una funcion dado el codigo de la pelicula
-    @Query("select new  co.edu.uniquindio.unicine.dto.FuncionDTO(f.pelicula.nombrePelicula, f.pelicula.estadoPelicula, f.pelicula.imagen, f.sala.numeroSala, f.sala.teatro.direccion, f.sala.teatro.ciudad.nombreCiudad, f.horario) from Funcion f where f.pelicula.codigo = :codigo")
+    @Query("select new  co.edu.uniquindio.unicine.dto.FuncionDTO(f.pelicula.nombrePelicula, f.pelicula.estadoPelicula, f.pelicula.imagenes, f.sala.numeroSala, f.sala.teatro.direccion, f.sala.teatro.ciudad.nombreCiudad, f.horario) from Funcion f where f.pelicula.codigo = :codigo")
     List<FuncionDTO> listarFunciones(Integer codigo);
 
     //Esta funcion retorna todas funciones que no tienen compra
