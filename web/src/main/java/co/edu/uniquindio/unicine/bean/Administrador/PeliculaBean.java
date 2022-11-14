@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.bean.Administrador;
 
 import co.edu.uniquindio.unicine.entidades.EstadoPelicula;
+import co.edu.uniquindio.unicine.entidades.Genero;
 import co.edu.uniquindio.unicine.servicios.CloudinaryServicio;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.servicios.AdministradorServicio;
@@ -21,10 +22,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 @ViewScoped
@@ -46,6 +44,9 @@ public class PeliculaBean implements Serializable {
 
     private Map<String, String> imagenes;
 
+    @Setter @Getter
+    private List<Genero> generos;
+
     @PostConstruct
     public void init(){
         pelicula = new Pelicula();
@@ -53,6 +54,7 @@ public class PeliculaBean implements Serializable {
         peliculasSeleccionados = new ArrayList<>();
         editar= false;
         imagenes = new HashMap<>();
+        generos = Arrays.asList(Genero.values());
     }
 
     public void registrarPelicula(){

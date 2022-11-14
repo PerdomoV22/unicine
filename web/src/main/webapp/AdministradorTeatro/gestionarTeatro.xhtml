@@ -16,7 +16,6 @@
 
 
 <h:body style="background-color: whitesmoke">
-    <p:panel>
 
         <div>
 
@@ -75,6 +74,62 @@
 
         </div>
 
+
+        <h:form id="crud_teatro">
+
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Registrar" icon="pi pi-plus" styleClass="ui-button-success me-3" action="#{teatroBean.crearTeatroDialog()}" update="dialogo_crear" oncomplete="PF('registrar_teatro').show()" />
+                    <p:commandButton id="boton_borrar" value="#{teatroBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{teatroBean.teatrosSeleccionados.size()==0}" styleClass="ui-button-danger" action="#{teatroBean.eliminarTeatros()}" update="crud_teatro:lista_teatros,@this" />
+                </p:toolbarGroup>
+            </p:toolbar>
+
+
+
+            <p:dataTable id="lista_teatros" value="#{teatroBean.teatros}" var="teatro" paginator="true" rows="10"
+                         rowKey="#{teatro.nit}"
+                         paginatorPosition="bottom" rowSelectMode="add"
+                         selection="#{teatroBean.teatrosSeleccionados}">
+
+                <p:ajax event="rowSelect" update="crud_teatro:boton_borrar" />
+                <p:ajax event="rowUnselect" update="crud_teatro:boton_borrar" />
+                <p:ajax event="rowSelectCheckbox" update="crud_teatro:boton_borrar" />
+                <p:ajax event="rowUnselectCheckbox" update="crud_teatro:boton_borrar" />
+                <p:ajax event="toggleSelect" update="crud_teatro:boton_borrar" />
+
+                <p:column selectionMode="multiple" exportable="false" />
+
+                <p:column headerText="Codigo" >
+                    <h:outputText value="#{teatro.nit}"/>
+                </p:column>
+
+                <p:column headerText="Nombre" >
+                    <h:outputText value="#{teatro.nombre}"/>
+                </p:column>
+
+                <p:column headerText="Ciudad " >
+                    <h:outputText value="#{teatro.ciudad.nombreCiudad}"/>
+                </p:column>
+
+                <p:column headerText="Direccion" >
+                    <h:outputText value="#{teatro.direccion}"/>
+                </p:column>
+
+                <p:column headerText="Administrador Teatro" >
+                    <h:outputText value="#{teatro.administradorTeatro.nombre}"/>
+                </p:column>
+
+
+                <p:column headerText="" >
+                    <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{productoBean.seleccionarProducto(producto)}" oncomplete="PF('registrar_producto').show()" update="dialogo_crear"/>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+
+
+        <p:dialog id="dialogo_crear" widgetVar="registrar_teatro" modal="true" header="#{teatroBean.mensajeCrearEditar}" showEffect="fade">
+
         <h1>REGISTRO TEATRO</h1>
         <h:form>
             <h:panelGrid columns="3" cellpadding="5" >
@@ -101,11 +156,12 @@
 
 
             </h:panelGrid>
-            <p:commandButton value="Registrar teatro" action= "#{teatroBean.registrarTeatro()}" icon="pi pi-plus-circle" update="@form"/>
+            <p:commandButton value="Registrar teatro" action= "#{teatroBean.registrarTeatro()}" icon="pi pi-plus-circle" update="@form,crud_teatro:lista_teatros"/>
             <p:growl for="mensaje_registro_teatro" showDetail="true"/>
 
         </h:form>
-    </p:panel>
+        </p:dialog>
+
 </h:body>
 
 </html>

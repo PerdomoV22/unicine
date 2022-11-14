@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -37,6 +38,9 @@ public class ConfiteriaBean {
     @Autowired
     private AdministradorServicio administradorServicio;
 
+    @Getter @Setter
+    private List<TipoConfiteria> tipoConfiterias;
+
     @PostConstruct
     public void init(){
         confiteria = new Confiteria();
@@ -44,6 +48,7 @@ public class ConfiteriaBean {
         confiterias = administradorServicio.listarConfiteria();
         confiteriasSeleccionados = new ArrayList<>();
         editar= false;
+        tipoConfiterias= Arrays.asList(TipoConfiteria.values());
     }
 
     public void registrarConfiteria(){

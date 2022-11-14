@@ -151,6 +151,12 @@
                 <p:inputText id="imagen_confiteria" value = "#{confiteriaBean.confiteria.imagen}" required="true"/>
                 <p:messages for="imagen_confiteria"/>
 
+                <p:outputLabel for="tipoconfiteria_confiteria" value = "Tipo Confiteria : "/>
+                <p:selectManyCheckbox id="tipoconfiteria_confiteria" value="#{confiteriaBean.confiteria.tipoConfiteria}">
+                    <f:selectItems value="#{confiteriaBean.confiterias}" var="tipoconfiteria" itemLabel="#{tipoConfiteria}" itemValue="#{tipoConfiterias}"/>
+                </p:selectManyCheckbox>
+                <p:messages for="tipoconfiteria_confiteria"/>
+
 
             </h:panelGrid>
             <p:commandButton value="#{confiteriaBean.mensajeCrearEditar}" action= "#{confiteriaBean.registrarConfiteria()}" icon="pi pi-plus-circle" update="@form,crud_confiteria:lista_confiterias"/>

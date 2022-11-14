@@ -29,7 +29,7 @@ public class Horario implements Serializable {
     @ElementCollection
     private List<DiaSemana> dia;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Time hora;
 
     @Column(nullable = false)
