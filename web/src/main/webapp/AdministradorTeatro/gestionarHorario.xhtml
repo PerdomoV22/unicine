@@ -137,6 +137,9 @@
                 <p:datePicker id="fechaFinal_Horario" value = "#{horarioBean.horario.fechaFinal}" required="true"/>
                 <p:messages for="fechaFinal_Horario"/>
 
+                <p:outputLabel for="timeonly" value = "Hora : "/>
+                <p:datePicker id="timeonly" value="#{horarioBean.horario.hora}" timeOnly="true" pattern="HH:mm"/>
+                <p:messages for="timeonly"/>
 
             </h:panelGrid>
             <p:commandButton value="Registrar Horario" action= "#{horarioBean.registrarHorario()}" icon="pi pi-plus-circle" update="@form,crud_horario:lista_horarios"/>

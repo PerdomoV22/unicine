@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -30,7 +31,7 @@ public class Horario implements Serializable {
     private List<DiaSemana> dia;
 
     @Column(nullable = true)
-    private Time hora;
+    private LocalTime hora;
 
     @Column(nullable = false)
     private LocalDate fechaInicio;
@@ -46,7 +47,7 @@ public class Horario implements Serializable {
     private List<Funcion> funciones;
 
     // Constructor
-    public Horario(List<DiaSemana> dia, Time hora, LocalDate fechaInicio, LocalDate fechaFinal) {
+    public Horario(List<DiaSemana> dia, LocalTime hora, LocalDate fechaInicio, LocalDate fechaFinal) {
         this.dia = dia;
         this.hora = hora;
         this.fechaInicio = fechaInicio;

@@ -115,7 +115,7 @@ public class FuncionTest {
         List<DiaSemana> dias = new ArrayList<>();
         dias.add(DiaSemana.LUNES);
         dias.add(DiaSemana.JUEVES);
-        Time hora = Time.valueOf("20:30");
+        LocalTime hora = LocalTime.of(20, 30);
         List<Funcion> funciones = funcionRepo.obtenerFuncionesHorario(3, dias, hora);
         funciones.forEach(System.out::println);
     }

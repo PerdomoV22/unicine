@@ -19,7 +19,7 @@ public class CloudinaryServicio {
         config = new HashMap<>();
         config.put("cloud_name", "dz6jlo2kt");
         config.put("api_key", "658431486172965");
-        config.put("spi_secret", "fEICfqC5S2BC9fzgvZIHUfEloPI");
+        config.put("api_secret", "fEICfqC5S2BC9fzgvZIHUfEloPI");
 
         cloudinary = new Cloudinary(config);
     }

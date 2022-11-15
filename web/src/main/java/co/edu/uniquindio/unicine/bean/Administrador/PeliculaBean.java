@@ -144,6 +144,7 @@ public class PeliculaBean implements Serializable {
             Map resultado = cloudinaryServicio.subirImagen(imagenFile, "peliculas");
             imagenes.put(resultado.get("public_id").toString(), resultado.get("url").toString());
         }catch (Exception e){
+            e.printStackTrace();
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
             FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
         }

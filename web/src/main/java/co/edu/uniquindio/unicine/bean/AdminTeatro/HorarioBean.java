@@ -12,7 +12,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -37,6 +40,9 @@ public class HorarioBean implements Serializable {
     @Setter
     private List<Horario> horariosSeleccionados;
 
+    @Getter
+    @Setter
+    private Date fechaHora;
     private boolean editar;
 
     @PostConstruct
@@ -50,8 +56,10 @@ public class HorarioBean implements Serializable {
 
 
     public void registrarHorario(){
+
         try {
             if(!editar) {
+                //horario.setHora(LocalTime.);
                 Horario registro = adminTeatroServicio.crearHorarios(horario);
                 horarios.add(registro);
 

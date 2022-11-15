@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +41,7 @@ public interface FuncionRepo extends JpaRepository<Funcion, Integer> {
 
     //Esta consulta obtiene una funcion dado el codigo de la sala, los dias de la semana y la hora
     @Query("select f from Funcion f join f.horario.dia d where f.sala.numeroSala = :codigoSala and d in :dIaSemana and f.horario.hora = :hora")
-    List<Funcion> obtenerFuncionesHorario(Integer codigoSala, List<DiaSemana> dIaSemana, Time hora);
+    List<Funcion> obtenerFuncionesHorario(Integer codigoSala, List<DiaSemana> dIaSemana, LocalTime hora);
 
     //Esta consulta muestra todas las entradas que tiene una funcion dado el codigo de la funcion
     @Query("select entradas from Funcion funcion, IN (funcion.compras) compras, IN(compras.entradas) entradas where funcion.codigo = :codigo")

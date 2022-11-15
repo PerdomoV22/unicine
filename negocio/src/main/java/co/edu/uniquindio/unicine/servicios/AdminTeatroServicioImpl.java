@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -115,7 +116,7 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio{
         return horario.get();
     }
 
-    public boolean HorarioRepetido(Time hora){
+    public boolean HorarioRepetido(LocalTime hora){
         return horarioRepo.findByHora(hora).orElse(null)!= null;
     }
 
