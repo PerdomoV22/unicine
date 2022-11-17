@@ -42,13 +42,23 @@ insert into teatro values (4, "Cra. 6 #3-180", "UniCine", 1090, 1015, 3);
 insert into teatro values (5, "Cra. 66B #34A-76", "UniCine", 1090, 1016, 3);
 
 /*------------------------------Pelicula----------------------------------------------*/
-/*Pelicula: codigo, estado, imagen, nombre, reparto, sinopsis, trailer*/
+/*Pelicula: codigo, estado, nombre, reparto, sinopsis, trailer*/
 insert into pelicula values (1, "CARTELERA", "La huerfana: EL origen", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
 insert into pelicula values (2, "CARTELERA", "Avatar Relanzamiento", "Sam Worthington, Zoe Saldaña, Stephen Lang, Michelle Rodriguez y Sigourney Weaver. ", "Vive nuevamente la primera entrega de Avatar (2009) en nuestras salas. AVATAR, ganadora del Premio de la Academia® en 2009", "url-video");
 insert into pelicula values (3, "CARTELERA",  "Pasaje al paraiso", "George Clooney, Julia Roberts.", "George Clooney y Julia Roberts se reúnen en la pantalla grande como ex esposos que comparten la misión de evitar que su enamorada hija cometa el mismo error que ellos mismos cometieron una vez.", "url-video");
 insert into pelicula values (4, "PROXIMAMENTE", "No te preocuoes carinho", "Florence Pugh, Harry Styles, Chris Pine.", "Thriller psicológico centrado en una infeliz ama de casa en la década de 1950 que descubre una inquietante verdad. ", "url-video");
 insert into pelicula values (5, "PROXIMAMENTE", "Fantasma", "Sophie Stevens, Kirstie Steele, Nick Bayly.", "Emma ha sido contratada como cuidadora nocturna del Sr. Cunningham. El que fuera un pilar de la comunidad local tiene demencia y ha sufrido un derrame cerebral, por lo que está solo en su destartalada casa.", "url-video");
 /*insert into pelicula values (6, 1, "url-imagen", "La huerfana", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");*/
+
+
+/*Pelicula_imagenes : codigo, imagenes, imagenes_key*/
+
+insert into pelicula_imagenes values(1,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668697247/unicine/peliculas/rftxatt2phfbi7gqtmly.jpg","unicine/peliculas/rftxatt2phfbi7gqtmly");
+insert into pelicula_imagenes values(2,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668697247/unicine/peliculas/rftxatt2phfbi7gqtmly.jpg","unicine/peliculas/rftxatt2phfbi7gqtmly");
+insert into pelicula_imagenes values(3,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668697247/unicine/peliculas/rftxatt2phfbi7gqtmly.jpg","unicine/peliculas/rftxatt2phfbi7gqtmly");
+insert into pelicula_imagenes values(4,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668697247/unicine/peliculas/rftxatt2phfbi7gqtmly.jpg","unicine/peliculas/rftxatt2phfbi7gqtmly");
+insert into pelicula_imagenes values(5,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668697247/unicine/peliculas/rftxatt2phfbi7gqtmly.jpg","unicine/peliculas/rftxatt2phfbi7gqtmly");
+
 
 /*------------------------------Genero---------------------------------------------------*/
 insert into pelicula_genero values (1, "DRAMA");
@@ -125,12 +135,19 @@ insert into cupon_cliente values (4, 1, 1004, 4);
 insert into cupon_cliente values (5, 0, 1008, 5);
 
 /*------------------------------Confiteria----------------------------------------------*/
-/*Confiteria: codProducto, categoria, imagen,  nombre, precio*/
-insert into confiteria values (1, 'Bebidas', "fotobebida","CocaCola", 10000);
-insert into confiteria values (2, 'Combos', "fotocombos" , "Combo Mayor", 45000);
-insert into confiteria values (3, 'Crispetas', "fotocrispetas","Crispetas 250gr", 25000);
-insert into confiteria values (4, 'Dulceria', "fotodulceria", "Chocolatina", 3000);
-insert into confiteria values (5, 'Hot_Dogs',  "fotoHotdogs","Perro sencillo", 12000);
+/*Confiteria: codProducto, nombre, precio , tipo confiteria*/
+insert into confiteria values (1, "CocaCola", 10000,'Bebidas');
+insert into confiteria values (2, "Combo Mayor", 45000, 'Combos');
+insert into confiteria values (3, "Crispetas 250gr", 25000,'Crispetas');
+insert into confiteria values (4, "Chocolatina", 3000,'Dulceria');
+insert into confiteria values (5, "Perro sencillo", 12000,'Hot_Dogs');
+
+/*Confiteria_imagenes: codigo, imagenes, imagenes_key*/
+insert into confiteria_imagenes values (1,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668661079/unicine/confiterias/jtrltpt2v82cjlokq9we.jpg","unicine/confiterias/jtrltpt2v82cjlokq9we");
+insert into confiteria_imagenes values (2,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668661079/unicine/confiterias/jtrltpt2v82cjlokq9we.jpg","unicine/confiterias/jtrltpt2v82cjlokq9we");
+insert into confiteria_imagenes values (3,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668661079/unicine/confiterias/jtrltpt2v82cjlokq9we.jpg","unicine/confiterias/jtrltpt2v82cjlokq9we");
+insert into confiteria_imagenes values (4,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668661079/unicine/confiterias/jtrltpt2v82cjlokq9we.jpg","unicine/confiterias/jtrltpt2v82cjlokq9we");
+insert into confiteria_imagenes values (5,"http://res.cloudinary.com/dz6jlo2kt/image/upload/v1668661079/unicine/confiterias/jtrltpt2v82cjlokq9we.jpg","unicine/confiterias/jtrltpt2v82cjlokq9we");
 
 /*------------------------------Funcion----------------------------------------------*/
 /*Funcion: codigo, precio, horaioCod, codPelicula, sala_numero_sala*/
