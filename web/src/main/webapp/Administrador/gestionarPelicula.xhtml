@@ -145,7 +145,7 @@
 
         <h1>REGISTRO PELICULA</h1>
 
-        <h:form>
+        <h:form >
             <h:panelGrid columns="3" cellpadding="5" >
 
                 <p:outputLabel for="nombre_pelicula" value = "Nombre Pelicula : "/>
@@ -175,6 +175,11 @@
                     <f:selectItems value="#{peliculaBean.generos}" var="genero" itemLabel="#{genero}" itemValue="#{genero}"/>
                 </p:selectManyCheckbox>
                 <p:messages for="reparto_pelicula"/>
+
+                <p:outputLabel for="estado_pelicula" value = "Estado Pelicula : " />
+                <p:selectManyMenu id="estado_pelicula" value="#{peliculaBean.estadoPelis}" layout="grid" columns="3">
+                    <f:selectItems value="#{peliculaBean.estadosPeliculas}" var="estadopelicula" itemLabel="#{estadopelicula}" itemValue="#{estadopelicula}"/>
+                </p:selectManyMenu>
 
 
             </h:panelGrid>

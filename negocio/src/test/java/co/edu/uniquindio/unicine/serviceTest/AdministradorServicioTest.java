@@ -172,7 +172,7 @@ public class AdministradorServicioTest {
     @Sql("classpath:dataset.sql")
     public void crearPeliculas(){
         try {
-            Pelicula pelicula = new Pelicula("La purga 2", "trailer de la peli" , "img " , " sipnisis peli" , "reparto de la peli", EstadoPelicula.CARTELERA, null);
+            Pelicula pelicula = new Pelicula("La purga 2", "trailer de la peli" , " sipnisis peli" , "reparto de la peli", EstadoPelicula.CARTELERA, null);
             Pelicula peliculaCreada= administradorServicio.crearPeliculas(pelicula);
             Assertions.assertNotNull(peliculaCreada);
             System.out.println(peliculaCreada.getNombrePelicula());
@@ -240,7 +240,7 @@ public class AdministradorServicioTest {
     public void crearConfiteria(){
 
         try {
-            Confiteria confiteria = new Confiteria(1234, "ICE" , 7500.00 , "IMG PRODUCTO", TipoConfiteria.Bebidas, null);
+            Confiteria confiteria = new Confiteria( "ICE" , 7500.00 ,  TipoConfiteria.Bebidas);
             Confiteria ConfiteriaCreada= administradorServicio.crearConfiteria(confiteria);
             Assertions.assertNotNull(ConfiteriaCreada);
             System.out.println(ConfiteriaCreada.getNombre());

@@ -2,6 +2,7 @@ package co.edu.uniquindio.unicine.bean.Administrador;
 
 import co.edu.uniquindio.unicine.entidades.EstadoPelicula;
 import co.edu.uniquindio.unicine.entidades.Genero;
+import co.edu.uniquindio.unicine.entidades.TipoConfiteria;
 import co.edu.uniquindio.unicine.servicios.CloudinaryServicio;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.servicios.AdministradorServicio;
@@ -47,6 +48,12 @@ public class PeliculaBean implements Serializable {
     @Setter @Getter
     private List<Genero> generos;
 
+    @Getter @Setter
+    private List<EstadoPelicula> estadosPeliculas;
+
+    @Getter @Setter
+    private List<EstadoPelicula> estadoPelis;
+
     @PostConstruct
     public void init(){
         pelicula = new Pelicula();
@@ -55,18 +62,30 @@ public class PeliculaBean implements Serializable {
         editar= false;
         imagenes = new HashMap<>();
         generos = Arrays.asList(Genero.values());
+        estadosPeliculas = Arrays.asList(EstadoPelicula.values());
+        estadoPelis = new ArrayList<>();
     }
 
     public void registrarPelicula(){
        try {
            if(!editar) {
-               pelicula.setEstadoPelicula(EstadoPelicula.CARTELERA);
-               Pelicula registro = administradorServicio.crearPeliculas(pelicula);
-               peliculas.add(registro);
+               if(!imagenes.isEmpty()){
 
-               pelicula = new Pelicula();
-               FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "La pelicula se ha creado exitosamente");
-               FacesContext.getCurrentInstance().addMessage("mensaje_registro_pelicula", facesMessage);
+                   pelicula.setEstadoPelicula(estadoPelis.get(0));
+                   pelicula.setImagenes(imagenes);
+                   Pelicula registro = administradorServicio.crearPeliculas(pelicula);
+                   peliculas.add(registro);
+
+                   pelicula = new Pelicula();
+                   estadoPelis = new ArrayList<>();
+
+                   FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "La pelicula se ha creado exitosamente");
+                   FacesContext.getCurrentInstance().addMessage("mensaje_registro_pelicula", facesMessage);
+
+               }else{
+                   FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Es necesario subir al menos una foto");
+                   FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
+               }
            }else{
                administradorServicio.actualizarPeliculas(pelicula);
                FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "La pelicula se ha actualizado exitosamente");
@@ -120,21 +139,6 @@ public class PeliculaBean implements Serializable {
     public void crearPeliculaDialog(){
         this.pelicula= new Pelicula();
         editar=false;
-
-        try{
-            if(!imagenes.isEmpty()){
-                pelicula.setImagenes(imagenes);
-
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Pelicula creada correctamente");
-                FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
-            }else{
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Es necesario subir al menos una foto");
-                FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
-            }
-        }catch (Exception e){
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
-            FacesContext.getCurrentInstance().addMessage("mensaje_pelicula", fm);
-        }
     }
 
     public void subirImagenes(FileUploadEvent event) throws IOException {

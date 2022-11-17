@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -28,8 +29,9 @@ public class Confiteria implements Serializable {
     @Column(nullable = false)
     private Double precio;
 
+    @ElementCollection
     @Column(nullable = false)
-    private String imagen;
+    private Map<String, String> imagenes;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -43,10 +45,9 @@ public class Confiteria implements Serializable {
     private List<CompraConfiteria> compraConfiterias;
 
     //Constructor
-    public Confiteria(String nombre, Double precio, String imagen, TipoConfiteria tipoConfiteria) {
+    public Confiteria(String nombre, Double precio, TipoConfiteria tipoConfiteria) {
         this.nombre = nombre;
         this.precio = precio;
-        this.imagen = imagen;
         this.tipoConfiteria = tipoConfiteria;
     }
 }

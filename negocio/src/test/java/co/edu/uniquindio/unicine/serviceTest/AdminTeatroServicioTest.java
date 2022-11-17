@@ -118,7 +118,7 @@ public class AdminTeatroServicioTest {
     public void crearHorariosTest() throws Exception {
 
         try {
-            Horario horario = new Horario(null, Time.valueOf(LocalTime.now()), LocalDate.now(), LocalDate.now());
+            Horario horario = new Horario(null, LocalTime.now(), LocalDate.now(), LocalDate.now());
             Horario horarioCreado = adminTeatroServicio.crearHorarios(horario);
             Assertions.assertNotNull(horarioCreado);
             System.out.println(horarioCreado.getCodigo());
@@ -183,7 +183,7 @@ public class AdminTeatroServicioTest {
     public void crearFuncion() throws Exception{
 
         Pelicula pelicula = administradorServicio.obtenerPelicula(3);
-        Horario horario = new Horario(null, Time.valueOf(LocalTime.now()), LocalDate.now(), LocalDate.now());
+        Horario horario = new Horario(null, LocalTime.now(), LocalDate.now(), LocalDate.now());
         Sala sala = adminTeatroServicio.obtenerSala(3);
         Funcion funcion = Funcion.builder().precio(3500.00).pelicula(pelicula).horario(horario).sala(sala).build();
 
