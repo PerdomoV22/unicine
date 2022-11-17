@@ -209,7 +209,6 @@ public class AdministradorServicioImpl implements AdministradorServicio{
      */
     @Override
     public Pelicula crearPeliculas(Pelicula pelicula) throws Exception {
-
         return peliculaRepo.save(pelicula);
     }
 

@@ -16,7 +16,7 @@
     <h:outputStylesheet name="flickity.min.css" library="css" />
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
     <h:outputScript name="flickity.pkgd.min.js" library="js" />
-    <title>Unicine</title>
+    <title>Unicine | Proximamente</title>
 </h:head>
 <h:body>
     <header class="border-bottom">
@@ -57,73 +57,9 @@
         </div>
     </header>
 
-    <!--Carousel-->
-
-    <div class="carousel" data-flickity='{ "wrapAround": true }'>
-        <p:repeat value="#{inicioBean.listaImagenes}" var="imaganes">
-            <div class="carousel-cell">
-            </div>
-        </p:repeat>
-    </div>
-
-    <!-- Buscador -->
-    <div class="contenido-bus border-bottom">
-        <h1 class="title">CARTELERA</h1>
-        <h:form styleClass="contendor_busqueda">
-            <div class="input-search ui-inputgroup">
-                <p:inputText  styleClass="cajon" placeholder="   ¿Qué película está buscando?" required="true" value="#{busquedaBean.busqueda}" />
-                <p:commandButton styleClass="buttom" update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
-            </div>
-        </h:form>
-    </div>
 
     <!--Peliculas-->
     <div jsf:id="listas_peliculas" class="container">
-        <!--Peliculas (Cartelera)-->
-        <div class="contenido-peliculas">
-            <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-                <p:repeat value="#{inicioBean.peliculasCartelera}" var="pelicula">
-                    <div class="col">
-                        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                             style="background: #1a1e21">
-                            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">#{pelicula.nombrePelicula}</h3>
-                                <ul class="d-flex list-unstyled mt-auto">
-                                    <li class="me-auto">
-                                        <a href="detallePelicula.xhtml?pelicula_id=#{pelicula.codigo}">
-                                            <div class="contenido-boton">
-                                                <div class="btn">
-                                                    <h4>¡Ver!</h4>
-                                                    <i class="pi pi-shopping-cart" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="d-flex align-items-center me-3">
-                                        <small>
-                                            <p:repeat value="#{pelicula.genero}" var="genero">
-                                                <p:chip label="#{genero}" styleClass="me-2"
-                                                        style="background-color: white"/>
-                                            </p:repeat>
-                                        </small>
-                                    </li>
-                                    <li class="d-flex align-items-center">
-                                        <i class="pi pi-star-fill" style="margin-right: 3px"></i>
-                                        <small>
-                                            <p:repeat value="#{pelicula.codigo}" var="codigo">
-                                                <p:chip label="#{codigo}" styleClass="me-2"
-                                                        style="background-color: white"/>
-                                            </p:repeat>
-                                        </small>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </p:repeat>
-            </div>
-        </div>
-
         <!--Peliculas (Proximamente)-->
         <div class="contenido-peliculas">
             <h1 class="title">PROXIMAMENTE</h1>
@@ -169,23 +105,7 @@
     </div>
 
     <!--ELegir Ciudad-->
-    <p:dialog id="dialogo_ciudad" widgetVar="dialogo_ciudad" modal="true" visible="true" header="Seleccionar Ciudad">
-        <h:form>
-            <h:panelGrid columns="3" cellpadding="5">
 
-                <p:outputLabel for="ciudad_origen" value = "Ciudad: "/>
-                <p:selectOneMenu id="ciudad_origen" value="#{inicioBean.ciudad}" converter="#{ciudadConverter}">
-                    <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true" itemValue="#{null}"/>
-                    <f:selectItems value="#{inicioBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombreCiudad}" itemValue="#{ciudad}"/>
-                </p:selectOneMenu>
-
-                <p:message for="ciudad_origen" />
-
-            </h:panelGrid>
-            <p:commandButton value="Seleccionar Ciudad" action= "#{inicioBean.elegirCiudad}" styleClass="mt-4" icon="pi pi-check" update="@form, listas_peliculas" oncomplete="PF('dialogo_ciudad').hide()"/>
-            <p:growl for="mensaje_registro_teatro" showDetail="true"/>
-        </h:form>
-    </p:dialog>
 
     <!--Cupones-->
     <div class="contenido-cupones">
@@ -239,6 +159,5 @@
             </a>
         </div>
     </div>
-
 </h:body>
 </html>

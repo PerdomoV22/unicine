@@ -5,6 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -15,7 +16,7 @@
     <h:outputStylesheet name="flickity.min.css" library="css" />
     <h:outputScript name="bootstrap.bundle.min.js" library="js" />
     <h:outputScript name="flickity.pkgd.min.js" library="js" />
-    <title>Unicine - Busqueda</title>
+    <title>Unicine | Contacto</title>
 </h:head>
 <h:body>
     <header class="border-bottom">
@@ -26,7 +27,7 @@
                         <li><a href="cartelera.xhtml" class="lin">Cartelera</a></li>
                         <li><a href="proximamente.xhtml" class="lin">Pronto</a></li>
                         <li><a href="confiteria.xhtml" class="lin">Confiteria</a></li>
-                        <li><a href="#" class="lin">Contacto</a></li>
+                        <li><a href="contacto.xhtml" class="lin">Contacto</a></li>
                     </ul>
                 </nav>
                 <div class="contenedor-img">
@@ -57,29 +58,12 @@
     </header>
 
 
-    <!--Peliculas-->
-    <p>#{busquedaBean.peliculas}</p>
+    <!--Confiteria-->
 
     <!--ELegir Ciudad-->
 
 
-    <!--Cupones-->
-    <div class="contenido-cupones">
-        <h1 class="title">CUPONES Y TARJETAS</h1>
-        <div class="cupones">
-            <ul>
-                <li>
-                    <img class="imagenUna" src="imagenes/descuento1.jpeg" alt="descuento 15%"/>
-                </li>
-                <li>
-                    <img class="imagenDos" src="imagenes/descuento2.jpeg" alt="descuento 10%"/>
-                </li>
-                <li>
-                    <img class="imagenUna" src="imagenes/unicine.jpeg" alt="Tarjeta UniCine"/>
-                </li>
-            </ul>
-        </div>
-    </div>
+
     <!--Pie Pagina-->
     <footer>
         <div class="contenedor-pie ">
@@ -115,5 +99,6 @@
             </a>
         </div>
     </div>
+
 </h:body>
 </html>

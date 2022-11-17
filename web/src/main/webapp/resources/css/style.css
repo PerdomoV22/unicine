@@ -200,6 +200,7 @@ header{
     margin-left: 15%;
 }
 /* Buscador*/
+
 .contenido-bus {
     display: flex;
     justify-content: space-between;
@@ -216,6 +217,68 @@ header{
     font-size: 25px;
     padding: 0;
     margin: 0;
+}
+
+.contendor_busqueda {
+    transform: translate(-50%, -20%);
+    transition: all 1s;
+    width: 50px;
+    height: 43px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 3px 60px 0px 0;
+}
+
+.cajon.ui-inputfield{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    font-size: 15px;
+}
+
+.ui-inputgroup {
+    display: flex;
+    padding-left: 5px;
+}
+
+body .contendor_busqueda .ui-button.ui-button-icon-only .ui-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+body .contendor_busqueda .ui-inputgroup button:last-child, body .ui-inputgroup input:last-child, body .ui-inputgroup textarea:last-child {
+    border-color: white;
+    background-color: black;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+body .contendor_busqueda .ui-button {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 4px;
+    border-radius: 50%;
+    color: #ffffff;
+    text-align: center;
+    font-size: 10rem;
+    transition: all 1s;
+}
+
+.contendor_busqueda:hover {
+    width: 500px;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px #000000;
+}
+
+.contendor_busqueda:hover input {
+    display: block;
 }
 
 
