@@ -6,150 +6,86 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <h:outputStylesheet name="bootstrap.min.css" library="css" />
-    <h:outputScript name="bootstrap.bundle.min.js" library="js" />
-    <h:outputStylesheet name="styles.css" library="css" />
-    <title>Minimercado | Inicio Admin-Teatro</title>
-</h:head>
 
+<ui:composition template="/WEB-INF/templateAdminTeatro.xhtml">
+    <ui:define name="content">
 
-<h:body style="background-color: darkgray">
+            <h:form id="crud_horario">
 
-    <div id = "barra_nav" >
-        <header>
-            <div class="px-3 py-2 text-bg-dark" style="background-color: #4f5050">
-                <div class="container">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <div>
-                            <a href="menuAdministrador.xhtml" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                                <img src="/imagenes/titulo.png" alt=""/>
-                            </a>
-                        </div>
-
-
-                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                            <li>
-                                <a href="/AdministradorTeatro/menuAdminTeatro.xhtml" class="nav-link text-secondary">
-                                    INICIO
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/AdministradorTeatro/gestionarTeatro.xhtml" class="nav-link text-white">
-                                    TEATROS
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/AdministradorTeatro/gestionarHorario.xhtml" class="nav-link text-white">
-                                    HORARIOS
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/AdministradorTeatro/gestionarFuncion.xhtml" class="nav-link text-white">
-                                    FUNCIONES
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/AdministradorTeatro/gestionarSala.xhtml" class="nav-link text-white">
-                                    SALAS
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="dropdown text-end">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" />
-                            </a>
-                            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><hr class="dropdown-divider"></hr></li>
-                                <li><a class="dropdown-item" href="#">Sign out</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-    </div>
-
-
-    <h:form id="crud_horario">
-
-        <p:toolbar>
-            <p:toolbarGroup>
-                <p:commandButton value="Registrar" icon="pi pi-plus" styleClass="ui-button-success me-3" action="#{horarioBean.crearHorarioDialog()}" update="dialogo_crear" oncomplete="PF('registrar_horario').show()" />
-                <p:commandButton id="boton_borrar" value="#{horarioBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{horarioBean.horariosSeleccionados.size()==0}" styleClass="ui-button-danger" action="#{horarioBean.eliminarHorarios()}" update="crud_horario:lista_horarios,@this" />
-            </p:toolbarGroup>
-        </p:toolbar>
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:commandButton value="Registrar" icon="pi pi-plus" styleClass="ui-button-success me-3" action="#{horarioBean.crearHorarioDialog()}" update="dialogo_crear" oncomplete="PF('registrar_horario').show()" />
+                        <p:commandButton id="boton_borrar" value="#{horarioBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{horarioBean.horariosSeleccionados.size()==0}" styleClass="ui-button-danger" action="#{horarioBean.eliminarHorarios()}" update="crud_horario:lista_horarios,@this" />
+                    </p:toolbarGroup>
+                </p:toolbar>
 
 
 
-        <p:dataTable id="lista_horarios" value="#{horarioBean.horarios}" var="horario" paginator="true" rows="10"
-                     rowKey="#{horario.codigo}"
-                     paginatorPosition="bottom" rowSelectMode="add"
-                     selection="#{horarioBean.horariosSeleccionados}">
+                <p:dataTable id="lista_horarios" value="#{horarioBean.horarios}" var="horario" paginator="true" rows="10"
+                             rowKey="#{horario.codigo}"
+                             paginatorPosition="bottom" rowSelectMode="add"
+                             selection="#{horarioBean.horariosSeleccionados}">
 
-            <p:ajax event="rowSelect" update="crud_horario:boton_borrar" />
-            <p:ajax event="rowUnselect" update="crud_horario:boton_borrar" />
-            <p:ajax event="rowSelectCheckbox" update="crud_horario:boton_borrar" />
-            <p:ajax event="rowUnselectCheckbox" update="crud_horario:boton_borrar" />
-            <p:ajax event="toggleSelect" update="crud_horario:boton_borrar" />
+                    <p:ajax event="rowSelect" update="crud_horario:boton_borrar" />
+                    <p:ajax event="rowUnselect" update="crud_horario:boton_borrar" />
+                    <p:ajax event="rowSelectCheckbox" update="crud_horario:boton_borrar" />
+                    <p:ajax event="rowUnselectCheckbox" update="crud_horario:boton_borrar" />
+                    <p:ajax event="toggleSelect" update="crud_horario:boton_borrar" />
 
-            <p:column selectionMode="multiple" exportable="false" />
+                    <p:column selectionMode="multiple" exportable="false" />
 
-            <p:column headerText="Codigo" >
-                <h:outputText value="#{horario.codigo}"/>
-            </p:column>
+                    <p:column headerText="Codigo" >
+                        <h:outputText value="#{horario.codigo}"/>
+                    </p:column>
 
-            <p:column headerText="Fecha Inicio">
-                <h:outputText value="#{horario.fechaInicio}"/>
-            </p:column>
+                    <p:column headerText="Fecha Inicio">
+                        <h:outputText value="#{horario.fechaInicio}"/>
+                    </p:column>
 
-            <p:column headerText="Fecha Final" >
-                <h:outputText value="#{horario.fechaFinal}"/>
-            </p:column>
+                    <p:column headerText="Fecha Final" >
+                        <h:outputText value="#{horario.fechaFinal}"/>
+                    </p:column>
 
-            <p:column headerText="Hora" >
-                <h:outputText value="#{horario.hora}"/>
-            </p:column>
-
-
-            <p:column headerText="" >
-                <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{horarioBean.seleccionarHorario(horario)}" oncomplete="PF('registrar_horario').show()" update="dialogo_crear"/>
-            </p:column>
-
-        </p:dataTable>
-    </h:form>
+                    <p:column headerText="Hora" >
+                        <h:outputText value="#{horario.hora}"/>
+                    </p:column>
 
 
-    <p:dialog id="dialogo_crear" widgetVar="registrar_horario" modal="true" header="#{horarioBean.mensajeCrearEditar}" showEffect="fade">
+                    <p:column headerText="" >
+                        <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{horarioBean.seleccionarHorario(horario)}" oncomplete="PF('registrar_horario').show()" update="dialogo_crear"/>
+                    </p:column>
 
-        <h1>REGISTRO HORARIO</h1>
-        <h:form>
-            <h:panelGrid columns="3" cellpadding="5" >
-
-                <p:outputLabel for="fechaInicio_Horario" value = "Fecha Inicio(dd/mm/aa) : "/>
-                <p:datePicker id="fechaInicio_Horario" value = "#{horarioBean.horario.fechaInicio}" required="true"/>
-                <p:messages for="fechaInicio_Horario"/>
-
-                <p:outputLabel for="fechaFinal_Horario" value = "Fecha Final(dd/mm/aa) : "/>
-                <p:datePicker id="fechaFinal_Horario" value = "#{horarioBean.horario.fechaFinal}" required="true"/>
-                <p:messages for="fechaFinal_Horario"/>
-
-                <p:outputLabel for="timeonly" value = "Hora : "/>
-                <p:datePicker id="timeonly" value="#{horarioBean.horario.hora}" timeOnly="true" pattern="HH:mm"/>
-                <p:messages for="timeonly"/>
-
-            </h:panelGrid>
-            <p:commandButton value="Registrar Horario" action= "#{horarioBean.registrarHorario()}" icon="pi pi-plus-circle" update="@form,crud_horario:lista_horarios"/>
-            <p:growl for="mensaje_registro_horario" showDetail="true"/>
-
-        </h:form>
-    </p:dialog>
+                </p:dataTable>
+            </h:form>
 
 
+            <p:dialog id="dialogo_crear" widgetVar="registrar_horario" modal="true" header="#{horarioBean.mensajeCrearEditar}" showEffect="fade">
 
-</h:body>
+                <h1>REGISTRO HORARIO</h1>
+                <h:form>
+                    <h:panelGrid columns="3" cellpadding="5" >
+
+                        <p:outputLabel for="fechaInicio_Horario" value = "Fecha Inicio(dd/mm/aa) : "/>
+                        <p:datePicker id="fechaInicio_Horario" value = "#{horarioBean.horario.fechaInicio}" required="true"/>
+                        <p:messages for="fechaInicio_Horario"/>
+
+                        <p:outputLabel for="fechaFinal_Horario" value = "Fecha Final(dd/mm/aa) : "/>
+                        <p:datePicker id="fechaFinal_Horario" value = "#{horarioBean.horario.fechaFinal}" required="true"/>
+                        <p:messages for="fechaFinal_Horario"/>
+
+                        <p:outputLabel for="timeonly" value = "Hora : "/>
+                        <p:datePicker id="timeonly" value="#{horarioBean.horario.hora}" timeOnly="true" pattern="HH:mm"/>
+                        <p:messages for="timeonly"/>
+
+                    </h:panelGrid>
+                    <p:commandButton value="Registrar Horario" action= "#{horarioBean.registrarHorario()}" icon="pi pi-plus-circle" update="@form,crud_horario:lista_horarios"/>
+                    <p:growl for="mensaje_registro_horario" showDetail="true"/>
+
+                </h:form>
+            </p:dialog>
+
+
+    </ui:define>
+</ui:composition>
 
 </html>
