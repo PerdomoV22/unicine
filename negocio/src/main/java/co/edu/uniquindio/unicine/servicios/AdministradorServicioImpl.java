@@ -43,10 +43,6 @@ public class AdministradorServicioImpl implements AdministradorServicio{
     @Override
     public Administrador login(String correo, String password) throws Exception {
         Administrador administrador = administradorRepo.compraboarAuntenticacion(correo, password);
-
-        if(administrador == null){
-            throw new Exception("Los Datos de Autentificacion son INCORRECTOS");
-        }
         return administrador;
     }
 
