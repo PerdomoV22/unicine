@@ -43,11 +43,11 @@ insert into teatro values (5, "Cra. 66B #34A-76", "UniCine", 1090, 1016, 3);
 
 /*------------------------------Pelicula----------------------------------------------*/
 /*Pelicula: codigo, estado, nombre, reparto, sinopsis, trailer*/
-insert into pelicula values (1, "CARTELERA", "La huerfana: EL origen", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");
-insert into pelicula values (2, "CARTELERA", "Avatar Relanzamiento", "Sam Worthington, Zoe Saldaña, Stephen Lang, Michelle Rodriguez y Sigourney Weaver. ", "Vive nuevamente la primera entrega de Avatar (2009) en nuestras salas. AVATAR, ganadora del Premio de la Academia® en 2009", "url-video");
-insert into pelicula values (3, "CARTELERA",  "Pasaje al paraiso", "George Clooney, Julia Roberts.", "George Clooney y Julia Roberts se reúnen en la pantalla grande como ex esposos que comparten la misión de evitar que su enamorada hija cometa el mismo error que ellos mismos cometieron una vez.", "url-video");
-insert into pelicula values (4, "PROXIMAMENTE", "No te preocuoes carinho", "Florence Pugh, Harry Styles, Chris Pine.", "Thriller psicológico centrado en una infeliz ama de casa en la década de 1950 que descubre una inquietante verdad. ", "url-video");
-insert into pelicula values (5, "PROXIMAMENTE", "Fantasma", "Sophie Stevens, Kirstie Steele, Nick Bayly.", "Emma ha sido contratada como cuidadora nocturna del Sr. Cunningham. El que fuera un pilar de la comunidad local tiene demencia y ha sufrido un derrame cerebral, por lo que está solo en su destartalada casa.", "url-video");
+insert into pelicula values (1, "CARTELERA", "Black Adam", "Dwayne Johnson, Sarah Shahi, Pierce Brosnan.", "Casi 5.000 años después de haber sido dotado de los poderes omnipotentes de los antiguos dioses -y encarcelado con la misma rapidez-, Black Adam (Johnson) es liberado de su tumba terrenal, listo para desatar su forma única de justicia en el mundo moderno.", "url-video");
+insert into pelicula values (2, "CARTELERA", "Wakanda por Siempre", "Angela Bassett, Letitia Wright, Winston Duke, Danai Gurira, Florence Kasumba, Lupita Nyong''o, Martin Freeman, Tenoch Huerta, Dominique Thorne, Michaela Coel, Mabel Cadena y Alex Livanalli.", "Mientras los habitantes de Wakanda se esfuerzan por embarcarse en un nuevo capítulo, los héroes deben unirse con la ayuda de War Dog Nakia (Lupita Nyong''o) y Everett Ross (Martin Freeman) y forjar un nuevo camino para el reino de Wakanda.", "url-video");
+insert into pelicula values (3, "CARTELERA",  "Lilo, Lilo, Cocodrilo", "Javier Barden (Hector P. Valenti), Shawn Mendez (Lyle), Sal Viscou, Don DiPetta.", "Josh Primm, de 12 años, le teme a muchas cosas y le cuesta hacer amigos. Cuando Josh descubre a Lyle, un cocodrilo que baila y canta en su ático, los dos forman un vínculo inusual mientras Lyle le muestra la magia de Nueva York a su nuevo amigo. Mientras cada miembro de la familia encuentra una relación única con Lyle, los Primm se transforman y adoptan un nuevo sentido del amor y la aventura.", "url-video");
+insert into pelicula values (4, "PROXIMAMENTE", "Mar de Sangre", "Holly Earl, Jack Trueman, Catherine Hannay, Malachi Pullar-Latchman, Thomas Flynn, Joshua Takacs, Manuel Cauchi, Milo McDowell. ", "Un grupo de amigos roban un par de motos acuáticas pero terminan en un terrible accidente. En el mar y con un herido, tratarán de encontrar el camino de regreso a casa y de salvarse de la amenaza de los depredadores más temidos del océano. ", "url-video");
+insert into pelicula values (5, "PROXIMAMENTE", "Un Mundo Extraño", "Jake Gyllenhaal", "UN MUNDO EXTRAÑO, la nueva película de Walt Disney Animation Studios, presenta un viaje de acción y aventura que transcurre en una tierra inexplorada y traicionera, donde criaturas fantásticas aguardan a los legendarios Clade, una familia de exploradores cuyas diferencias amenazan con derribar su última misión que es, por lejos, la más decisiva.", "url-video");
 /*insert into pelicula values (6, 1, "url-imagen", "La huerfana", "Julia Stiles, Isabelle Fuhrman, Matthew Finlan ", "La desquiciada Leena Klammer organiza una brillante fuga de un manicomio de Estonia y viaja a Estados Unidos robando la identidad de la hija desaparecida de una familia adinerada.", "url-video");*/
 
 
@@ -61,12 +61,13 @@ insert into pelicula_imagenes values(5,"http://res.cloudinary.com/dz6jlo2kt/imag
 
 
 /*------------------------------Genero---------------------------------------------------*/
-insert into pelicula_genero values (1, "DRAMA");
-insert into pelicula_genero values (1, "TERROR");
-insert into pelicula_genero values (3, "DRAMA");
-insert into pelicula_genero values (4, "ROMANCE");
-insert into pelicula_genero values (5, "TERROR");
+insert into pelicula_genero values (1, "ACCION");
+insert into pelicula_genero values (1, "COMEDIA");
+insert into pelicula_genero values (3, "ANIMADA");
+insert into pelicula_genero values (4, "DRAMA");
+insert into pelicula_genero values (5, "ANIMADA");
 insert into pelicula_genero values (2, "ACCION");
+insert into pelicula_genero values (2, "DRAMA");
 
 
 /*------------------------------Calificacion----------------------------------------------*/

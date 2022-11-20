@@ -175,30 +175,14 @@ header{
 
 .carousel-cell {
     width: 66%;
-    height: 200px;
-    margin-right: 10px;
+    height: 400px;
+    margin-right: 60px;
     background: #000;
     border-radius: 5px;
     counter-increment: carousel-cell;
+    border-radius: 1rem;
 }
 
-.carousel-cell:before {
-    display: block;
-    text-align: center;
-    content: counter(carousel-cell);
-    line-height: 200px;
-    font-size: 80px;
-    color: white;
-}
-
-.carousel-cell h1 {
-    background-color: #adb5bd;
-    width: 70%;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-left: 15%;
-}
 /* Buscador*/
 
 .contenido-bus {
@@ -281,21 +265,68 @@ body .contendor_busqueda .ui-button {
     display: block;
 }
 
+.contenido-boton {
+    position: absolute;
+    top: 80%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    transition: all 1s;
+    width: 50px;
+    height: 40px;
+    background: #B1B2CF;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid #B1B2CF;
+    padding: 5px;
+    box-shadow: 0px 0px 8px #ffffff;
+}
 
 /*Contenido Peliculas*/
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 12%;
+    margin-right: 0;
+    margin-left: 0;
+}
+
 .container {
-    width: 1040px;
+    width: 1240px;
     height: auto;
 }
 
-.contenido-pelculas{
+.h-100 {
+    height: 110% !important;
+}
+
+@media (min-width: 992px){
+    .row-cols-lg-3 > * {
+        flex: 0 0 auto;
+        width: 33.3333333333%;
+        height: 300px;
+    }
+}
+
+.py-5 {
+    padding-top: 1rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.contenido-peliculas{
     width: 1040px;
     height: auto;
     padding-bottom: 0;
-    margin: 0 auto;
+    margin: 5rem auto;
     align-items: center;
 }
 
+.contenido-peliculas .imagenes {
+    position: absolute;
+    width: 1040px;
+    height: 100%;
+    padding-bottom: 0;
+    margin: 0 auto;
+}
 /*Boton pelicula y proximamente*/
 small {
     padding-bottom: 12px;
@@ -320,31 +351,31 @@ small {
     box-shadow: 0px 0px 8px #ffffff;
 }
 
-.btn {
+.bton {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #233441;
+    background-color: #000000;
     border-radius: 25px;
     transition: all 1s;
 }
 
-h4 {
+.bton h4 {
     color: white;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-70%, -50%);
-    font-size: 1.5em;
+    transform: translate(-45%, -50%);
+    font-size: .8em;
     width: 100%;
     margin: auto;
     transition: all 0.5s;
     opacity: 0;
 }
 
-.btn i {
+.bton i {
     box-sizing: border-box;
     padding: 10px;
     width: 42.5px;
@@ -354,20 +385,20 @@ h4 {
     right: 0;
     color: #ffffff;
     text-align: center;
-    font-size: 1.2em;
+    font-size: .7em;
     transition: all 1s;
 }
 
-.btn:hover {
+.bton:hover {
     transform: translate(0%, 0%);
 }
 
-.btn:hover {
+.bton:hover {
     width: 80px;
     cursor: pointer;
 }
 
-.btn:hover h4 {
+.bton:hover h4 {
     animation: 2s display forwards;
 }
 
@@ -378,6 +409,22 @@ h4 {
     to {
         opacity: 1;
     }
+}
+
+h3.pt-5 {
+    padding-top: 17rem !important;
+}
+
+h3.mt-auto {
+    margin-top: 0px !important;
+}
+
+h3.mt-5 {
+    margin-top:0 !important;
+}
+
+h3.mb-4 {
+    margin-bottom: -3.3rem !important;
 }
 /*Cupones*/
 .contenido-cupones {
@@ -538,4 +585,226 @@ footer .bar ul li a{
 .link i {
     font-size: 1.2em;
     transition: all 0.4s;
+}
+
+/*Pagina detalleCompra*/
+.page-header {
+    background: #ffffff;
+    background-size: cover;
+    height: 400px;
+}
+
+.page-caption {
+    padding-top: 170px;
+    padding-bottom: 174px;
+}
+
+.video{
+    background-color: #0a58ca;
+    height: 390px;
+    width: 830px;
+    margin-right: 0;
+    margin-left: 50%;
+    padding: 0 20px 0 0;
+    position: relative;
+    bottom: 140px;
+    border-radius: 2rem;
+}
+
+iframe {
+    border: 0;
+    width: 102.5%;
+    height: 100%;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 20px #000000;
+}
+
+.card-section {
+    position: relative;
+    bottom: 420px;
+}
+
+
+@media (min-width: 1200px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: min-content;
+    }
+}
+
+.card-block {
+    width: 350px;
+}
+
+.pelicula, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 5%;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.bg-white {
+    background-color: #FFFFFF !important;
+    height: 480px;
+}
+.card-block { padding: 80px; }
+.section-title { margin-bottom: 60px; }
+
+.contenido-informacion {
+    background-color: #f4f4f4;
+    margin: 0 auto;
+    border-radius: 20px;
+    width: 70%;
+    height: 400px;
+    padding: 0 0 20px 0;
+    position: relative;
+    bottom: 300px;
+    text-align: center;
+}
+
+.contenido-informacion h2 {
+    font-size: 3rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: #000000;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.contenido-informacion p {
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+.organizar {
+    display: grid;
+    column-gap: 40px;
+    text-align: justify;
+}
+
+.descripcion {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding: 0 20px;
+}
+
+.descripcion-item{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    padding: 0 20px;
+}
+
+/*----------------- Confiteria ------------------------------------------*/
+h4 {
+    color: #ffffff;
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: inherit;
+    font-size: 1.5em;
+    width: 100%;
+    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    transition: all 0.5s;
+    opacity: inherit;
+}
+
+.card-header:first-child {
+    border-radius: 1rem;
+}
+
+.rounded-3 {
+    border-radius: 1rem !important;
+}
+
+.border-primary {
+    border-color: #cecdcd !important;
+}
+
+.btn-outline-primary {
+    color: #0b0b0b;
+    border-color: #000;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
+
+.btn-primary {
+    color: #0b0b0b;
+    background-color: #FFFFFF;
+    border-color: #000;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
+
+.card-header {
+    padding: .5rem 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+    background-color: #000000;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+    height: 200px;
+    width: 100%;
+    padding-bottom: 1px;
+}
+
+.list-unstyled img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    height: 380px;
+}
+
+body .ui-rating .ui-rating-star a {
+    font-family: "primeicons" !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    background: none;
+    text-indent: 0;
+    display: block;
+    font-size: 2.25rem;
+    height: 1.25rem;
+    width: 3.25rem;
+    color: #000;
+    overflow: visible;
+}
+
+body .ui-rating .ui-rating-cancel a {
+    font-family: "primeicons" !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    background: none;
+    text-indent: 0;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    display: block;
+    font-size: 2.25rem;
+    height: 1.25rem;
+    width: 3.25rem;
+    color: #ff0036;
+    overflow: visible;
 }

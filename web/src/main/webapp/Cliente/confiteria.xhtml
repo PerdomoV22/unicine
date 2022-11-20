@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="content">
+
+        <!--Confiteria-->
+        <div class="contenido-peliculas">
+            <h1 class="title" style="font-size: 4rem">Confiteria</h1>
+            <hr></hr>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                <p:repeat value="#{confiteriaClienteBean.confiterias}" var="confiteria">
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">#{confiteria.nombre}</h4>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>
+                                        <img src="#{confiteria.imagenPrincipal}" alt="imagen"/>
+                                    </li>
+                                    <li>
+                                        <small> Tipo Confiteria:
+                                            <p:repeat value="#{confiteria.tipoConfiteria}" var="tipo">
+                                                <p:chip label="#{tipo}" styleClass="me-2"
+                                                        style="background-color: black; position: relative; font-size: 1.5rem; color: #FFFFFF"/>
+                                            </p:repeat>
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <small> Precio:
+                                            <p:repeat value="#{confiteria.precio}" var="precio">
+                                                <p:chip label="#{precio}" styleClass="me-2"
+                                                        style="background-color: black; position: relative; font-size: 1.5rem; color: #FFFFFF"/>
+                                            </p:repeat>
+                                        </small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </p:repeat>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

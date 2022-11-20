@@ -34,13 +34,14 @@ public class InicioBean implements Serializable {
     @Getter @Setter
     private List<String> listaImagenes;
 
+
     @PostConstruct
     public void inicializar(){
         try {
             listaImagenes = new ArrayList<>();
-            listaImagenes.add("https://picsum.photos/300/200?random=1");
-            listaImagenes.add(" ");
-            listaImagenes.add(" ");
+            listaImagenes.add("https://images.hdqwalls.com/wallpapers/black-adam-2021-movie-4z.jpg");
+            listaImagenes.add("https://lumiere-a.akamaihd.net/v1/images/557bd062deb3b4e8264c6985480bfa68_4096x1861_82baf17c.jpeg?region=0,0,4096,1861");
+            listaImagenes.add("https://i.ytimg.com/vi/bDm1uikmADg/maxresdefault.jpg");
 
             peliculasCartelera = clienteServicio.buscarPeliculaPorEstado(EstadoPelicula.CARTELERA);
             peliculasProximamente = clienteServicio.buscarPeliculaPorEstado(EstadoPelicula.PROXIMAMENTE);
@@ -61,4 +62,5 @@ public class InicioBean implements Serializable {
         }
 
     }
+
 }

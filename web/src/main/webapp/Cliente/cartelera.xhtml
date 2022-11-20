@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="content">
+
+        <!-- Buscador -->
+        <div class="contenido-bus border-bottom">
+            <h1 class="title">CARTELERA</h1>
+            <h:form styleClass="contendor_busqueda">
+                <div class="input-search ui-inputgroup">
+                    <p:inputText  styleClass="cajon" placeholder="   ¿Qué película está buscando?" required="true" value="#{busquedaBean.busqueda}" />
+                    <p:commandButton styleClass="buttom" update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
+                </div>
+            </h:form>
+        </div>
+
+        <!--Peliculas-->
+        <div jsf:id="listas_peliculas" class="container">
+            <!--Peliculas (Cartelera)-->
+            <div class="contenido-peliculas">
+                <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+                    <p:repeat value="#{inicioBean.peliculasCartelera}" var="pelicula">
+                        <div class="col">
+                            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg">
+                                <img src="#{pelicula.imagenPrincipal}" class="imagenes" />
+                                <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="position: relative">#{pelicula.nombrePelicula}</h3>
+                                    <ul class="d-flex list-unstyled mt-auto">
+                                        <li class="me-auto">
+                                            <a href="../detallePelicula.xhtml?pelicula_id=#{pelicula.codigo}">
+                                                <div class="contenido-boton">
+                                                    <div class="bton">
+                                                        <h4>¡Ver!</h4>
+                                                        <i class="pi pi-shopping-cart" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="d-flex align-items-center me-3">
+                                            <small>
+                                                <p:repeat value="#{pelicula.genero}" var="genero">
+                                                    <p:chip label="#{genero}" styleClass="me-2"
+                                                            style="background-color: white; position: relative"/>
+                                                </p:repeat>
+                                            </small>
+                                        </li>
+                                        <li class="d-flex align-items-center">
+                                            <i class="pi pi-star-fill" style="margin-right: 3px; position: relative"></i>
+                                            <small>
+                                                <p:repeat value="#{pelicula.codigo}" var="codigo">
+                                                    <p:chip label="#{codigo}" styleClass="me-2"
+                                                            style="background-color: white; position: relative"/>
+                                                </p:repeat>
+                                            </small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </p:repeat>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Cupones-->
+        <div class="contenido-cupones">
+            <h1 class="title">CUPONES Y TARJETAS</h1>
+            <div class="cupones">
+                <ul>
+                    <li>
+                        <img class="imagenUna" src="../imagenes/descuento1.jpeg" alt="descuento 15%"/>
+                    </li>
+                    <li>
+                        <img class="imagenDos" src="../imagenes/descuento2.jpeg" alt="descuento 10%"/>
+                    </li>
+                    <li>
+                        <img class="imagenUna" src="../imagenes/unicine.jpeg" alt="Tarjeta UniCine"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>

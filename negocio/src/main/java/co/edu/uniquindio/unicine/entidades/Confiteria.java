@@ -50,4 +50,12 @@ public class Confiteria implements Serializable {
         this.precio = precio;
         this.tipoConfiteria = tipoConfiteria;
     }
+
+    public String getImagenPrincipal() {
+        if(!imagenes.isEmpty()){
+            String primero = imagenes.keySet().toArray()[0].toString();
+            return imagenes.get(primero);
+        }
+        return "";
+    }
 }
