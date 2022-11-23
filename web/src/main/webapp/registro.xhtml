@@ -35,10 +35,10 @@
                                 required="true" feedback="true" inline="true"/>
                     <p:message for="password_confirmacion_cliente"/>
 
-                    <p:outputLabel for="imagen_cliente" value = "Imagenenes : "/>
+                    <p:outputLabel for="imagen_cliente" value = "Imagenenes : " />
                     <p:fileUpload id="imagen_cliente" listener="#{clienteBean.subirImagenes}"
                                   mode="advanced" multiple="true" sizeLimit="1000000" fileLimit="2"
-                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"/>
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true" />
                     <p:messages for="imagen_cliente"/>
 
                 </h:panelGrid>

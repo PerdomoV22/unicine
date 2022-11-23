@@ -1,23 +1,19 @@
 /*------------------------------Cliente----------------------------------------------*/
 /*Cliente : cedula, contrasenia, correo, nombre, estado , imagen perfil*/
-/*
-insert into cliente values (1004, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "perdomov.j07@gmail.com", "Juan", 1, "url foto");
-insert into cliente values (1005, "/cT8yW2NO22XscSn2ajaNOtR85I0EoBlqxwt3D/B0JgOhvnDnMFbzQWBU5SEvGST", "perdomo@gmail.com", "Jose", 1, "url foto");
-insert into cliente values (1006, "/cT8yW2NO22XscSn2ajaNOtR85I0EoBlqxwt3D/B0JgOhvnDnMFbzQWBU5SEvGST", "diego09@gmail.com", "Diego", 0, "url foto");
-insert into cliente values (1007, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "pipe@gmail.com", "Felipe", 1, "url foto");
-insert into cliente values (1008, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "alejandro@gmail.com", "Alejandro", 0, "url foto");
+insert into cliente values (1004, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "perdomov.j07@gmail.com", "Juan", 1);
+insert into cliente values (1005, "/cT8yW2NO22XscSn2ajaNOtR85I0EoBlqxwt3D/B0JgOhvnDnMFbzQWBU5SEvGST", "perdomo@gmail.com", "Jose", 1);
+insert into cliente values (1006, "/cT8yW2NO22XscSn2ajaNOtR85I0EoBlqxwt3D/B0JgOhvnDnMFbzQWBU5SEvGST", "diego09@gmail.com", "Diego", 0);
+insert into cliente values (1007, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "pipe@gmail.com", "Felipe", 1);
+insert into cliente values (1008, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "alejandro@gmail.com", "Alejandro", 0);
 
 
- */
+
 /*------------------------------Cliente_Telefonos----------------------------------------------*/
 /*Cliente_Telefonos : cliente_cedula , telefono*/
-/*
 insert into cliente_telefonos values (1004, "3117556502");
 insert into cliente_telefonos values (1004, "3148279730");
 insert into cliente_telefonos values (1007, "3228484581");
 insert into cliente_telefonos values (1006, "3123456789");
-
- */
 
 /*------------------------------Ciudad----------------------------------------------*/
 /*Ciudad: codPostal , nombre */

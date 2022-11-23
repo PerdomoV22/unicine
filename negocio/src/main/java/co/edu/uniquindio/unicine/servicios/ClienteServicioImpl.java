@@ -4,10 +4,13 @@ import co.edu.uniquindio.unicine.dto.PeliculaFuncion;
 import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.repositorios.*;
 import org.jasypt.util.password.StrongPasswordEncryptor;
+import org.jasypt.util.text.AES256TextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -120,9 +123,15 @@ public class ClienteServicioImpl implements ClienteServicio{
         cupon.setEstado(false);
         cuponClienteRepo.save(cupon);
 
-        //Generar un codigo para el cupon
+        AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
+        textEncryptor.setPassword("teclado");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.of("America/Bogota"));
 
-        emailServicio.enviarEmail("Registro de cuenta en UniCine", "Hola "+cliente.getNombre()+" es un gusto que haya registrado en Unicine, para activar su cuenta ingrese en el siguiente link: url", cliente.getCorreo());
+        String param1 = textEncryptor.encrypt(String.valueOf(clienteRegistrado.getCedula()));
+        String param2 = textEncryptor.encrypt(""+zonedDateTime.toInstant().toEpochMilli());
+
+        emailServicio.enviarEmail("Registro de cuenta en UniCine", "Hola "+cliente.getNombre()+" es un gusto que haya registrado en Unicine, para activar su cuenta ingrese en el siguiente link: http://localhost:8080/activarCuenta.xhtml?p1="+param1+"&p2="+param2, cliente.getCorreo());
         emailServicio.enviarEmail("Regalo Cupon Por Registro", "Hola "+cliente.getNombre()+" Haz adquirido un cupon por registrarte, el codigo es: "+cupon.getCodigo(), cliente.getCorreo());
 
         return clienteRegistrado;

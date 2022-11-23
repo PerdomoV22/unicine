@@ -51,7 +51,6 @@ public class ClienteBean implements Serializable {
 
     public void registrarCliente(){
         try {
-            if(!imagenes.isEmpty()){
                 if (cliente.getContrasena().equals(confirmacionPassword)) {
                     clienteServicio.registrarCliente(cliente);
 
@@ -61,9 +60,8 @@ public class ClienteBean implements Serializable {
                     FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Contraseñas no coinciden");
                     FacesContext.getCurrentInstance().addMessage("mensaje_bean", facesMessage);
                 }
-            }
         }catch (Exception e){
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", e.getMessage());
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
             FacesContext.getCurrentInstance().addMessage("mensaje_bean", facesMessage);
         }
 
