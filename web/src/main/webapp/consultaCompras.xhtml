@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Consulta Compras</ui:define>
+    <ui:define name="content">
+
+        <h:form id="crud_teatro">
+            <p:dataTable id="lista_teatros" value="#{teatroBean.teatros}" var="teatro" paginator="true" rows="10"
+                         rowKey="#{teatro.nit}"
+                         paginatorPosition="bottom" rowSelectMode="add"
+                         selection="#{teatroBean.teatrosSeleccionados}">
+
+                <!-- Peliculas -->
+                <div class="product">
+                    <div class="product-list-item p-5">
+                        <p:graphicImage name="demo/images/product/#{product.image}"/>
+                        <div class="product-list-detail">
+                            <div class="product-name">#{product.name}</div>
+                            <div class="product-description">#{product.description}</div>
+                            <p:rating readonly="true" value="#{product.rating}"/>
+                            <i class="pi pi-tag product-category-icon"/><span
+                                class="product-category">#{product.category}</span>
+                        </div>
+                        <div class="product-list-action">
+                            <h:outputText value="#{product.price}" styleClass="product-price">
+                                <f:convertNumber currencySymbol="$" type="currency"/>
+                            </h:outputText>
+                            <p:commandButton value="Add To Cart" icon="pi pi-shopping-cart"
+                                             disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
+                            </p:commandButton>
+                            <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
+                        </div>
+                    </div>
+                </div>
+            </p:dataTable>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>

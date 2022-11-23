@@ -7,6 +7,7 @@ import co.edu.uniquindio.unicine.servicios.ClienteServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -61,7 +62,6 @@ public class SeguridadBean implements Serializable {
                 persona = clienteServicio.login(email, password);
                 tipoSesion = "cliente";
                 autenticado = true;
-
                 return "/index?faces-redirect=true";
             } catch (Exception e) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
@@ -117,5 +117,19 @@ public class SeguridadBean implements Serializable {
             return "/menuAdministrador?faces-redirect=true";
         }
     }
+
+    public String registro(){
+            return "/registro?faces-redirect=true";
+    }
+
+    public String consultasComprasCliente(){
+        String tipo = tipoSesion;
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        if (tipo.equals("cliente")) {
+            return "/consultaCompras?faces-redirect=true";
+        }
+        return "";
+    }
+
 
 }

@@ -8,37 +8,44 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Registro</ui:define>
     <ui:define name="content">
 
+
         <!-- Registro Cliente-->
-        <h:form>
-            <h:panelGrid columns="3" cellpadding="5">
+        <div class="registro-contenido">
+            <h:form style="padding-left: 130px">
+                <h:panelGrid columns="3" cellpadding="5" >
 
-                <p:outputLabel for="cedula_cliente" value="Cedula:"/>
-                <p:inputText id="cedula_cliente" value="#{clienteBean.cliente.cedula}" required="true"/>
-                <p:message for="cedula_cliente"/>
-                <p:outputLabel for="nombre_cliente" value="Nombre:"/>
-                <p:inputText id="nombre_cliente" value="#{clienteBean.cliente.nombre}" required="true"/>
-                <p:message for="nombre_cliente"/>
-                <p:outputLabel for="email_cliente" value="Email:"/>
-                <p:inputText id="email_cliente" value="#{clienteBean.cliente.correo}" required="true"/>
-                <p:message for="email_cliente"/>
-                <p:outputLabel for="password_cliente" value="Contraseña:"/>
-                <p:password id="password_cliente" value="#{clienteBean.cliente.contrasena}" required="true"
-                            feedback="true" inline="true"/>
-                <p:message for="password_cliente"/>
-                <p:outputLabel for="password_confirmacion_cliente" value="Contraseña Confirmacion:"/>
-                <p:password id="password_confirmacion_cliente" value="#{clienteBean.confirmacionPassword}"
-                            required="true" feedback="true" inline="true"/>
-                <p:message for="password_confirmacion_cliente"/>
+                    <p:outputLabel for="cedula_cliente" value="Cedula:"/>
+                    <p:inputText id="cedula_cliente" value="#{clienteBean.cliente.cedula}" required="true"/>
+                    <p:message for="cedula_cliente"/>
+                    <p:outputLabel for="nombre_cliente" value="Nombre:"/>
+                    <p:inputText id="nombre_cliente" value="#{clienteBean.cliente.nombre}" required="true"/>
+                    <p:message for="nombre_cliente"/>
+                    <p:outputLabel for="email_cliente" value="Email:"/>
+                    <p:inputText id="email_cliente" value="#{clienteBean.cliente.correo}" required="true"/>
+                    <p:message for="email_cliente"/>
+                    <p:outputLabel for="password_cliente" value="Contraseña:"/>
+                    <p:password id="password_cliente" value="#{clienteBean.cliente.contrasena}" required="true"
+                                feedback="true" inline="true"/>
+                    <p:message for="password_cliente"/>
+                    <p:outputLabel for="password_confirmacion_cliente" value="Contraseña Confirmacion:"/>
+                    <p:password id="password_confirmacion_cliente" value="#{clienteBean.confirmacionPassword}"
+                                required="true" feedback="true" inline="true"/>
+                    <p:message for="password_confirmacion_cliente"/>
 
-            </h:panelGrid>
-            <p:commandButton value="Registrarse" action="#{clienteBean.registrarCliente()}" update="@form"/>
-            <p:growl for="mensaje_bean" showDetail="true"/>
-        </h:form>
+                    <p:outputLabel for="imagen_cliente" value = "Imagenenes : "/>
+                    <p:fileUpload id="imagen_cliente" listener="#{clienteBean.subirImagenes}"
+                                  mode="advanced" multiple="true" sizeLimit="1000000" fileLimit="2"
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"/>
+                    <p:messages for="imagen_cliente"/>
 
-        <!--ELegir Ciudad-->
-
+                </h:panelGrid>
+                <p:commandButton styleClass="boton-registrar" value="Registrarse" action="#{clienteBean.registrarCliente()}" update="@form"/>
+                <p:growl for="mensaje_bean" showDetail="true"/>
+            </h:form>
+        </div>
 
     </ui:define>
 </ui:composition>

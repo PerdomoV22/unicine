@@ -1,10 +1,10 @@
 /*------------------------------Cliente----------------------------------------------*/
 /*Cliente : cedula, contrasenia, correo, nombre, estado , imagen perfil*/
-insert into cliente values (1004, "0987", "perdomov.j07@gmail.com", "Juan", 1, "url foto");
-insert into cliente values (1005, "1234", "perdomo@gmail.com", "Jose", 1, "url foto");
-insert into cliente values (1006, "8907", "diego09@gmail.com", "Diego", 0, "url foto");
-insert into cliente values (1007, "3456", "pipe@gmail.com", "Felipe", 1, "url foto");
-insert into cliente values (1008, "1029", "alejandro@gmail.com", "Alejandro", 0, "url foto");
+insert into cliente values (1004, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "perdomov.j07@gmail.com", "Juan", 1, "url foto");
+insert into cliente values (1005, "/cT8yW2NO22XscSn2ajaNOtR85I0EoBlqxwt3D/B0JgOhvnDnMFbzQWBU5SEvGST", "perdomo@gmail.com", "Jose", 1, "url foto");
+insert into cliente values (1006, "/cT8yW2NO22XscSn2ajaNOtR85I0EoBlqxwt3D/B0JgOhvnDnMFbzQWBU5SEvGST", "diego09@gmail.com", "Diego", 0, "url foto");
+insert into cliente values (1007, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "pipe@gmail.com", "Felipe", 1, "url foto");
+insert into cliente values (1008, "LwroT5dPnyQxBZIP3EBSMTs1xQvu5LOecJllMgzSi/trfrGcWFbUO0b5i3AZRcdI", "alejandro@gmail.com", "Alejandro", 0, "url foto");
 
 /*------------------------------Cliente_Telefonos----------------------------------------------*/
 /*Cliente_Telefonos : cliente_cedula , telefono*/

@@ -58,6 +58,9 @@ public class DetallePeliculaBean implements Serializable {
     @Getter @Setter
     private Double promedioCalificacion;
 
+    @Setter @Getter
+    private String detallePelicula;
+
     @PostConstruct
     public void init(){
         try{

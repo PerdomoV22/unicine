@@ -27,7 +27,7 @@ public class SeguridadFiltro implements Filter {
             SeguridadBean userManager = (SeguridadBean) request.getSession().getAttribute("seguridadBean");
 
             //Aplicar el filtro a esta carpeta
-            if (requestURI.startsWith("/cliente/") ) {
+            if (requestURI.startsWith("/Cliente/") ) {
 
                 if (userManager != null) {
                     if (userManager.isAutenticado() && userManager.getTipoSesion().equals("cliente")) {

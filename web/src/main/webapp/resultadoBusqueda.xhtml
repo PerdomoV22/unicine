@@ -8,31 +8,43 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Busqueda</ui:define>
+
     <ui:define name="content">
 
         <!--Peliculas-->
-        <p>#{busquedaBean.peliculas}</p>
+        <div class="cuadro">
+            <h:form>
+                <p:dataScroller value="#{busquedaBean.peliculas}" var="peliculas" chunkSize="10">
+                    <f:facet name="header">
+                        <h1 style="font-size: 3rem">Resultado de la busqueda</h1>
+                    </f:facet>
 
-        <!--ELegir Ciudad-->
-
-
-        <!--Cupones-->
-        <div class="contenido-cupones">
-            <h1 class="title">CUPONES Y TARJETAS</h1>
-            <div class="cupones">
-                <ul>
-                    <li>
-                        <img class="imagenUna" src="imagenes/descuento1.jpeg" alt="descuento 15%"/>
-                    </li>
-                    <li>
-                        <img class="imagenDos" src="imagenes/descuento2.jpeg" alt="descuento 10%"/>
-                    </li>
-                    <li>
-                        <img class="imagenUna" src="imagenes/unicine.jpeg" alt="Tarjeta UniCine"/>
-                    </li>
-                </ul>
-            </div>
+                    <div class="product">
+                        <div class="product-list-item p-5" style="display: flex">
+                            <img src="#{peliculas.pelicula.imagenPrincipal}" alt="imagen"/>
+                            <div class="product-list-detail" style="padding: 30px">
+                                <div class="product-name"><h3>#{peliculas.pelicula.nombrePelicula}</h3></div>
+                                <div class="product-description"><p style="font-size: 1.5rem; text-align: justify">#{peliculas.pelicula.sinopsis}</p></div>
+                                <i class="pi pi-tag product-category-icon" style="font-size: 15px; padding-right: 1rem; color: #0b0b0b"/><span
+                                    class="product-category"><p:repeat value="#{peliculas.pelicula.genero}" var="genero">
+                                                <p:chip label="#{genero}" styleClass="me-2"
+                                                        style="background-color: black; position: relative; color: #FFFFFF"/>
+                                            </p:repeat></span>
+                                <h:outputText value="#{peliculas.funcion.precio}" styleClass="product-price" style="font-size: 2rem; padding-right: 2rem">
+                                    <f:convertNumber currencySymbol="$" type="currency"/>
+                                </h:outputText>
+                                <a href="detallePelicula.xhtml?pelicula_id=#{peliculas.pelicula.codigo}">
+                                    <p:chip label="Ver" styleClass="me-2"
+                                            style="background-color: black; position: relative; color: #FFFFFF; width: 70px; height: 30px; font-size: 20px;" icon="pi pi-shopping-cart"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </p:dataScroller>
+            </h:form>
         </div>
+
     </ui:define>
 </ui:composition>
 </html>

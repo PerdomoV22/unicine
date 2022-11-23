@@ -6,6 +6,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @NoArgsConstructor
@@ -18,8 +19,9 @@ public class Cliente  extends Persona implements Serializable{
     @Column(nullable = false)
     private Boolean estado = false;
 
-    @Nullable
-    private String imagen_perfil;
+    @ElementCollection
+    @Column(nullable = false)
+    private Map<String, String> imagenes;
 
     @ElementCollection
     private List<String> telefonos;
@@ -51,7 +53,14 @@ public class Cliente  extends Persona implements Serializable{
     public Cliente(Integer cedula, String nombre, String correo, String contrasena, List<String> telefonos, String imagen_perfil) {
         super(cedula, nombre, correo, contrasena);
         this.telefonos = telefonos;
-        this.imagen_perfil = imagen_perfil;
         this.estado = false;
+    }
+
+    public String getImagenPrincipal() {
+        if(!imagenes.isEmpty()){
+            String primero = imagenes.keySet().toArray()[0].toString();
+            return imagenes.get(primero);
+        }
+        return "";
     }
 }

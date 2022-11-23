@@ -808,3 +808,170 @@ body .ui-rating .ui-rating-cancel a {
     color: #ff0036;
     overflow: visible;
 }
+
+.ajax {
+    position: absolute;
+    inset: 14px auto auto 10px !important;
+    margin: 0px auto !important;
+    transform: translate(-180px, 45px);
+    width: 400px;
+    height: 330px;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.login-triangle {
+    width: 0;
+    margin-right: auto;
+    margin-left: 320px;
+    border: 12px solid transparent;
+    border-bottom-color: #000000;
+    margin-top: -28.6px;
+}
+
+.login-header {
+    background: #ffffff;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    color: #000000;
+    border-radius: 20px;
+}
+
+.login-container {
+    background: #000000;
+    padding: 8px 80px;
+    border-radius: 20px;
+}
+
+.login input {
+    box-sizing: border-box;
+    display: block;
+    width: 260px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 13px;
+    outline: 0;
+    font-family: inherit;
+    font-size: 0.95em;
+    margin: auto -120px;
+}
+
+.login input[type="email"],
+.login input[type="password"] {
+    background: #fff;
+    border-color: #bbb;
+    color: #555;
+}
+
+/* Text fields' focus effect */
+.login input[type="email"]:focus,
+.login input[type="password"]:focus {
+    border-color: #888;
+}
+
+.ui-button.ui-button-text-icon-left .ui-button-text {
+    padding: 0.5rem 1rem 0.5rem 2rem;
+    height: 40px;
+    background-color: #ffffff;
+}
+
+.ui-button {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+    margin: 0;
+    margin-top: 0px;
+    outline: 0 none;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+body .ui-button {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+    margin: 0;
+    margin-top: 0px;
+    outline: 0 none;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.ui-button.ui-button-text-icon-left .ui-button-text {
+    padding: 0.5rem 1rem 0.5rem 2rem;
+    height: 30px;
+    margin-top: 0.4rem;
+}
+
+body .ui-button.ui-state-hover {
+    background: #020eff;
+    border-color: #020eff;
+    color: #000000;
+}
+
+.login-footer {
+    background: #ffffff;
+    padding: 22px;
+    font-size: 1.2em;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    color: #000000;
+    border-radius: 20px;
+}
+
+a {
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    color: #000000;
+}
+
+a:hover {
+    color: #020eff;
+}
+
+.registro-contenido {
+    background-color: #d7d7d7;
+    margin: 20px auto;
+    width: 800px;
+    padding-top: 30px;
+    padding-right: 200px;
+    text-align: justify;
+    border-radius: 20px;
+}
+
+.registro-contenido .ui-widget {
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.6rem;
+    text-decoration: none;
+
+}
+
+.registro-contenido .ui-button {
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #FFF;
+    margin: 10px 45%;
+    margin-top: 10px;
+    margin-top: 0px;
+    outline: 0 none;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    width: 113px;
+}
+
+.cuadro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin: 1rem 8% 6rem 8%;
+}

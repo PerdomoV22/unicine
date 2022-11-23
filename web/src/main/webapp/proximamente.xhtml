@@ -8,8 +8,10 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="../WEB-INF/template.xhtml">
+<ui:composition template="WEB-INF/template.xhtml">
+    <ui:define name="title">Proximamente</ui:define>
     <ui:define name="content">
+
 
         <!-- Buscador -->
         <div class="contenido-bus border-bottom">
@@ -35,7 +37,7 @@
                                     <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="position: relative">#{pelicula.nombrePelicula}</h3>
                                     <ul class="d-flex list-unstyled mt-auto">
                                         <li class="me-auto">
-                                            <a href="../detallePelicula.xhtml?pelicula_id=#{pelicula.codigo}">
+                                            <a href="detallePelicula.xhtml?pelicula_id=#{pelicula.codigo}">
                                                 <div class="contenido-boton">
                                                     <div class="bton">
                                                         <h4>¡Ver!</h4>
@@ -77,13 +79,13 @@
             <div class="cupones">
                 <ul>
                     <li>
-                        <img class="imagenUna" src="../imagenes/descuento1.jpeg" alt="descuento 15%"/>
+                        <img class="imagenUna" src="imagenes/descuento1.jpeg" alt="descuento 15%"/>
                     </li>
                     <li>
-                        <img class="imagenDos" src="../imagenes/descuento2.jpeg" alt="descuento 10%"/>
+                        <img class="imagenDos" src="imagenes/descuento2.jpeg" alt="descuento 10%"/>
                     </li>
                     <li>
-                        <img class="imagenUna" src="../imagenes/unicine.jpeg" alt="Tarjeta UniCine"/>
+                        <img class="imagenUna" src="imagenes/unicine.jpeg" alt="Tarjeta UniCine"/>
                     </li>
                 </ul>
             </div>

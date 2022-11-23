@@ -3,6 +3,7 @@ package co.edu.uniquindio.unicine.servicios;
 import co.edu.uniquindio.unicine.dto.PeliculaFuncion;
 import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.repositorios.*;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +54,7 @@ public class ClienteServicioImpl implements ClienteServicio{
      */
     @Override
     public Cliente login(String correo, String password) throws Exception{
-        Cliente cliente = clienteRepo.comprobarAutenticacion(correo, password);
+        Cliente cliente = clienteRepo.findByCorreo(correo).orElse(null);
 
         if(cliente == null){
             throw new Exception("Los Datos de Autentificacion son INCORRECTOS");
@@ -107,6 +108,9 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(cedulaExiste){
             throw  new Exception("La cedula ingresada ya existe");
         }
+
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        cliente.setContrasena(passwordEncryptor.encryptPassword(cliente.getContrasena()));
 
         Cliente clienteRegistrado =  clienteRepo.save(cliente);
 

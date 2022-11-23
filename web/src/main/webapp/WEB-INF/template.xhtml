@@ -24,9 +24,9 @@
             <div class="barra">
                 <nav class="menu">
                     <ul>
-                        <li><a href="/Cliente/cartelera.xhtml" class="lin">Cartelera</a></li>
-                        <li><a href="/Cliente/proximamente.xhtml" class="lin">Pronto</a></li>
-                        <li><a href="/Cliente/confiteria.xhtml" class="lin">Confiteria</a></li>
+                        <li><a href="cartelera.xhtml" class="lin">Cartelera</a></li>
+                        <li><a href="proximamente.xhtml" class="lin">Pronto</a></li>
+                        <li><a href="confiteria.xhtml" class="lin">Confiteria</a></li>
                         <li><a href="contacto.xhtml" class="lin">Contacto</a></li>
                     </ul>
                 </nav>
@@ -36,11 +36,52 @@
                     </a>
                 </div>
 
-                <div class="login">
+                <div class="login flex-shrink-0 dropdown">
                     <a href="/../index.xhtml" class="" id="" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="pi pi-chevron-down" style="font-size: 2rem; color: #ffffff; padding: 0px 1rem; background-color: #000000; border-radius: 22px 0px 0px 22px;  position: relative; left: 3px; border: 3px;"></i><i class="pi pi-user" style="font-size: 2rem; color: #ffffff; padding: 1rem; background-color: #000000; border-radius: 22px;" ></i>
                     </a>
-                    <ul class="" aria-labelledby="dropdownUser1">
+                    <ul class="ajax dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                        <div class="login-triangle"></div>
+                        <h:form styleClass="login-container">
+                            <h:panelGrid rendered="#{!seguridadBean.autenticado}">
+                                <h2 class="login-header">Iniciar Sesion</h2>
+
+                                <h:panelGrid columns="3" cellpadding="5">
+                                    <p:outputLabel for="email_login" value=""/>
+                                    <p:inputText id="email_login" value="#{seguridadBean.email}" placeholder="Email"/>
+                                    <p:message for="email_login"/>
+                                    <p:outputLabel for="password_login" value=""/>
+                                    <p:password id="password_login" value="#{seguridadBean.password}"
+                                                placeholder="Password"/>
+                                    <p:message for="password_login"/>
+                                    <p:commandButton value="Iniciar Sesión"
+                                                     action="#{seguridadBean.iniciarSesionCliente()}"
+                                                     styleClass="mt-4" update="@form" icon="pi pi-sign-in"
+                                                     iconPos="left"/>
+                                    <p:growl for="login-bean" showDetail="true"/>
+                                    <p:commandButton value="Registrarme" action="#{seguridadBean.registro}"
+                                                     styleClass="mt-4" update="@form" icon="pi pi-user-plus"
+                                                     iconPos="left"/>
+                                    <p:growl for="login-bean" showDetail="true"/>
+                                </h:panelGrid>
+                                <p class="login-footer" style="font-size: 0.7em">¿Olvidaste tu contraseña? <a
+                                        href="../registro.xhtml">Recuperala aqui</a></p>
+                            </h:panelGrid>
+                            <h:panelGrid rendered="#{seguridadBean.autenticado}">
+                                <h2 class="login-header">Bienvenido, #{seguridadBean.persona.nombre}</h2>
+                                <h:panelGrid style="height: 200px;" columns="3"
+                                             cellpadding="5">
+                                    <p:commandButton value="Cerrar Cesion" action="#{seguridadBean.cerrarSesion}"
+                                                     styleClass="mt-4" update="@form" icon="pi pi-sign-in"
+                                                     iconPos="left"/>
+                                    <p:commandButton value="Lista de Compras" action="#{seguridadBean.consultasComprasCliente}"
+                                                     styleClass="mt-4" update="@form" icon="pi pi-shopping-bag"
+                                                     iconPos="left"/>
+                                    <p:growl for="login-bean" showDetail="true"/>
+                                </h:panelGrid>
+                                <p class="login-footer" style="font-size: 0.7em"> Disfruta tu experiencia en Unicine</p>
+                            </h:panelGrid>
+                        </h:form>
 
                     </ul>
                 </div>
